@@ -1,0 +1,18 @@
+.button-holder{
+    position: absolute;
+    right: 0;
+
+    width: 40%;
+
+    text-align: center;
+
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+
+    padding: 10px;
+
+    background-color: rgba(140, 143, 146, 0.527);
+}

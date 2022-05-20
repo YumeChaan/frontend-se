@@ -1,0 +1,25 @@
+.button{
+
+    background-color: rgba(245, 245, 245, 0.63);
+    color: rgb(173, 0, 0);
+
+    width: 30%;
+
+    border: 1px rgb(170, 1, 1) solid;
+    border-radius: 5px;
+
+    letter-spacing: 5px;
+
+    padding: 2px 15px;
+    margin: 1px 2px;
+
+    font-weight: 450;
+
+}
+
+.button:hover{
+    background-color: rgba(211, 1, 1, 0.671);
+
+    border-color: rgb(112, 0, 0);
+    color: white;
+}
