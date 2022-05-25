@@ -1,12 +1,11 @@
 import React, {useState} from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './login.css'
+// import styles from './login.css'
 import login from './login2.jpg'
 import logo from './logo.png'
 
 
 
-function Register() {
+function Login() {
     const [errorMessages, setErrorMessages] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -103,4 +102,4 @@ function Register() {
     );
 }
 
-export default Register;
+export default Login;

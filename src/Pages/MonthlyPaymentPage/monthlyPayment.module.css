@@ -1,0 +1,29 @@
+.bank{
+    width: 100%;
+}
+
+.btn-sub{
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: rgb(173, 0, 0) ;
+    border-color: rgb(66, 3, 3);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 30px;
+    padding: 10px 30px; 
+    width: 30%;   
+    margin-right: auto ;
+    margin-left: auto ;
+    display: block;
+}
+
+.btn-sub:hover{
+    background: rgb(177, 53, 53);
+    border-color: rgb(66, 3, 3);
+}
+
+.button-sub{
+    align-items: center;
+}
