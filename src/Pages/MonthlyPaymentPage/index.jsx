@@ -7,7 +7,7 @@ import bank2 from './bank-2.png'
 
 function addMonthlyPayment(){
     return(
-        <div className={`container`}>
+        <div className={`container ${styles["con-month"]}`}>
                 <div className="">
                     <form action="">
                         <h1 className={`text-center py-3 ${styles["title"]}`}>Add Your Monthly Payment</h1>
