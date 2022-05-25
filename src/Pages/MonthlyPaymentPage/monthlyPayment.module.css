@@ -1,5 +1,6 @@
 .bank{
     width: 100%;
+    border-radius: 15px;
 }
 
 .btn-sub{
@@ -13,7 +14,7 @@
     text-transform: uppercase;
     border-radius: 30px;
     padding: 10px 30px; 
-    width: 30%;   
+    width: 25%;   
     margin-right: auto ;
     margin-left: auto ;
     display: block;
@@ -26,4 +27,15 @@
 
 .button-sub{
     align-items: center;
+}
+
+.title{
+    color: rgb(66, 3, 3);
+}
+.info{
+    color: rgb(173, 0, 0);
+}
+
+.input-f{
+    border-radius: 10px;
 }

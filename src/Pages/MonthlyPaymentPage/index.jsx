@@ -10,12 +10,12 @@ function addMonthlyPayment(){
         <div className={`container`}>
                 <div className="">
                     <form action="">
-                        <h1 className={`text-center py-3`}>Add Your Monthly Payment</h1>
-                        <p className={`text-center py-2`}>PLEASE MAKE SURE TO MENTION YOUR NAME AS THE NARRATION/ DESCRIPTION/ REMARK/ BENEFICIARY REMARK TO TRACK YOUR PAYMENT EASILY.</p>
+                        <h1 className={`text-center py-3 ${styles["title"]}`}>Add Your Monthly Payment</h1>
+                        <p className={`text-center py-2 ${styles["info"]}`}>PLEASE MAKE SURE TO MENTION YOUR NAME AS THE NARRATION/ DESCRIPTION/ REMARK/ BENEFICIARY REMARK TO TRACK YOUR PAYMENT EASILY.</p>
                         <div className={`form-group`}>
-                            <label htmlFor="month">Month</label>
+                            <label htmlFor="month">Month *</label>
 
-                            <select className={`form-control`} id="month">
+                            <select className={`form-control ${styles["input-f"]}`} id="month">
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
@@ -32,13 +32,14 @@ function addMonthlyPayment(){
 
                         <div className={`form-group`}>
                             <label htmlFor="notes">Special Notes</label>
-                            <textarea className={`form-control`} id="notes" rows="3"></textarea>
+                            <textarea className={`form-control ${styles["input-f"]}`} id="notes" rows="3"></textarea>
                         </div>
 
                         <div className={`form-group`}>
                             <label for="receipt">Upload a copy(photo) of your deposit slip/transaction receipt. *</label>
                             <input type="file" class={`form-control-file`} id="receipt"></input>
                         </div>
+                        <hr className={`mb-4`} />
 
                         <div className={`form-group row py-3`}>
                             <div className={`col-sm-6`}>
