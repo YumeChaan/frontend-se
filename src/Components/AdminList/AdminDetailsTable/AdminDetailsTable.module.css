@@ -1,5 +1,5 @@
 .table-record{
-    display: flex;
+    display: block;
     width: 100%;
 
     background-color: rgb(177, 36, 36);
@@ -35,8 +35,10 @@
 }
 
 .data{
-    width: 15%;
-    text-align: center;
+    /* width: 15%; */
+    text-align: left;
+    padding-left: 2em;
+    /* left: 15px; */
 
     border-right: 1px solid rgba(53, 53, 53, 0.315);
 }
@@ -51,33 +53,4 @@
 
 .big-data{
     width: 35%
-}
-
-.dec-btn{
-    background-color: crimson;
-    border-radius: 5px;
-    border: aliceblue;
-}
-
-.dec-btn:hover{
-    background-color: aliceblue;
-    color: crimson;
-}
-
-.acc-btn{
-    background-color: rgb(23, 214, 23);
-    border-radius: 5px;
-    border: aliceblue;
-}
-
-.acc-btn:hover{
-    background-color: aliceblue;
-    color: rgb(23, 214, 23);
-}
-
-.table-record:first-child .u-btn{
-    background-color:rgb(177, 36, 36);
-    border: none;
-    font-weight: bold;
-    color: black;
 }
