@@ -216,6 +216,7 @@ function Register() {
                         <label>
                         Payment Receipt:
                         </label></td>
+                        <td><input type="file" class={`form-control-file`} id="receipt"/></td>
                         </tr>
                         </table>
                         <p style={{color: "#b0b3b8", fontStyle: 'bold'}}>Registration Fee - 500 LKR <br/> + Monthly Fee - 3000 LKR</p>
