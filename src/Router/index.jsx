@@ -4,6 +4,7 @@ import HomePage from "../Pages/HomePage";
 import RegisterPage from "../Pages/RegisterPage";
 import LoginPage from "../Pages/LoginPage";
 import MonthlyPaymentPage from "../Pages/MonthlyPaymentPage";
+import ApproveMonthlyPayment from "../Pages/ApproveMonthlyPaymentPage";
 
 
 export default function AppRouter(){
@@ -15,6 +16,7 @@ export default function AppRouter(){
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/addMonthlyPayment" element={<MonthlyPaymentPage />} />
+                    <Route path="/admin/approveMonthlyPayment" element={<ApproveMonthlyPayment/>}></Route>
                 </Routes>
             </React.Fragment>
         </Router>
