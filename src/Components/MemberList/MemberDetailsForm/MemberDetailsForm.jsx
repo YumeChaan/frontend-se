@@ -76,7 +76,7 @@ function FormModal(props) {
                     </div>
 
                     <div className={`text-right`}>
-                        <button type="submit" className={`${styled["remove-btn"]}`} >Remove</button>
+                        <button type="submit" className={` btn ${styled["remove-btn"]}`} >Remove</button>
                     </div>
 
 
