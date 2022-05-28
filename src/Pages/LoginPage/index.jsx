@@ -92,7 +92,7 @@ function Login() {
                             </div>
                             <p className={`${styles["login-card-description"]}`}>Sign into your account</p>
                             {isSubmitted ? <div></div> : renderForm}
-                            <p className={`${styles["login-card-footer-text"]}`}>Don't have an account? <a href="#!" className={`text-reset`}>Register here</a></p>
+                            <p className={`${styles["login-card-footer-text"]}`}>Don't have an account? <a href="./register" className={`text-reset`}>Register here</a></p>
                         </div>
                     </div>
                     </div>

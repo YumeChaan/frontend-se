@@ -17,7 +17,7 @@ function FormModal(props) {
                 <h2>{props.name}</h2>
             </div>
             <div className="modal-body">
-                <form action="">
+                <form action="" method="POST">
                     <div className={`row form-group`}>
                         <div className={`col-3`}>
                             <span>Name</span>
@@ -61,11 +61,12 @@ function FormModal(props) {
 
                     <div className={`row form-group`}>
                         <div className={`col-md-6`}>
-                            <button type="submit" className={` btn btn-success ${styled["app-btn"]} ${styled["s-btn"]}`} >Approve</button>
+                            <a href="" type="submit" className={` btn btn-success ${styled["app-btn"]} ${styled["s-btn"]}`} >Approve</a>
                         </div>
 
                         <div className={`col-md-6`}>
-                            <button type="submit" className={` btn btn-danger ${styled["dec-btn"]} ${styled["s-btn"]}`} >Decline</button>
+                            <a href="" className={` btn btn-danger ${styled["dec-btn"]} ${styled["s-btn"]}`} >Decline</a>
+                            
                         </div>
                     </div>
 
