@@ -6,7 +6,6 @@ import styles from './index.module.css';
 function AddAdmin(){
     const [name , setName] = useState('');
     const [age , setAge] = useState('');
-    const [weight , setWeight] = useState('');
     const [address , setAddress] = useState('');
     const [phone , setPhone] = useState('');
     const [email , setEmail] = useState('');
@@ -24,9 +23,6 @@ function AddAdmin(){
     const handleAgeChange =(e)=>{
       setAge(e.target.value);
     }
-    const handleWeightChange =(e)=>{
-        setWeight(e.target.value);
-      }
     const handleAddressChange =(e)=>{
         setAddress(e.target.value);
       }
@@ -54,7 +50,7 @@ function AddAdmin(){
     // below function will be called when user
     // click on submit button .
     const handleSubmit=(e)=>{
-      if(password!=confPassword)
+      if(password!==confPassword)
       {
         // if 'password' and 'confirm password'
         // does not match.
