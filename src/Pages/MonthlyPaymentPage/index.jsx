@@ -37,7 +37,7 @@ function addMonthlyPayment(){
 
                         <div className={`form-group`}>
                             <label for="receipt">Upload a copy(photo) of your deposit slip/transaction receipt. *</label>
-                            <input type="file" class={`form-control-file`} id="receipt"></input>
+                            <input type="file" class={`form-control-file`} id="receipt" required></input>
                         </div>
                         <hr className={`mb-4`} />
 
