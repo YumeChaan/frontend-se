@@ -51,7 +51,7 @@ function addMonthlyPayment(){
                         </div>
 
                         <hr className={`mb-4`} />
-                        <div className={`${styles["button-sub"]}`}></div>
+                        {/* <div className={`${styles["button-sub"]}`}></div> */}
                         <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `} type="submit">SUBMIT</button>
                         
                     </form>

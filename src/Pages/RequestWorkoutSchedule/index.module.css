@@ -1,0 +1,29 @@
+.table-holder{
+    padding: 20px 0px 20px 0px;
+}
+
+.header{
+    padding: 10px;
+
+    text-align: center;
+}
+
+.btn-sub{
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: rgb(173, 0, 0) ;
+    border-color: rgb(100, 3, 3);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 10px 30px; 
+    width: 150px;   
+    display: block;
+}
+
+.btn-sub:hover{
+    background: rgb(177, 53, 53);
+    border-color: rgb(97, 4, 4);
+}
