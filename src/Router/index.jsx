@@ -8,6 +8,9 @@ import ApproveMonthlyPayment from "../Pages/ApproveMonthlyPaymentPage";
 import AdminList from "../Pages/AdminListPage";
 import MemberList from "../Pages/MemberListPage";
 import ApproveRegistration from "../Pages/ApproveRegistrationsPage"
+import RequestMealPlan from "../Pages/RequestMealPlanPage";
+import RequestWorkoutSchedule from "../Pages/RequestWorkoutSchedule"
+import AddAdmin from "../Pages/AddAdminPage";
 
 
 export default function AppRouter(){
@@ -23,6 +26,9 @@ export default function AppRouter(){
                     <Route path="/admin/adminList" element={<AdminList />}></Route>
                     <Route path="/admin/memberList" element={<MemberList />}></Route>
                     <Route path="admin/approveRegistration" element={< ApproveRegistration/>}></Route>
+                    <Route path="/request-meal-plan" element={<RequestMealPlan />} />
+                    <Route path="/request-workout-schedule" element={<RequestWorkoutSchedule />} />
+                    <Route path="/admin/add-admin" element={<AddAdmin />} />
                 </Routes>
             </React.Fragment>
         </Router>
