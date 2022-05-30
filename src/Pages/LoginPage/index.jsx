@@ -5,49 +5,53 @@ import login from './login2.jpg'
 import logo from './logo.png'
 import LoginNavBar from "../../Components/LoginNavBar";
 import fitnessLogo from "../../Resources/Images/company-logo.png";
+import authServices from "../../services/authServices";
+
+
 
 function Login() {
     const [errorMessages, setErrorMessages] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    //login info
-    const database = [
-        {
-          username: "user1",
-          password: "pass1"
-        },
-        {
-          username: "user2",
-          password: "pass2"
-        }
-    ];
+
+
+  
 
     const errors = {
-        uname: "Invalid Username",
-        pass: "Invalid Password"
+        uname: "Invalid Username or password",
+        p:"sdkfjhgksjhg"
     };
 
-    const handleSubmit = (event) => {
-        //Prevent page reload
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        try {
+            //Prevent page reload
+           
+        
     
         var { uname, pass } = document.forms[0];
     
         // Find user login info
-        const userData = database.find((user) => user.username === uname.value);
-    
-        // Compare user info
-        if (userData) {
-          if (userData.password !== pass.value) {
-            // Invalid password
-            setErrorMessages({ name: "pass", message: errors.pass });
-          } else {
-            setIsSubmitted(true);
-          }
-        } else {
+        
+        await authServices.login(uname.value,pass.value)
+        
+        
+        // const {state} = this.props.location
+        setIsSubmitted(true);
+        // window.location = state ? state.from.pathname : "/";
+        window.location="/"
+
+        
+        } catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                setErrorMessages({ name: "uname", message: errors.uname });
+              }
+            //   setErrorMessages({ name: "uname", message: ex });
           // Username not found
-          setErrorMessages({ name: "uname", message: errors.uname });
+          
         }
+       
+        
     };
 
     const renderErrorMessage = (name) =>
@@ -102,6 +106,6 @@ function Login() {
             </main>     
         </div>
     );
-}
+    }
 
 export default Login;
