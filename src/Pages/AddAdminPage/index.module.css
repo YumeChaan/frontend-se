@@ -1,0 +1,59 @@
+.reg-container{
+  width: 50%;
+
+
+}
+
+/* .reg-form{
+  margin-top: 75px;
+  margin-bottom: 75px;
+  padding: 30px;
+  background-color: rgb(242, 155, 155);
+  border-radius: 25px;
+} */
+
+@media screen and (max-width: 768px) {
+  .reg-container{
+    width: 100%;
+  
+  
+  }
+}
+
+.group{
+  margin: 2vw;
+}
+
+.ti-label{
+  padding-top: 5px;
+}
+
+.ti-input{
+  border-radius: 10px;
+}
+
+.gender-col{
+  padding-top: 5px;
+}
+
+.btn-sub{
+    
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: rgb(173, 0, 0) ;
+  border-color: rgb(66, 3, 3);
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 30px;
+  padding: 10px 30px; 
+  width: 150px;   
+  margin-right: auto ;
+  margin-left: auto ;
+  display: block;
+}
+
+.btn-sub:hover{
+  background: rgb(177, 53, 53);
+  border-color: rgb(66, 3, 3);
+}

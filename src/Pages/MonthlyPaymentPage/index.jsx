@@ -1,21 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./monthlyPayment.module.css";
 import bank1 from './bank-1.png';
 import bank2 from './bank-2.png'
 
 
-function addMonthlyPayment(){
+function AddMonthlyPayment(){
+
+    const [month, setMonth] = useState('January');
+    const [notes, setNotes] = useState('');
+
+    const handleMonthChange = (e) =>{
+        setMonth(e.target.value);
+    }
+
+    const handleNotesChange = (e) =>{
+        setNotes(e.target.value);
+    }
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+   
+    }
+
     return(
         <div className={`container ${styles["con-month"]}`}>
                 <div className="">
-                    <form action="">
+                    <form onSubmit={(e) => {handleSubmit(e)}} action="" method="POST">
                         <h1 className={`text-center py-3 ${styles["title"]}`}>Add Your Monthly Payment</h1>
                         <p className={`text-center py-2 ${styles["info"]}`}>PLEASE MAKE SURE TO MENTION YOUR NAME AS THE NARRATION/ DESCRIPTION/ REMARK/ BENEFICIARY REMARK TO TRACK YOUR PAYMENT EASILY.</p>
                         <div className={`form-group`}>
                             <label htmlFor="month">Month *</label>
 
-                            <select className={`form-control ${styles["input-f"]}`} id="month">
+                            <select className={`form-control ${styles["input-f"]}`} id="month" value={month} onChange={(e) => {handleMonthChange(e)}}>
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
@@ -32,12 +49,12 @@ function addMonthlyPayment(){
 
                         <div className={`form-group`}>
                             <label htmlFor="notes">Special Notes</label>
-                            <textarea className={`form-control ${styles["input-f"]}`} id="notes" rows="3"></textarea>
+                            <textarea className={`form-control ${styles["input-f"]}`} id="notes" rows="3" value={notes} onChange={(e) => {handleNotesChange(e)}}></textarea>
                         </div>
 
                         <div className={`form-group`}>
                             <label for="receipt">Upload a copy(photo) of your deposit slip/transaction receipt. *</label>
-                            <input type="file" class={`form-control-file`} id="receipt"></input>
+                            <input type="file" class={`form-control-file`} id="receipt" required></input>
                         </div>
                         <hr className={`mb-4`} />
 
@@ -51,7 +68,7 @@ function addMonthlyPayment(){
                         </div>
 
                         <hr className={`mb-4`} />
-                        <div className={`${styles["button-sub"]}`}></div>
+                        {/* <div className={`${styles["button-sub"]}`}></div> */}
                         <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `} type="submit">SUBMIT</button>
                         
                     </form>
@@ -64,4 +81,4 @@ function addMonthlyPayment(){
     
 }
 
-export default addMonthlyPayment;
+export default AddMonthlyPayment;
