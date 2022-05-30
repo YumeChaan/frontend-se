@@ -24,6 +24,7 @@ function AddMonthlyPayment(){
     }
 
     return(
+        <div className={styles['main-container']}>
         <div className={`container ${styles["con-month"]}`}>
                 <div className="">
                     <form onSubmit={(e) => {handleSubmit(e)}} action="" method="POST">
@@ -76,6 +77,7 @@ function AddMonthlyPayment(){
                 </div>
                 
  
+        </div>
         </div>
     );
     

@@ -38,6 +38,7 @@ function MemberList() {
     ];
     return (
         <React.Fragment>
+            <div className={styled['main-container']}>
             <div className={`container`}>
                 <header className={styled['header']}>
                     <h1>Member List</h1>
@@ -59,7 +60,7 @@ function MemberList() {
                     })}
                 </div>
             </div>
-            
+            </div>
         </React.Fragment>
     );
 }

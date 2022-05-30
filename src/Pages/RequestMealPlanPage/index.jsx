@@ -73,6 +73,7 @@ function RequestMealPlan() {
 
     return (
         <React.Fragment>
+            <div className={styled['main-container']}>
             <div className={`container`}>
                 <header className={styled['header']}>
                     <h1>Request Meal Plan</h1>
@@ -131,7 +132,7 @@ function RequestMealPlan() {
                     })}
                 </div>
             </div>
-            
+            </div>
         </React.Fragment>
     );
 }

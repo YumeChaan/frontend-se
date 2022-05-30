@@ -44,6 +44,7 @@ export default function ApproveMonthlyPayment() {
 
   return (
     <React.Fragment>
+      <div className={styled['main-container']}>
       <div className="container">
       <header className={styled['header']}>
         <h1> Pending Monthly Payments </h1>
@@ -63,7 +64,7 @@ export default function ApproveMonthlyPayment() {
         })}
       </div>
       </div>
-
+      </div>
     </React.Fragment>
   );
 }
