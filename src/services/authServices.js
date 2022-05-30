@@ -1,11 +1,12 @@
-import jwtDecode from './../../node_modules/jwt-decode/index.d';
+import jwtDecode from 'jwt-decode';
 import http  from './httpService';
-import {apiUrl} from "../config.json";
-const apiEndnPoint = apiUrl+"/auth";
+const apiUrl= "http://localhost:5000";
+const apiEndnPoint = apiUrl+"/auth/signin";
 const tokenKey = "token";
 
 
 export async function login(username,password){
+    
     const {data:jwt}= await http.post(apiEndnPoint,{username,password});
     localStorage.setItem(tokenKey,jwt);
 }
