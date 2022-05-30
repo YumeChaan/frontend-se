@@ -1,64 +1,102 @@
 import React, {useState} from "react";
+import Joi from "joi-browser";
 import styles from './index.module.css';
 
 
 
 function AddAdmin(){
-    const [name , setName] = useState('');
-    const [birthday , setbirthday] = useState('');
-    const [address , setAddress] = useState('');
-    const [phone , setPhone] = useState('');
-    const [email , setEmail] = useState('');
-    const [username , setUsername] = useState('');
-    const [password , setPassword] = useState('');
-    const [confPassword , setConfPassword] = useState('');
- 
-    // function to update state of name with
-    // value enter by user in form
-    const handleChange =(e)=>{
-      setName(e.target.value);
-    }
-    // function to update state of birthday with value
-    // enter by user in form
-    const handlebirthdayChange =(e)=>{
-      setbirthday(e.target.value);
-    }
-    const handleAddressChange =(e)=>{
-        setAddress(e.target.value);
+    
+    const [confPassword, setConfPassword] = useState('');
+    const [admin, setAdmin] = useState({
+      name: "",
+      birthday: "",
+      address: "",
+      phone: "",
+      email: "",
+      username:"",
+      password:"",
+      confPassword:""
+    });
+
+    const [errors, setErrors] = useState({});
+    const schema = {
+      name: Joi.string().regex(/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{0,}$/, 'name').required(),
+      birthday: Joi.required(),
+      address: Joi.string().required(),
+      // phone: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+      phone: Joi.string().length(10).regex(/^[0-9]+$/, 'given').required(),
+      email: Joi.string().email().required(),
+      username: Joi.string().min(1).max(20).required(),
+      password: Joi.string()
+      .min(8)
+      .max(25)
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 
+      'password').required(),
+      // confPassword: Joi.string().required().valid(Joi.ref('password'))
+      confPassword: Joi.any().valid(Joi.ref('password')).required().options({ language: { any: { allowOnly: 'must match password' } } })
+    };
+
+    const validateForm = (event) => {
+      event.preventDefault();
+      const result = Joi.validate(admin,
+        schema, { abortEarly: false });
+      console.log(result);
+      const { error } = result;
+      if (!error) {
+      return null;
+      } else {
+      const errorData = {};
+      for (let item of error.details) {
+        const name = item.path[0];
+        const message = item.message;
+        errorData[name] = message;
       }
-    const handlePhoneChange =(e)=>{
-        setPhone(e.target.value);
+      console.log(errors);
+      setErrors(errorData);
+      return errorData;
       }
-    // function to update state of email with value
-    // enter by user in form
-    const handleEmailChange =(e)=>{
-      setEmail(e.target.value);
-    }
-    const handleUsernameChange =(e)=>{
-        setUsername(e.target.value);
+    };
+
+    const handleSave = (event) => {
+      const { name, value } = event.target;
+      let errorData = { ...errors };
+      const errorMessage = validateProperty(event);
+      if (errorMessage) {
+      errorData[name] = errorMessage;
+      } else {
+      delete errorData[name];
       }
-      // function to update state of password with
-      // value enter by user in form
-    const handlePasswordChange =(e)=>{
-      setPassword(e.target.value);
-    }
+      let adminData = { ...admin };
+      adminData[name] = value;
+      setAdmin(adminData);
+      setErrors(errorData);
+    };
+
+    const validateProperty = (event) => {
+      const { name, value } = event.target;
+      const obj = { [name]: value };
+      const subSchema = { [name]: schema[name] };
+      const result = Joi.validate(obj, subSchema);
+      const { error } = result;
+      return error ? error.details[0].message : null;
+    };
+    
       // function to update state of confirm password
       // with value enter by user in form
-    const handleConfPasswordChange =(e)=>{
-      setConfPassword(e.target.value);
-    }
     // below function will be called when user
     // click on submit button .
     const handleSubmit=(e)=>{
-      if(password!==confPassword)
+      if(admin.password!==admin.confPassword)
       {
         // if 'password' and 'confirm password'
         // does not match.
+        console.log("password Not Match")
         alert("password Not Match");
       }
       else{
         // display alert box with user
         // 'name' and 'email' details .
+        console.log('Successfully registered!')
         alert('Successfully registered!');
       }
       e.preventDefault();
@@ -72,32 +110,61 @@ function AddAdmin(){
                 <h1 className={`text-center py-3 ${styles["title"]}`}>Add Admin</h1>     
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="name" className={`col-3 ${styles["ti-label"]}`}>Name</label>
-
-                        <input type="text" class={`form-control col-9 ${styles["ti-input"]}`} id="name" value={name} required onChange={(e) => {handleChange(e)}} />
+                        <div className={`col-9 ${styles["wrap-input"]}`}>
+                          <input type="text" className={`form-control ${styles["ti-input"]}`} id="name" name="name" value={admin.name} required onChange={handleSave} />
+                          {errors.name && (
+                          <div className={`alert alert-danger ${styles["error"]}`}>
+                            {errors.name}
+                          </div>)}
+                        </div>
+                        
                     </div>
+                    
 
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="birthday" className={`col-3 ${styles["ti-label"]}`}>Birthday</label>
-
-                        <input type="date" class={`form-control col-9 ${styles["ti-input"]}`} id="birthday" value={birthday} required onChange={(e) => {handlebirthdayChange(e)}} />
+                          <div className={`col-9 ${styles["wrap-input"]}`}>
+                            <input type="date" class={`form-control ${styles["ti-input"]}`} id="birthday" name="birthday" value={admin.birthday} required onChange={handleSave} />
+                            {errors.birthday && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              {errors.birthday}
+                            </div>)}
+                          </div>
+                        
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="address" className={`col-3 ${styles["ti-label"]}`}>Address</label>
-
-                        <input type="text" class={`form-control col-9 ${styles["ti-input"]}`} id="address" value={address} required onChange={(e) => {handleAddressChange(e)}} />
+                        <div className={`col-9 ${styles["wrap-input"]}`}>
+                          <input type="text" class={`form-control ${styles["ti-input"]}`} id="address" name="address" value={admin.address} required onChange={handleSave} />
+                          {errors.address && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              {errors.address}
+                            </div>)}
+                        </div>
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="phone" className={`col-3 ${styles["ti-label"]}`}>Phone Number</label>
-
-                        <input type="text" class={`form-control col-9 ${styles["ti-input"]}`} id="phone" value={phone} required onChange={(e) => {handlePhoneChange(e)}} />
+                        <div className={`col-9 ${styles["wrap-input"]}`}>
+                          <input type="text" class={`form-control ${styles["ti-input"]}`} id="phone" name="phone" value={admin.phone} required onChange={handleSave} />
+                          {errors.phone && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              {errors.phone}
+                            </div>)}
+                        </div>
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="email" className={`col-3 ${styles["ti-label"]}`}>Email</label>
-
-                        <input type="email" class={`form-control col-9 ${styles["ti-input"]}`} id="email" value={email} required onChange={(e) => {handleEmailChange(e)}} />
+                        <div className={`col-9 ${styles["wrap-input"]}`}>
+                          <input type="email" class={`form-control ${styles["ti-input"]}`} id="email" name="email" value={admin.email} required onChange={handleSave} />
+                          {errors.email && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              {errors.email}
+                            </div>)}
+                        </div>
+                        
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
@@ -105,7 +172,7 @@ function AddAdmin(){
                         <div className={`col-9 ${styles["gender-col"]}`}>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="male" value="male" />Male
+                                    <input type="radio" class="form-check-input" name="gender" id="male" value="male" defaultChecked/>Male
                                 </label>
                                 </div>
                                 <div class="form-check-inline">
@@ -123,23 +190,43 @@ function AddAdmin(){
 
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="username" className={`col-3 ${styles["ti-label"]}`}>User Name</label>
-
-                        <input type="text" class={`form-control col-9 ${styles["ti-input"]}`} id="username" value={username} required onChange={(e) => {handleUsernameChange(e)}} />
+                        <div className={`col-9 ${styles["wrap-input"]}`}>
+                          <input type="text" class={`form-control ${styles["ti-input"]}`} id="username" name="username" value={admin.username} required onChange={handleSave} />
+                          {errors.username && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              {errors.username}
+                            </div>)}
+                        </div>
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="password" className={`col-3 ${styles["ti-label"]}`}>Password</label>
-
-                        <input type="password" class={`form-control col-9 ${styles["ti-input"]}`} id="email" value={password} required onChange={(e) => {handlePasswordChange(e)}} />
+                        <div className={`col-9 ${styles["wrap-input"]}`}>                             
+                          <input type="password" class={`form-control ${styles["ti-input"]}`} id="password" name="password"  value={admin.password} required onChange={handleSave} />
+                          {errors.password && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              {errors.password}
+                            </div>)}
+                        </div>
+                        
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="confPassword" className={`col-3 ${styles["ti-label"]}`}>Confirm Password</label>
-
-                        <input type="password" class={`form-control col-9 ${styles["ti-input"]}`} id="email" value={confPassword} required onChange={(e) => {handleConfPasswordChange(e)}} />
+                        <div className={`col-9 ${styles["wrap-input"]}`}>
+                          <input type="password" class={`form-control ${styles["ti-input"]}`} id="confPassword" name="confPassword" value={admin.confPassword} required onChange={handleSave} />
+                          {errors.confPassword && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              {errors.confPassword}
+                              {"Password Does not Match"}
+                            </div>)}
+                        </div>
                     </div>
+
+                    {console.log(admin.password)};
+                    {console.log(admin.confPassword)}
                             
-                    <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `} type="submit">SUBMIT</button>    
+                    <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `} onClick={validateForm} type="submit">SUBMIT</button>    
                             
                 </form>
             </div>
