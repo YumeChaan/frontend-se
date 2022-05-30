@@ -41,6 +41,7 @@ function RegistrationList() {
     ];
     return (
         <React.Fragment>
+            <div className={styled['main-container']}>
             <div className={`container`}>
                 <header className={styled['header']}>
                     <h1>Pending Registrations</h1>
@@ -63,7 +64,7 @@ function RegistrationList() {
                     })}
                 </div>
             </div>
-            
+            </div>
         </React.Fragment>
     );
 }

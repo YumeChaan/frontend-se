@@ -27,3 +27,6 @@
     background: rgb(177, 53, 53);
     border-color: rgb(97, 4, 4);
 }
+.main-container {
+    height: 1000px;
+}

@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './login.module.css'
 import login from './login2.jpg'
 import logo from './logo.png'
+import LoginNavBar from "../../Components/LoginNavBar";
+import fitnessLogo from "../../Resources/Images/company-logo.png";
 import authServices from "../../services/authServices";
 
 
@@ -80,6 +82,7 @@ function Login() {
     
     return (
         <div>
+            <LoginNavBar/>
             <main className={`d-flex align-items-center min-vh-100 py-3 py-md-0`}>
                 <div className={`container ${styles["login-container"]}`}>
                 <div className={`card ${styles["login-card"]}`}>
@@ -90,7 +93,7 @@ function Login() {
                     <div className={`col-lg-6 col-md-7`}>
                         <div className={`card-body text-center ${styles["c-body"]}`}>
                             <div className={`${styles["brand-wrapper"]}`}>
-                                <img src={logo} alt="logo" className={`${styles["logo"]}`} />
+                                <img src={fitnessLogo} alt="logo" className={`${styles["logo"]}`} />
                             </div>
                             <p className={`${styles["login-card-description"]}`}>Sign into your account</p>
                             {isSubmitted ? <div></div> : renderForm}
