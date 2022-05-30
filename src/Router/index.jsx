@@ -7,7 +7,8 @@ import MonthlyPaymentPage from "../Pages/MonthlyPaymentPage";
 import ApproveMonthlyPayment from "../Pages/ApproveMonthlyPaymentPage";
 import AdminList from "../Pages/AdminListPage";
 import MemberList from "../Pages/MemberListPage";
-import ApproveRegistration from "../Pages/ApproveRegistrationsPage"
+import ApproveRegistration from "../Pages/ApproveRegistrationsPage";
+import AdminDashboard from "../Pages/AdminDashboard";
 
 
 export default function AppRouter(){
@@ -15,14 +16,15 @@ export default function AppRouter(){
         <Router>
             <React.Fragment>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/" element={<HomePage />} exact />
+                    <Route path="/register" element={<RegisterPage />} exact />
+                    <Route path="/login" element={<LoginPage />} exact />
                     <Route path="/addMonthlyPayment" element={<MonthlyPaymentPage />} />
-                    <Route path="/admin/approveMonthlyPayment" element={<ApproveMonthlyPayment/>}></Route>
-                    <Route path="/admin/adminList" element={<AdminList />}></Route>
-                    <Route path="/admin/memberList" element={<MemberList />}></Route>
-                    <Route path="admin/approveRegistration" element={< ApproveRegistration/>}></Route>
+                    <Route path="/admin/approveMonthlyPayment" element={<ApproveMonthlyPayment/>} />
+                    <Route path="/admin/adminList" element={<AdminList />} />
+                    <Route path="/admin/memberList" element={<MemberList />} />
+                    <Route path="admin/approveRegistration" element={< ApproveRegistration/>} />
+                    <Route path="/admin/dashboard" element={<AdminDashboard />} exact />
                 </Routes>
             </React.Fragment>
         </Router>
