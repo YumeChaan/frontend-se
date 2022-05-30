@@ -5,7 +5,7 @@ import styles from './index.module.css';
 
 function AddAdmin(){
     const [name , setName] = useState('');
-    const [age , setAge] = useState('');
+    const [birthday , setbirthday] = useState('');
     const [address , setAddress] = useState('');
     const [phone , setPhone] = useState('');
     const [email , setEmail] = useState('');
@@ -18,10 +18,10 @@ function AddAdmin(){
     const handleChange =(e)=>{
       setName(e.target.value);
     }
-    // function to update state of age with value
+    // function to update state of birthday with value
     // enter by user in form
-    const handleAgeChange =(e)=>{
-      setAge(e.target.value);
+    const handlebirthdayChange =(e)=>{
+      setbirthday(e.target.value);
     }
     const handleAddressChange =(e)=>{
         setAddress(e.target.value);
@@ -77,9 +77,9 @@ function AddAdmin(){
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
-                        <label htmlFor="age" className={`col-3 ${styles["ti-label"]}`}>Age</label>
+                        <label htmlFor="birthday" className={`col-3 ${styles["ti-label"]}`}>Birthday</label>
 
-                        <input type="number" class={`form-control col-9 ${styles["ti-input"]}`} id="age" value={age} required onChange={(e) => {handleAgeChange(e)}} />
+                        <input type="date" class={`form-control col-9 ${styles["ti-input"]}`} id="birthday" value={birthday} required onChange={(e) => {handlebirthdayChange(e)}} />
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
