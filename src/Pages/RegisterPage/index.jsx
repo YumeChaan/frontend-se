@@ -12,7 +12,7 @@ import styles from './index.module.css';
 function Register() {
     const [buttonPopup, setButtonPopup] = useState(false);
     const [name , setName] = useState('');
-    const [age , setAge] = useState('');
+    const [birthday , setBirthday] = useState('');
     const [weight , setWeight] = useState('');
     const [address , setAddress] = useState('');
     const [phone , setPhone] = useState('');
@@ -28,8 +28,8 @@ function Register() {
     }
     // function to update state of age with value
     // enter by user in form
-    const handleAgeChange =(e)=>{
-      setAge(e.target.value);
+    const handleBirthdayChange =(e)=>{
+      setBirthday(e.target.value);
     }
     const handleWeightChange =(e)=>{
         setWeight(e.target.value);
@@ -135,10 +135,10 @@ function Register() {
                         <tr>
                             <td>
                         <label >
-                        Age:
+                        Birthday:
                         </label>
                         </td>
-                        <td><input type="text" value={age} required onChange={(e) => {handleAgeChange(e)}} /></td>
+                        <td><input type="date" value={birthday} required onChange={(e) => {handleBirthdayChange(e)}} /></td>
                         </tr>
                         <tr>
                             <td>
