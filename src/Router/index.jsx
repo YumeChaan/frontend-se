@@ -10,7 +10,7 @@ import MemberList from "../Pages/MemberListPage";
 
 import ApproveRegistration from "../Pages/ApproveRegistrationsPage";
 import AdminDashboard from "../Pages/AdminDashboard";
-
+import MemberDashboard from "../Pages/MemberDashboard";
 import RequestMealPlan from "../Pages/RequestMealPlanPage";
 import RequestWorkoutSchedule from "../Pages/RequestWorkoutSchedule"
 import AddAdmin from "../Pages/AddAdminPage";
@@ -27,7 +27,7 @@ export default function AppRouter(){
                     <Route path="/addMonthlyPayment" element={<MonthlyPaymentPage />} />
 
                     <Route path="/admin/dashboard" element={<AdminDashboard />} exact />
-
+                    <Route path="/member/dashboard" element={<MemberDashboard />} exact />
                     <Route path="/admin/approveMonthlyPayment" element={<ApproveMonthlyPayment/>}></Route>
                     <Route path="/admin/adminList" element={<AdminList />}></Route>
                     <Route path="/admin/memberList" element={<MemberList />}></Route>

@@ -81,6 +81,7 @@ function RequestWorkoutSchedule() {
 
     return (
         <React.Fragment>
+            <div className={styled['main-container']}>
             <div className={`container`}>
                 <header className={styled['header']}>
                     <h1>Request Workout Schedule</h1>
@@ -151,7 +152,7 @@ function RequestWorkoutSchedule() {
                     })}
                 </div>
             </div>
-            
+            </div>
         </React.Fragment>
     );
 }

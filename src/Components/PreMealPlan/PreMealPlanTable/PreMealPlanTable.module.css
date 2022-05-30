@@ -2,7 +2,7 @@
     display: block;
     width: 100%;
 
-    background-color: rgb(177, 36, 36);
+    background-color: #4A3F35;
     color: white;
 
     padding: 10px 0px;
@@ -20,11 +20,11 @@
     border-top-right-radius: 10px;
 
     font-weight: bold;
-    color: black;
+    color: #fff;
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.288);
 
-    background-color: rgb(177, 36, 36) !important;
+    background-color: #2F2519 !important;
 
     pointer-events: none;
 }
@@ -40,7 +40,7 @@
     padding-left: 2em;
     /* left: 15px; */
 
-    border-right: 1px solid rgba(53, 53, 53, 0.315);
+    border-right: 1px solid #000;
 }
 
 .data:last-child{

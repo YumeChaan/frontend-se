@@ -39,3 +39,7 @@
     height: 400px;
     background-color: #8C0000;
 }
+.logout-btn {
+    background-color: #C70039;
+    color: #fff;
+}
