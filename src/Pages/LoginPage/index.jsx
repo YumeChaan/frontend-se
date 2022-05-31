@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './login.module.css'
 import login from './login2.jpg'
-import logo from './logo.png'
 import LoginNavBar from "../../Components/LoginNavBar";
 import fitnessLogo from "../../Resources/Images/company-logo.png";
 import authServices from "../../services/authServices";
