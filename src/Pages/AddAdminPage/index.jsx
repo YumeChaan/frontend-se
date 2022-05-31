@@ -1,7 +1,10 @@
 import React, {useState} from "react";
+import Box from '@mui/material/Box';
+import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
 import styles from './index.module.css';
+import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
 
-
+const drawerWidth = 240;
 
 function AddAdmin(){
     const [name , setName] = useState('');
@@ -65,8 +68,26 @@ function AddAdmin(){
  
     }
     return(
-        
-        <div className={`container ${styles["reg-container"]}`}>
+      <React.Fragment>
+            <Box sx={{ display: 'flex' }}>
+            
+            <Box
+                component="nav"
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }}}
+                aria-label="mailbox folders"
+                
+            >
+                
+                <AdminSideNavBar/>
+                
+            </Box>
+            
+            <Box
+                component="main"
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+            >
+                
+                <div className={`container ${styles["reg-container"]}`}>
             <div className={`${styles["s-container"]} `}>
                 <form action="" className={` ${styles["reg-form"]}`} onSubmit={(e) => {handleSubmit(e)}}>
                 <h1 className={`text-center py-3 ${styles["title"]}`}>Add Admin</h1>     
@@ -145,6 +166,13 @@ function AddAdmin(){
             </div>
 
         </div>
+                
+            </Box>
+        </Box>
+            
+        </React.Fragment>
+        
+        
     );
 }
 export default AddAdmin;
