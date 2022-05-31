@@ -3,12 +3,13 @@ import Joi from "joi-browser";
 import Box from '@mui/material/Box';
 import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
 import styles from './index.module.css';
-import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
+//import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
 
 const drawerWidth = 240;
 
 function AddAdmin(){
 
+    const [gender, setGender] = useState('male');
     const [admin, setAdmin] = useState({
       name: "",
       birthday: "",
@@ -74,6 +75,10 @@ function AddAdmin(){
       setErrors(errorData);
     };
 
+    const handleGenderChange = (event) => {
+      setGender(event.target.value)
+    }
+
     const validateProperty = (event) => {
       const { name, value } = event.target;
       const obj = { [name]: value };
@@ -83,10 +88,11 @@ function AddAdmin(){
       return error ? error.details[0].message : null;
     };
     
-      // function to update state of confirm password
-      // with value enter by user in form
-    // below function will be called when user
-    // click on submit button .
+    const handleSubmit=(e)=>{
+      e.preventDefault();
+ 
+    };
+
  
     
     return(
@@ -106,13 +112,15 @@ function AddAdmin(){
             
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+                // sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `linear-gradient(to right, #800000, #ff6666, #800000);` }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `linear-gradient(to right, #1a1a1a, #333333, #1a1a1a);` }}
             >
                 
-                <div className={`container ${styles["reg-container"]}`}>
+            <div className={`container ${styles["reg-container"]}`}>
             <div className={`${styles["s-container"]} `}>
-                <form action="" className={` ${styles["reg-form"]}`}>
-                <h1 className={`text-center py-3 ${styles["title"]}`}>Add Admin</h1>     
+            <h1 className={`text-center py-3 ${styles["title"]}`}>Add Admin</h1> 
+                <form onSubmit={(e) => {handleSubmit(e)}} action="" className={` ${styles["reg-form"]}`}>
+                    
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="name" className={`col-3 ${styles["ti-label"]}`}>Name</label>
                         <div className={`col-9 ${styles["wrap-input"]}`}>
@@ -129,7 +137,7 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="birthday" className={`col-3 ${styles["ti-label"]}`}>Birthday</label>
                           <div className={`col-9 ${styles["wrap-input"]}`}>
-                            <input type="date" class={`form-control ${styles["ti-input"]}`} id="birthday" name="birthday" value={admin.birthday} required onChange={handleSave} />
+                            <input type="date" className={`form-control ${styles["ti-input"]}`} id="birthday" name="birthday" value={admin.birthday} required onChange={handleSave} />
                             {errors.birthday && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
                               Invalid Birthday
@@ -141,7 +149,7 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="address" className={`col-3 ${styles["ti-label"]}`}>Address</label>
                         <div className={`col-9 ${styles["wrap-input"]}`}>
-                          <input type="text" class={`form-control ${styles["ti-input"]}`} id="address" name="address" value={admin.address} required onChange={handleSave} />
+                          <input type="text" className={`form-control ${styles["ti-input"]}`} id="address" name="address" value={admin.address} required onChange={handleSave} />
                           {errors.address && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
                               Invalid Address
@@ -152,7 +160,7 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="phone" className={`col-3 ${styles["ti-label"]}`}>Phone Number</label>
                         <div className={`col-9 ${styles["wrap-input"]}`}>
-                          <input type="text" class={`form-control ${styles["ti-input"]}`} id="phone" name="phone" value={admin.phone} required onChange={handleSave} />
+                          <input type="text" className={`form-control ${styles["ti-input"]}`} id="phone" name="phone" value={admin.phone} required onChange={handleSave} />
                           {errors.phone && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
                               Invalid Phone Number
@@ -163,7 +171,7 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="email" className={`col-3 ${styles["ti-label"]}`}>Email</label>
                         <div className={`col-9 ${styles["wrap-input"]}`}>
-                          <input type="email" class={`form-control ${styles["ti-input"]}`} id="email" name="email" value={admin.email} required onChange={handleSave} />
+                          <input type="email" className={`form-control ${styles["ti-input"]}`} id="email" name="email" value={admin.email} required onChange={handleSave} />
                           {errors.email && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
                               Invalid Email
@@ -175,19 +183,19 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="gender" className={`col-3 ${styles["ti-label"]}`}>Gender</label>
                         <div className={`col-9 ${styles["gender-col"]}`}>
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="male" value="male" defaultChecked/>Male
+                            <div className="form-check-inline">
+                                <label className="form-check-label">
+                                    <input type="radio" className="form-check-input" name="gender" id="male" value="male" checked={gender === 'male'} onChange={handleGenderChange}/>Male
                                 </label>
                                 </div>
-                                <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="female" value="female" />Female
+                                <div className="form-check-inline">
+                                <label className="form-check-label">
+                                    <input type="radio" className="form-check-input" name="gender" id="female" value="female" checked={gender === 'female'} onChange={handleGenderChange} />Female
                                 </label>
                                 </div>
-                                <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="other" value="other" />Other
+                                <div className="form-check-inline">
+                                <label className="form-check-label">
+                                    <input type="radio" className="form-check-input" name="gender" id="other" value="other" checked={gender === 'other'} onChange={handleGenderChange} />Other
                                 </label>
                                 </div>
                             </div>
@@ -196,7 +204,7 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="username" className={`col-3 ${styles["ti-label"]}`}>User Name</label>
                         <div className={`col-9 ${styles["wrap-input"]}`}>
-                          <input type="text" class={`form-control ${styles["ti-input"]}`} id="username" name="username" value={admin.username} required onChange={handleSave} />
+                          <input type="text" className={`form-control ${styles["ti-input"]}`} id="username" name="username" value={admin.username} required onChange={handleSave} />
                           {errors.username && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
                               Username must be filled and less than 20 characters
@@ -207,7 +215,7 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="password" className={`col-3 ${styles["ti-label"]}`}>Password</label>
                         <div className={`col-9 ${styles["wrap-input"]}`}>                             
-                          <input type="password" class={`form-control ${styles["ti-input"]}`} id="password" name="password"  value={admin.password} required onChange={handleSave} />
+                          <input type="password" className={`form-control ${styles["ti-input"]}`} id="password" name="password"  value={admin.password} required onChange={handleSave} />
                           {errors.password && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
                               Password must be at least 8 characters long contain a number, an uppercase letter, a lowercase letter and a special character 
@@ -219,7 +227,7 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="confPassword" className={`col-3 ${styles["ti-label"]}`}>Confirm Password</label>
                         <div className={`col-9 ${styles["wrap-input"]}`}>
-                          <input type="password" class={`form-control ${styles["ti-input"]}`} id="confPassword" name="confPassword" value={admin.confPassword} required onChange={handleSave} />
+                          <input type="password" className={`form-control ${styles["ti-input"]}`} id="confPassword" name="confPassword" value={admin.confPassword} required onChange={handleSave} />
                           {errors.confPassword && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
                               {"Passwords do not match"}

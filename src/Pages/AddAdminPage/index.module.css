@@ -1,16 +1,22 @@
 .reg-container{
-  width: 50%;
+  width: 70%;
 
 
 }
 
-/* .reg-form{
-  margin-top: 75px;
+.title{
+  color: aliceblue;
+}
+
+.reg-form{
   margin-bottom: 75px;
   padding: 30px;
-  background-color: rgb(242, 155, 155);
-  border-radius: 25px;
-} */
+  /* background-color: transparent;
+  border-radius: 25px; */
+  background: rgba(235, 203, 203, 0.3);
+  border-radius: 10px;
+  color: #fff;
+}
 
 @media screen and (max-width: 768px) {
   .reg-container{

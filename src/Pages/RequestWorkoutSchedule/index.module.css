@@ -31,3 +31,8 @@
 .main-container {
     height: 1000px;
 }
+
+.error{
+    margin-top: 15px;
+    margin-bottom: 0;
+}

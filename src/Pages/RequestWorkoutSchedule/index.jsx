@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Joi from "joi-browser";
 import PreWorkoutScheduleTable from '../../Components/PreWorkoutSchedule/PreWorkoutScheduleTable/PreWorkoutScheduleTable.jsx'
 import styled from './index.module.css';
 import Box from '@mui/material/Box';
@@ -48,24 +49,61 @@ function RequestWorkoutSchedule() {
         },
     ];
 
-    const [current_weight, setCurrent_weight] = useState('');
-    const [target_weight, setTarget_weight] = useState('');
-    const [target_time, setTarget_time] = useState('');
+    
     const [workout_frequency, setWorkout_frequency] = useState('Once a week or never');
     const [targets, setTargets] = useState('Build muscle');
     const [add_notes, setAdd_notes] = useState('');
 
-    const handleCWeightChange =(e)=>{
-        setCurrent_weight(e.target.value);
+    const [workoutSchedule, setWorkoutSchedule] = useState({
+        current_weight: "",
+        target_weight:"",
+        target_time:"",
+        
+    })
+
+    const [errors, setErrors] = useState({});
+    const schema = {
+        current_weight:Joi.number().required(),
+        target_weight:Joi.number().required(),
+        target_time:Joi.number().required(),
     }
 
-    const handleTWeightChange =(e)=>{
-        setTarget_weight(e.target.value);
-    }
-
-    const handleTargetTimeChange =(e)=>{
-        setTarget_time(e.target.value);
-    }
+    const validateForm = (event) => {
+        event.preventDefault();
+        const result = Joi.validate(workoutSchedule,
+          schema, { abortEarly: false });
+        console.log(result);
+        const { error } = result;
+        if (!error) {
+        return null;
+        } else {
+        const errorData = {};
+        for (let item of error.details) {
+          const name = item.path[0];
+          const message = item.message;
+          errorData[name] = message;
+        }
+        console.log(errors);
+        setErrors(errorData);
+        return errorData;
+        }
+    };
+  
+    const handleSave = (event) => {
+        const { name, value } = event.target;
+        let errorData = { ...errors };
+        const errorMessage = validateProperty(event);
+        if (errorMessage) {
+        errorData[name] = errorMessage;
+        } else {
+        delete errorData[name];
+        }
+        let workoutScheduleData = { ...workoutSchedule };
+        workoutScheduleData[name] = value;
+        // setVeg_prefer(veg_prefer);
+        setWorkoutSchedule(workoutScheduleData);
+        setErrors(errorData);
+    };
 
     const handleWorkoutFreqChange =(e)=>{
         setWorkout_frequency(e.target.value);
@@ -79,10 +117,21 @@ function RequestWorkoutSchedule() {
         setAdd_notes(e.target.value);
     }
 
+
+    const validateProperty = (event) => {
+    const { name, value } = event.target;
+    const obj = { [name]: value };
+    const subSchema = { [name]: schema[name] };
+    const result = Joi.validate(obj, subSchema);
+    const { error } = result;
+    return error ? error.details[0].message : null;
+    };
+
+
     const handleSubmit=(e)=>{
         e.preventDefault();
    
-    }
+    };
 
     return (
         <React.Fragment>
@@ -114,18 +163,30 @@ function RequestWorkoutSchedule() {
                     <div className={`row`}>
                         <div className={`form-group col-md-6 col-12`}>
                             <label for="currentWeight">Current Weight (Kg) </label>
-                            <input type="number" step="0.01" className={`form-control`} id="currentWeight" name="currentWeight" value={current_weight} required onChange={(e) => {handleCWeightChange(e)}}/>
+                            <input type="number" step="0.01" className={`form-control`} id="currentWeight" name="current_weight" value={workoutSchedule.current_weight} required onChange={handleSave}/>
+                            {errors.current_weight && (
+                            <div className={`alert alert-danger ${styled["error"]}`}>
+                                Invalid Weight 
+                            </div>)}
                         </div>
                         <div className={`form-group col-md-6 col-12`}>
                             <label for="targetWeight">Target Weight (Kg) </label>
-                            <input type="number" step="0.01" className={`form-control`} id="targetWeight" name="targetWeight" value={target_weight} required onChange={(e) => {handleTWeightChange(e)}}/>
+                            <input type="number" step="0.01" className={`form-control`} id="targetWeight" name="target_weight" value={workoutSchedule.target_weight} required onChange={handleSave}/>
+                            {errors.target_weight && (
+                            <div className={`alert alert-danger ${styled["error"]}`}>
+                                Invalid Weight 
+                            </div>)}
                         </div>
                     </div>
 
                     <div className={`row`}>
                         <div className={`form-group col-md-6 col-12`}>
                             <label for="target_time">Time Period to Achieve the Target (Months) </label>
-                            <input type="number" className={`form-control`} id="target_time" name="target_time" value={target_time} required onChange={(e) => {handleTargetTimeChange(e)}}/>
+                            <input type="number" className={`form-control`} id="target_time" name="target_time" value={workoutSchedule.target_time} required onChange={handleSave}/>
+                            {errors.target_time && (
+                            <div className={`alert alert-danger ${styled["error"]}`}>
+                                Invalid Number of Months 
+                            </div>)}
                         </div>
                         <div className={`form-group col-md-6 col-12`}>
                             <label for="targets">Targets</label>
@@ -148,11 +209,11 @@ function RequestWorkoutSchedule() {
 
                     <div className={`form-group`}>
                         <label for="add-notes">Additional Notes</label>
-                        <textarea className={`form-control`} name="add-notes" id="add-notes" rows="3" value={add_notes} onChange={(e) => {handleAddNotesChange(e)}}></textarea>
+                        <textarea className={`form-control`} name="add_notes" id="add-notes" rows="3" value={add_notes} onChange={(e) => {handleAddNotesChange(e)}}></textarea>
                     </div>
 
                     
-                    <button className={` btn btn-primary btn-lg ${styled["btn-sub"]} `} type="submit">SUBMIT</button>
+                    <button className={` btn btn-primary btn-lg  ${styled["btn-sub"]} `}  onClick={validateForm} type="submit">SUBMIT</button>
                     </form>
                 </div>
 
