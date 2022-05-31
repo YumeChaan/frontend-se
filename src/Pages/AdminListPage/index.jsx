@@ -19,8 +19,9 @@ function AdminList() {
     
         getAdmin();
       });
-    
+     
     return (
+       
         <React.Fragment>
             <Box sx={{ display: 'flex' }}>
             
@@ -49,14 +50,14 @@ function AdminList() {
                             {records.map((record) => {
                             return (
                                 <AdminDetailsTable
-                                key={record["id"]}
-                                name={record["name"]}
-                                age={record["age"]}
-                                gender={record["gender"]}
-                                birthday={record["birthday"]}
-                                address={record["address"]}
-                                contact={record["contact"]}
-                                email={record["email"]}
+                                key={record['mobileNo']}
+                                name={record['Name']}
+                                age={7}
+                                gender={record['gender']}
+                                birthday={record['birthday']}
+                                address={record['address']}
+                                contact={record['mobileNo']}
+                                email={record['email']}
                                 />
                             );
                             })}

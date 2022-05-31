@@ -5,16 +5,16 @@ const apiUrl= "http://localhost:5000";
 
 const apiEndpoint = apiUrl + "/admin/addAdmin";
  
-export async function addAdmin(name,birthday,address,mobileNO,email,gender,username,password,confirmPassword) {
+export async function addAdmin(name,birthday,address,phone,email,gender,username,password,confPassword) {
   
   return await http.post(apiEndpoint, {
     Name:name, 
     email:email,
     username: username,
-    mobileNo:mobileNO,
+    mobileNo:phone,
     gender:gender,
     password:password,
-    confirmPassword:confirmPassword,
+    confirmPassword:confPassword,
     birthday:birthday,
     address:address
   },{
@@ -29,6 +29,25 @@ export async function addAdmin(name,birthday,address,mobileNO,email,gender,usern
 export async function adminList() {
   
     return await http.get(apiUrl+'/admin/adminslist',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function pendingMemberList() {
+  
+    return await http.get(apiUrl+'/admin/pendingUserList',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }  export async function memberList() {
+  
+    return await http.get(apiUrl+'/admin/userslist',{
       headers: {
        
         'content-type': 'application/json',

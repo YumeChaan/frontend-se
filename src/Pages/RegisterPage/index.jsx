@@ -9,11 +9,13 @@ import Button from '../../Components/UI/Button/Button.js'
 import CompanyCard from "../../Components/UI/CompanyCard/CompanyCard";
 import RegFormPopup from "../../Components/RegFormPopup";
 import styles from './index.module.css';
-
+import {register} from '../../services/userServices';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Register() {
 
     const [buttonPopup, setButtonPopup] = useState(false);
-    const [receipt, setReceipt] = useState('');
+    const [receipt, setReceipt] = useState();
     const [gender, setGender] = useState('male');
 
     const [user, setUser] = useState({
@@ -36,7 +38,9 @@ function Register() {
         phone: Joi.string().length(10).regex(/^[0-9]+$/, 'given').required(),
         email: Joi.string().email().required(),
         username: Joi.string().min(1).max(20).required(),
+ 
         password: Joi.string()
+        
         .min(8)
         .max(25)
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 
@@ -60,7 +64,7 @@ function Register() {
             const message = item.message;
             errorData[name] = message;
         }
-        console.log(errors);
+       
         setErrors(errorData);
         return errorData;
         }
@@ -82,7 +86,7 @@ function Register() {
     };
 
     const handleReceiptChange = (e) =>{
-        setReceipt(e.target.value);
+        setReceipt(e.target.files[0]);
     }
     const handleGenderChange = (event) => {
         setGender(event.target.value)
@@ -98,8 +102,45 @@ function Register() {
     };
 
     
-    const handleSubmit=(e)=>{
-      e.preventDefault();
+    const handleSubmit= async (e)=>{
+        e.preventDefault();
+        const result = Joi.validate(user,
+            schema, { abortEarly: false });
+            
+        const { error } = result;
+        if (!error) {
+            
+            try {
+                
+                // console.log(slip)
+                const { name,birthday,address,email,phone,username,password,confPassword} =user;
+                console.log(receipt);
+                const response = await register(name,birthday,address,phone,email,gender,username,password,receipt,confPassword);
+    
+                // Set to 3sec
+                toast.success('successful', {autoClose:3000})
+                window.location = "/";
+              } catch (ex) {
+                if (ex.response && ex.response.status === 400) {
+                     // Set to 10sec
+                     toast.error(ex.response.data, {
+                        // Set to 15sec
+                        autoClose:5000});
+                        setButtonPopup(true)
+                }
+              }
+        return null;
+        } else {
+        const errorData = {};
+        for (let item of error.details) {
+            const name = item.path[0];
+            const message = item.message;
+            errorData[name] = message;
+        }
+        console.log(errors);
+        setErrors(errorData);
+        return errorData;
+        }
  
     };
 
@@ -277,12 +318,12 @@ function Register() {
                         <label>
                         Payment Receipt:
                         </label></td>
-                        <td><input type="file" class={`form-control-file`} id="receipt" name="receipt" value={receipt} onChange={(e) => {handleReceiptChange(e)}} required/></td>
+                        <td><input type="file" class={`form-control-file`} id="receipt" name="receipt"  onChange={(e) => {handleReceiptChange(e)}} required/></td>
                         </tr>
                         </table>
                         <p style={{color: "#b0b3b8", fontStyle: 'bold'}}>Registration Fee - 500 LKR <br/> + Monthly Fee - 3000 LKR</p>
 
-                        <button type="submit" class="btn btn-warning btn-block btn-sm gradient-custom-4 text-body" onClick={validateForm}>Submit</button>
+                        <button type="submit" class="btn btn-warning btn-block btn-sm gradient-custom-4 text-body" >Submit</button>
                         
                         
                     </form>

@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
 import styles from './index.module.css';
 //import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
+import { addAdmin } from "../../services/adminServices.js";
+import { toast } from 'react-toastify';
 
 const drawerWidth = 240;
 
@@ -39,26 +41,26 @@ function AddAdmin(){
       confPassword: Joi.any().valid(Joi.ref('password')).required().options({ language: { any: { allowOnly: 'must match password' } } })
     };
 
-    const validateForm = (event) => {
-      event.preventDefault();
-      const result = Joi.validate(admin,
-        schema, { abortEarly: false });
-      console.log(result);
-      const { error } = result;
-      if (!error) {
-      return null;
-      } else {
-      const errorData = {};
-      for (let item of error.details) {
-        const name = item.path[0];
-        const message = item.message;
-        errorData[name] = message;
-      }
-      console.log(errors);
-      setErrors(errorData);
-      return errorData;
-      }
-    };
+    // const validateForm = (event) => {
+    //   event.preventDefault();
+    //   const result = Joi.validate(admin,
+    //     schema, { abortEarly: false });
+    //   console.log(result);
+    //   const { error } = result;
+    //   if (!error) {
+    //   return null;
+    //   } else {
+    //   const errorData = {};
+    //   for (let item of error.details) {
+    //     const name = item.path[0];
+    //     const message = item.message;
+    //     errorData[name] = message;
+    //   }
+    //   console.log(errors);
+    //   setErrors(errorData);
+    //   return errorData;
+    //   }
+    // };
 
     const handleSave = (event) => {
       const { name, value } = event.target;
@@ -88,8 +90,44 @@ function AddAdmin(){
       return error ? error.details[0].message : null;
     };
     
-    const handleSubmit=(e)=>{
+    const handleSubmit= async (e)=>{
       e.preventDefault();
+      const result = Joi.validate(admin,
+        schema, { abortEarly: false });
+      // console.log(result);
+      const { error } = result;
+      if (!error) {
+       
+        try {  
+          
+         const { name,birthday,address,email,phone,username,password,confPassword} =admin;
+          await addAdmin(name,birthday,address,phone,email,gender,username,password,confPassword);
+          // Set to 3sec
+          toast.success('successful', {autoClose:3000})
+          // window.location = "/adminData/dashboard";
+        } catch (ex) {
+          if (ex.response && ex.response.status === 400) {
+              
+               toast.error(ex.response.data, {
+                  // Set to 15sec
+                  autoClose:5000});
+                  
+          }}
+      return null;
+      } else {
+      const errorData = {};
+      for (let item of error.details) {
+        const name = item.path[0];
+        const message = item.message;
+        errorData[name] = message;
+      }
+      // console.log(errors);
+      setErrors(errorData);
+      return errorData;
+      };
+      
+     
+      
  
     };
 
@@ -230,12 +268,12 @@ function AddAdmin(){
                           <input type="password" className={`form-control ${styles["ti-input"]}`} id="confPassword" name="confPassword" value={admin.confPassword} required onChange={handleSave} />
                           {errors.confPassword && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {"Passwords do not match"}
+                              Passwords do not match
                             </div>)}
                         </div>
                     </div>
                                                
-                    <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `} onClick={validateForm} type="submit">SUBMIT</button>    
+                    <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `}  type="submit">SUBMIT</button>    
                             
                 </form>
             </div>
