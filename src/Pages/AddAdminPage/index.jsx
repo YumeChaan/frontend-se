@@ -4,7 +4,9 @@ import Box from '@mui/material/Box';
 import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
 import styles from './index.module.css';
 //import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
-
+import {addAdmin} from '../../services/adminServices';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const drawerWidth = 240;
 
 function AddAdmin(){
@@ -96,7 +98,7 @@ function AddAdmin(){
       e.preventDefault();
       try {  
         
-        await addAdmin(name,birthday,address,phone,email,gender,username,password,confPassword);
+        await addAdmin(admin['name'],admin['birthday'],admin['address'],admin['phone'],admin['email'],gender,admin['username'],admin['password'],admin['confPassword']);
         // Set to 3sec
         toast.success('successful', {autoClose:3000})
         // window.location = "/admin/dashboard";

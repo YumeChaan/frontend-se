@@ -119,7 +119,7 @@ function RequestMealPlan() {
             
             // console.log(slip)
             
-            const response = await requestMealPlan(current_weight,target_weight,target_time,veg_prefer,add_nots);
+            const response = await requestMealPlan(veg_prefer,add_notes,mealPlan['target_weight'],mealPlan['target_time'],mealPlan['current_weight']);
 
             // Set to 3sec
             toast.success('successful submited', {autoClose:3000})

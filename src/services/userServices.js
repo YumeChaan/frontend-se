@@ -20,7 +20,7 @@ export async function register(name,birthday,address,mobileNO,email,gender,usern
     "Content-Type": "multipart/form-data",
   }});
 }
-export async function requestWorkOutScedule(current_weight,target_weight,target_time,workout_frequency,targets,add_notes) {
+export async function requestWorkOutScedule(add_notes,targets,workout_frequency,target_weight,target_time) {
   return await http.post(apiEndpoint, {
     
   },{headers: {

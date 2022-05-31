@@ -132,13 +132,13 @@ function RequestWorkoutSchedule() {
     };
 
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async(e)=>{
         e.preventDefault();
         try {
             
             // console.log(slip)
             
-            const response = await requestWorkOutScedule(current_weight,target_weight,target_time,workout_frequency,targets,add_notes);
+            const response = await requestWorkOutScedule(add_notes,targets,workout_frequency,workoutSchedule['target_time'],workoutSchedule['target_weight'],workoutSchedule['current_weight']);
 
             // Set to 3sec
             toast.success('successful submited', {autoClose:3000})

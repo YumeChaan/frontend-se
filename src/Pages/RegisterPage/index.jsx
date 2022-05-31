@@ -68,7 +68,14 @@ function Register() {
         return errorData;
         }
     };
-
+    const validateProperty = (event) => {
+        const { name, value } = event.target;
+        const obj = { [name]: value };
+        const subSchema = { [name]: schema[name] };
+        const result = Joi.validate(obj, subSchema);
+        const { error } = result;
+        return error ? error.details[0].message : null;
+    };
     const handleSave = (event) => {
         const { name, value } = event.target;
         let errorData = { ...errors };
@@ -92,14 +99,7 @@ function Register() {
       }
       // function to update state of password with
       // value enter by user in form
-    const handlePasswordChange =(e)=>{
-      setPassword(e.target.value);
-    }
-      // function to update state of confirm password
-      // with value enter by user in form
-    const handleConfPasswordChange =(e)=>{
-      setConfPassword(e.target.value);
-    }
+    
     // below function will be called when user
     // click on submit button .
     const handleSubmit= async (e)=>{
@@ -107,7 +107,7 @@ function Register() {
             
             // console.log(slip)
             
-            const response = await register(name,birthday,address,phone,email,gender,username,password,slip,confPassword);
+            const response = await register(user['name'],user['birthday'],user['address'],user['phone'],user['email'],gender,user['username'],user['password'],receipt,user['password']);
 
             // Set to 3sec
             toast.success('successful', {autoClose:3000})
@@ -135,14 +135,7 @@ function Register() {
     //     alert('Successfully registered!');
     //   }
 
-    const validateProperty = (event) => {
-        const { name, value } = event.target;
-        const obj = { [name]: value };
-        const subSchema = { [name]: schema[name] };
-        const result = Joi.validate(obj, subSchema);
-        const { error } = result;
-        return error ? error.details[0].message : null;
-    };
+
 
     
    
