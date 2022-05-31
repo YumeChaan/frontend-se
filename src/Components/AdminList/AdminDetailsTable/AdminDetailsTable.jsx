@@ -15,7 +15,7 @@ function AdminDetailsTable(props) {
       {show && <AdminDetailsForm 
       key={props.key}
       name={props.name}
-      age={props.age}
+      
       gender={props.gender}
       birthday={props.birthday}
       address={props.address}

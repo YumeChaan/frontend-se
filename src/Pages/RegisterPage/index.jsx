@@ -8,34 +8,43 @@ import Button from '../../Components/UI/Button/Button.js'
 import CompanyCard from "../../Components/UI/CompanyCard/CompanyCard";
 import RegFormPopup from "../../Components/RegFormPopup";
 import styles from './index.module.css';
+import {register} from '../../services/userServices';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
+    const [errors,setErrors]= useState({})
     const [buttonPopup, setButtonPopup] = useState(false);
     const [name , setName] = useState('');
     const [birthday , setBirthday] = useState('');
-    const [weight , setWeight] = useState('');
     const [address , setAddress] = useState('');
+    const [gender , setGender] = useState('');
     const [phone , setPhone] = useState('');
     const [email , setEmail] = useState('');
     const [username , setUsername] = useState('');
     const [password , setPassword] = useState('');
     const [confPassword , setConfPassword] = useState('');
+    const [slip , setSlip] = useState('');
  
     // function to update state of name with
     // value enter by user in form
     const handleChange =(e)=>{
       setName(e.target.value);
     }
+    const handleSlip =(e)=>{
+        setSlip(e.target.files[0]);
+      }
     // function to update state of age with value
     // enter by user in form
     const handleBirthdayChange =(e)=>{
       setBirthday(e.target.value);
     }
-    const handleWeightChange =(e)=>{
-        setWeight(e.target.value);
-      }
+    
     const handleAddressChange =(e)=>{
         setAddress(e.target.value);
+      }
+      const handleGenderChange =(e)=>{
+        setGender(e.target.value);
       }
     const handlePhoneChange =(e)=>{
         setPhone(e.target.value);
@@ -60,18 +69,38 @@ function Register() {
     }
     // below function will be called when user
     // click on submit button .
-    const handleSubmit=(e)=>{
-      if(password!=confPassword)
-      {
-        // if 'password' and 'confirm password'
-        // does not match.
-        alert("password Not Match");
-      }
-      else{
-        // display alert box with user
-        // 'name' and 'email' details .
-        alert('Successfully registered!');
-      }
+    const handleSubmit= async (e)=>{
+        try {
+            
+            // console.log(slip)
+            
+            const response = await register(name,birthday,address,phone,email,gender,username,password,slip,confPassword);
+
+            // Set to 3sec
+            toast.success('successful', {autoClose:3000})
+            window.location = "/";
+          } catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                 // Set to 10sec
+                 toast.error(ex.response.data, {
+                    // Set to 15sec
+                    autoClose:5000});
+                    setButtonPopup(true)
+            }
+          }
+
+
+    //   if(password!=confPassword)
+    //   {
+    //     // if 'password' and 'confirm password'
+    //     // does not match.
+    //     alert("password Not Match");
+    //   }
+    //   else{
+    //     // display alert box with user
+    //     // 'name' and 'email' details .
+    //     alert('Successfully registered!');
+    //   }
       e.preventDefault();
  
     }
@@ -140,13 +169,7 @@ function Register() {
                         </td>
                         <td><input type="date" value={birthday} required onChange={(e) => {handleBirthdayChange(e)}} /></td>
                         </tr>
-                        <tr>
-                            <td>
-                        <label >
-                        Weight:
-                        </label></td>
-                        <td><input type="text" value={weight} required onChange={(e) => {handleWeightChange(e)}} /></td>
-                        </tr>
+                       
                         <tr>
                             <td>
                         <label >
@@ -157,7 +180,7 @@ function Register() {
                         <tr>
                             <td>
                         <label >
-                        Phone Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Phone Number:
                         </label></td>
                         <td><input type="text" value={phone} required onChange={(e) => {handlePhoneChange(e)}} /></td>
                         </tr>
@@ -171,23 +194,20 @@ function Register() {
 
                         <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
                         <label >
-                        Gender:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Gender:
                         </label>
                         
                         <div class="form-check form-check-inline mb-0 me-4">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender" value="option1" />
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" onChange={(e) => {handleGenderChange(e)}}    id="femaleGender" value="female" />
                             <label class="form-check-label" for="femaleGender">Female</label>
                         </div>
 
                         <div class="form-check form-check-inline mb-0 me-4">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender" value="option2" />
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions"  onChange={(e) => {handleGenderChange(e)}} id="maleGender" value="male" />
                             <label class="form-check-label" for="maleGender">Male</label>
                         </div>
 
-                        <div class="form-check form-check-inline mb-0">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender" value="option3" />
-                            <label class="form-check-label" for="otherGender">Other</label>
-                        </div>
+                        
                         </div>
                         <table>
                         <tr>
@@ -216,7 +236,7 @@ function Register() {
                         <label>
                         Payment Receipt:
                         </label></td>
-                        <td><input type="file" class={`form-control-file`} id="receipt"/></td>
+                        <td><input type="file"  class={`form-control-file`} onChange={(e) => {handleSlip(e)}} id="receipt"/></td>
                         </tr>
                         </table>
                         <p style={{color: "#b0b3b8", fontStyle: 'bold'}}>Registration Fee - 500 LKR <br/> + Monthly Fee - 3000 LKR</p>

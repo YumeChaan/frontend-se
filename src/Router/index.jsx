@@ -35,7 +35,6 @@ export default function AppRouter(){
                     <Route path="/request-meal-plan" element={<RequestMealPlan />} />
                     <Route path="/request-workout-schedule" element={<RequestWorkoutSchedule />} />
                     <Route path="/admin/add-admin" element={<AddAdmin />} />
-
                 </Routes>
             </React.Fragment>
         </Router>

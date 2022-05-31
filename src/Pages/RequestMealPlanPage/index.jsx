@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import PreMealPlanTable from '../../Components/PreMealPlan/PreMealPlanTable/PreMealPlanTable.jsx'
 import styled from './index.module.css';
-
+import {requestMealPlan} from  '../../services/userServices'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function RequestMealPlan() {
     const records = [
         {
@@ -66,8 +68,26 @@ function RequestMealPlan() {
         setAdd_notes(e.target.value);
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async (e)=>{
         e.preventDefault();
+        try {
+            
+            // console.log(slip)
+            
+            const response = await requestMealPlan(current_weight,target_weight,target_time,veg_prefer,add_nots);
+
+            // Set to 3sec
+            toast.success('successful submited', {autoClose:3000})
+            window.location = "/";
+          } catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                 // Set to 10sec
+                 toast.error(ex.response.data, {
+                    // Set to 15sec
+                    autoClose:5000});
+                    
+            }
+          }
    
     }
 

@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import styles from './index.module.css';
-
+import {addAdmin} from '../../services/adminServices';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function AddAdmin(){
@@ -12,11 +14,16 @@ function AddAdmin(){
     const [username , setUsername] = useState('');
     const [password , setPassword] = useState('');
     const [confPassword , setConfPassword] = useState('');
- 
+    const [gender , setGender] = useState('');
     // function to update state of name with
     // value enter by user in form
     const handleChange =(e)=>{
       setName(e.target.value);
+    }
+
+    const handGenderChange =(e)=>{
+      setGender(e.target.value);
+      
     }
     // function to update state of birthday with value
     // enter by user in form
@@ -49,19 +56,25 @@ function AddAdmin(){
     }
     // below function will be called when user
     // click on submit button .
-    const handleSubmit=(e)=>{
-      if(password!==confPassword)
-      {
-        // if 'password' and 'confirm password'
-        // does not match.
-        alert("password Not Match");
-      }
-      else{
-        // display alert box with user
-        // 'name' and 'email' details .
-        alert('Successfully registered!');
-      }
+    const handleSubmit= async (e)=>{
       e.preventDefault();
+      try {  
+        
+        await addAdmin(name,birthday,address,phone,email,gender,username,password,confPassword);
+        // Set to 3sec
+        toast.success('successful', {autoClose:3000})
+        // window.location = "/admin/dashboard";
+      } catch (ex) {
+        if (ex.response && ex.response.status === 400) {
+             // Set to 10sec
+             toast.error(ex.response.data, {
+                // Set to 15sec
+                autoClose:5000});
+                
+        }
+      }
+      
+     
  
     }
     return(
@@ -105,19 +118,16 @@ function AddAdmin(){
                         <div className={`col-9 ${styles["gender-col"]}`}>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="male" value="male" />Male
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" onChange={(e) => {handGenderChange(e)}}    id="maleGender" value="male" />
+                                    Male
                                 </label>
                                 </div>
                                 <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="female" value="female" />Female
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" onChange={(e) => {handGenderChange(e)}}    id="femaleGender" value="female" />Female
                                 </label>
                                 </div>
-                                <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="other" value="other" />Other
-                                </label>
-                                </div>
+                                
                             </div>
                     </div>
 
@@ -130,13 +140,13 @@ function AddAdmin(){
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="password" className={`col-3 ${styles["ti-label"]}`}>Password</label>
 
-                        <input type="password" class={`form-control col-9 ${styles["ti-input"]}`} id="email" value={password} required onChange={(e) => {handlePasswordChange(e)}} />
+                        <input type="password" class={`form-control col-9 ${styles["ti-input"]}`} id="password" value={password} required onChange={(e) => {handlePasswordChange(e)}} />
                     </div>
 
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="confPassword" className={`col-3 ${styles["ti-label"]}`}>Confirm Password</label>
 
-                        <input type="password" class={`form-control col-9 ${styles["ti-input"]}`} id="email" value={confPassword} required onChange={(e) => {handleConfPasswordChange(e)}} />
+                        <input type="password" class={`form-control col-9 ${styles["ti-input"]}`} id="confpassword" value={confPassword} required onChange={(e) => {handleConfPasswordChange(e)}} />
                     </div>
                             
                     <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `} type="submit">SUBMIT</button>    

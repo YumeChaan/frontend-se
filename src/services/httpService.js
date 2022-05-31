@@ -3,6 +3,9 @@ import logger from "./logServices";
 import { toast } from "react-toastify";
 
 axios.interceptors.response.use(null, error => {
+   if(error.response.status==403){
+    toast.error("Access denied.");
+  }
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
@@ -12,6 +15,7 @@ axios.interceptors.response.use(null, error => {
     logger.log(error);
     toast.error("An unexpected error occurrred.");
   }
+ 
 
   return Promise.reject(error);
 });

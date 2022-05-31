@@ -26,14 +26,7 @@ function FormModal(props) {
                             <span>: {props.name}</span>
                         </div>
                     </div>
-                    <div className={`row form-group`}>
-                        <div className={`col-3`}>
-                            <span>Age</span>
-                        </div>
-                        <div className={`col-9`}>
-                            <span>: {props.age}</span>
-                        </div>
-                    </div>
+                    
                     <div className={`row form-group`}>
                         <div className={`col-3`}>
                             <span>Gender</span>

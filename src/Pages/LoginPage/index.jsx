@@ -39,7 +39,7 @@ function Login() {
         // const {state} = this.props.location
         setIsSubmitted(true);
         // window.location = state ? state.from.pathname : "/";
-        window.location="/"
+        // window.location="/"
 
         
         } catch (ex) {
