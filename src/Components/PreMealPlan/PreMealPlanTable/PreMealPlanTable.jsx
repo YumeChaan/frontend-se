@@ -14,7 +14,7 @@ function PreMealRequestTable(props) {
   return (
       <>
       {show && <PreMealPlanForm 
-      key={props.key}
+      key={props.id}
       date={props.date}
       status={props.status}
       meal_plan={props.meal_plan}

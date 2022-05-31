@@ -21,14 +21,18 @@
 }
 
 .group{
-  margin: 2vw;
+  margin-bottom: 2vw;
 }
 
 .ti-label{
   padding-top: 5px;
 }
 
+.wrap-input{
+  padding: 0;
+}
 .ti-input{
+
   border-radius: 10px;
 }
 
@@ -56,4 +60,9 @@
 .btn-sub:hover{
   background: rgb(177, 53, 53);
   border-color: rgb(66, 3, 3);
+}
+
+.error{
+  margin-top: 15px;
+  margin-bottom: 0;
 }
