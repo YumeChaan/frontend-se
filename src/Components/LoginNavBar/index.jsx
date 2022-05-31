@@ -1,6 +1,5 @@
 import React from "react";
 import { AiFillHome } from "react-icons/ai";
-import Button from '../UI/Button/Button.js'
 import styles from './index.module.css';
 
 function LoginNavBar() {
