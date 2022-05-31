@@ -5,8 +5,7 @@ import styles from './index.module.css';
 
 
 function AddAdmin(){
-    
-    const [confPassword, setConfPassword] = useState('');
+
     const [admin, setAdmin] = useState({
       name: "",
       birthday: "",
@@ -21,7 +20,7 @@ function AddAdmin(){
     const [errors, setErrors] = useState({});
     const schema = {
       name: Joi.string().regex(/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{0,}$/, 'name').required(),
-      birthday: Joi.required(),
+      birthday: Joi.date().iso().required(),
       address: Joi.string().required(),
       // phone: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
       phone: Joi.string().length(10).regex(/^[0-9]+$/, 'given').required(),
@@ -85,28 +84,13 @@ function AddAdmin(){
       // with value enter by user in form
     // below function will be called when user
     // click on submit button .
-    const handleSubmit=(e)=>{
-      if(admin.password!==admin.confPassword)
-      {
-        // if 'password' and 'confirm password'
-        // does not match.
-        console.log("password Not Match")
-        alert("password Not Match");
-      }
-      else{
-        // display alert box with user
-        // 'name' and 'email' details .
-        console.log('Successfully registered!')
-        alert('Successfully registered!');
-      }
-      e.preventDefault();
  
-    }
+    
     return(
         
         <div className={`container ${styles["reg-container"]}`}>
             <div className={`${styles["s-container"]} `}>
-                <form action="" className={` ${styles["reg-form"]}`} onSubmit={(e) => {handleSubmit(e)}}>
+                <form action="" className={` ${styles["reg-form"]}`}>
                 <h1 className={`text-center py-3 ${styles["title"]}`}>Add Admin</h1>     
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="name" className={`col-3 ${styles["ti-label"]}`}>Name</label>
@@ -114,7 +98,7 @@ function AddAdmin(){
                           <input type="text" className={`form-control ${styles["ti-input"]}`} id="name" name="name" value={admin.name} required onChange={handleSave} />
                           {errors.name && (
                           <div className={`alert alert-danger ${styles["error"]}`}>
-                            {errors.name}
+                            Invalid Name
                           </div>)}
                         </div>
                         
@@ -127,7 +111,7 @@ function AddAdmin(){
                             <input type="date" class={`form-control ${styles["ti-input"]}`} id="birthday" name="birthday" value={admin.birthday} required onChange={handleSave} />
                             {errors.birthday && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {errors.birthday}
+                              Invalid Birthday
                             </div>)}
                           </div>
                         
@@ -139,7 +123,7 @@ function AddAdmin(){
                           <input type="text" class={`form-control ${styles["ti-input"]}`} id="address" name="address" value={admin.address} required onChange={handleSave} />
                           {errors.address && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {errors.address}
+                              Invalid Address
                             </div>)}
                         </div>
                     </div>
@@ -150,7 +134,7 @@ function AddAdmin(){
                           <input type="text" class={`form-control ${styles["ti-input"]}`} id="phone" name="phone" value={admin.phone} required onChange={handleSave} />
                           {errors.phone && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {errors.phone}
+                              Invalid Phone Number
                             </div>)}
                         </div>
                     </div>
@@ -161,7 +145,7 @@ function AddAdmin(){
                           <input type="email" class={`form-control ${styles["ti-input"]}`} id="email" name="email" value={admin.email} required onChange={handleSave} />
                           {errors.email && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {errors.email}
+                              Invalid Email
                             </div>)}
                         </div>
                         
@@ -194,7 +178,7 @@ function AddAdmin(){
                           <input type="text" class={`form-control ${styles["ti-input"]}`} id="username" name="username" value={admin.username} required onChange={handleSave} />
                           {errors.username && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {errors.username}
+                              Username must be filled and less than 20 characters
                             </div>)}
                         </div>
                     </div>
@@ -205,7 +189,7 @@ function AddAdmin(){
                           <input type="password" class={`form-control ${styles["ti-input"]}`} id="password" name="password"  value={admin.password} required onChange={handleSave} />
                           {errors.password && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {errors.password}
+                              Password must be at least 8 characters long contain a number, an uppercase letter, a lowercase letter and a special character 
                             </div>)}
                         </div>
                         
@@ -217,15 +201,11 @@ function AddAdmin(){
                           <input type="password" class={`form-control ${styles["ti-input"]}`} id="confPassword" name="confPassword" value={admin.confPassword} required onChange={handleSave} />
                           {errors.confPassword && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {errors.confPassword}
-                              {"Password Does not Match"}
+                              {"Passwords do not match"}
                             </div>)}
                         </div>
                     </div>
-
-                    {console.log(admin.password)};
-                    {console.log(admin.confPassword)}
-                            
+                                               
                     <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `} onClick={validateForm} type="submit">SUBMIT</button>    
                             
                 </form>
