@@ -1,6 +1,12 @@
 import React, {useState} from "react";
 import PreMealPlanTable from '../../Components/PreMealPlan/PreMealPlanTable/PreMealPlanTable.jsx'
 import styled from './index.module.css';
+import Box from '@mui/material/Box';
+import MemberSideNavBar from "../../Components/MemberSideNavBar";
+import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
+
+const drawerWidth = 240;
+
 
 function RequestMealPlan() {
     const records = [
@@ -73,7 +79,25 @@ function RequestMealPlan() {
 
     return (
         <React.Fragment>
-            <div className={styled['main-container']}>
+            <Box sx={{ display: 'flex' }}>
+            
+            <Box
+                component="nav"
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }}}
+                aria-label="mailbox folders"
+                
+            >
+                
+                <MemberSideNavBar/>
+                
+            </Box>
+            
+            <Box
+                component="main"
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+            >
+                
+                <div className={styled['main-container']}>
             <div className={`container`}>
                 <header className={styled['header']}>
                     <h1>Request Meal Plan</h1>
@@ -133,6 +157,10 @@ function RequestMealPlan() {
                 </div>
             </div>
             </div>
+                
+            </Box>
+        </Box>
+            
         </React.Fragment>
     );
 }

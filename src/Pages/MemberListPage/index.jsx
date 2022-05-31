@@ -1,6 +1,11 @@
 import React from "react";
 import MemberDetailsTable from "../../Components/MemberList/MemberDetailsTable/MemberDetailsTable.jsx";
+import Box from '@mui/material/Box';
+import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
+import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
 import styled from './index.module.css';
+
+const drawerWidth = 240;
 
 function MemberList() {
     const records = [
@@ -38,7 +43,25 @@ function MemberList() {
     ];
     return (
         <React.Fragment>
-            <div className={styled['main-container']}>
+            <Box sx={{ display: 'flex' }}>
+            
+            <Box
+                component="nav"
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }}}
+                aria-label="mailbox folders"
+                
+            >
+                
+                <AdminSideNavBar/>
+                
+            </Box>
+            
+            <Box
+                component="main"
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+            >
+                
+                <div className={styled['main-container']}>
             <div className={`container`}>
                 <header className={styled['header']}>
                     <h1>Member List</h1>
@@ -61,6 +84,11 @@ function MemberList() {
                 </div>
             </div>
             </div>
+                
+                
+            </Box>
+        </Box>
+            
         </React.Fragment>
     );
 }

@@ -2,7 +2,12 @@ import React, {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./monthlyPayment.module.css";
 import bank1 from './bank-1.png';
-import bank2 from './bank-2.png'
+import bank2 from './bank-2.png';
+import Box from '@mui/material/Box';
+import MemberSideNavBar from "../../Components/MemberSideNavBar";
+import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
+
+const drawerWidth = 240;
 
 
 function AddMonthlyPayment(){
@@ -24,7 +29,25 @@ function AddMonthlyPayment(){
     }
 
     return(
-        <div className={styles['main-container']}>
+        <Box sx={{ display: 'flex' }}>
+            
+        <Box
+            component="nav"
+            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }}}
+            aria-label="mailbox folders"
+            
+        >
+            
+            <MemberSideNavBar/>
+            
+        </Box>
+        
+        <Box
+            component="main"
+            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+        >
+            
+            <div className={styles['main-container']}>
         <div className={`container ${styles["con-month"]}`}>
                 <div className="">
                     <form onSubmit={(e) => {handleSubmit(e)}} action="" method="POST">
@@ -79,6 +102,10 @@ function AddMonthlyPayment(){
  
         </div>
         </div>
+            
+        </Box>
+    </Box>
+        
     );
     
 }
