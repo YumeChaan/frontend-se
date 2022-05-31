@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Joi from "joi-browser";
 import { AiFillHome } from "react-icons/ai";
 import { FaEnvelope } from "react-icons/fa";
 import { IoCallSharp } from "react-icons/io5";
@@ -10,71 +11,94 @@ import RegFormPopup from "../../Components/RegFormPopup";
 import styles from './index.module.css';
 
 function Register() {
+
     const [buttonPopup, setButtonPopup] = useState(false);
-    const [name , setName] = useState('');
-    const [birthday , setBirthday] = useState('');
-    const [weight , setWeight] = useState('');
-    const [address , setAddress] = useState('');
-    const [phone , setPhone] = useState('');
-    const [email , setEmail] = useState('');
-    const [username , setUsername] = useState('');
-    const [password , setPassword] = useState('');
-    const [confPassword , setConfPassword] = useState('');
- 
-    // function to update state of name with
-    // value enter by user in form
-    const handleChange =(e)=>{
-      setName(e.target.value);
+    const [receipt, setReceipt] = useState('');
+
+    const [user, setUser] = useState({
+        name: "",
+        birthday: "",
+        address: "",
+        phone: "",
+        email: "",
+        username:"",
+        password:"",
+        confPassword:""
+    });
+    
+    const [errors, setErrors] = useState({});
+    const schema = {
+        name: Joi.string().regex(/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{0,}$/, 'name').required(),
+        birthday: Joi.date().iso().required(),
+        address: Joi.string().required(),
+        // phone: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+        phone: Joi.string().length(10).regex(/^[0-9]+$/, 'given').required(),
+        email: Joi.string().email().required(),
+        username: Joi.string().min(1).max(20).required(),
+        password: Joi.string()
+        .min(8)
+        .max(25)
+        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 
+        'password').required(),
+        // confPassword: Joi.string().required().valid(Joi.ref('password'))
+        confPassword: Joi.any().valid(Joi.ref('password')).required().options({ language: { any: { allowOnly: 'must match password' } } })
+    };
+
+    const validateForm = (event) => {
+        event.preventDefault();
+        const result = Joi.validate(user,
+            schema, { abortEarly: false });
+        console.log(result);
+        const { error } = result;
+        if (!error) {
+        return null;
+        } else {
+        const errorData = {};
+        for (let item of error.details) {
+            const name = item.path[0];
+            const message = item.message;
+            errorData[name] = message;
+        }
+        console.log(errors);
+        setErrors(errorData);
+        return errorData;
+        }
+    };
+
+    const handleSave = (event) => {
+        const { name, value } = event.target;
+        let errorData = { ...errors };
+        const errorMessage = validateProperty(event);
+        if (errorMessage) {
+        errorData[name] = errorMessage;
+        } else {
+        delete errorData[name];
+        }
+        let userData = { ...user };
+        userData[name] = value;
+        setUser(userData);
+        setErrors(errorData);
+    };
+
+    const handleReceiptChange = (e) =>{
+        setReceipt(e.target.value);
     }
-    // function to update state of age with value
-    // enter by user in form
-    const handleBirthdayChange =(e)=>{
-      setBirthday(e.target.value);
-    }
-    const handleWeightChange =(e)=>{
-        setWeight(e.target.value);
-      }
-    const handleAddressChange =(e)=>{
-        setAddress(e.target.value);
-      }
-    const handlePhoneChange =(e)=>{
-        setPhone(e.target.value);
-      }
-    // function to update state of email with value
-    // enter by user in form
-    const handleEmailChange =(e)=>{
-      setEmail(e.target.value);
-    }
-    const handleUsernameChange =(e)=>{
-        setUsername(e.target.value);
-      }
-      // function to update state of password with
-      // value enter by user in form
-    const handlePasswordChange =(e)=>{
-      setPassword(e.target.value);
-    }
-      // function to update state of confirm password
-      // with value enter by user in form
-    const handleConfPasswordChange =(e)=>{
-      setConfPassword(e.target.value);
-    }
-    // below function will be called when user
-    // click on submit button .
+
+    const validateProperty = (event) => {
+        const { name, value } = event.target;
+        const obj = { [name]: value };
+        const subSchema = { [name]: schema[name] };
+        const result = Joi.validate(obj, subSchema);
+        const { error } = result;
+        return error ? error.details[0].message : null;
+    };
+
+    
     const handleSubmit=(e)=>{
-      if(password!=confPassword)
-      {
-        // if 'password' and 'confirm password'
-        // does not match.
-        alert("password Not Match");
-      }
-      else{
-        // display alert box with user
-        // 'name' and 'email' details .
-        alert('Successfully registered!');
-      }
       e.preventDefault();
  
-    }
+    };
+
     return (
         <div className={styles['main-container']} >
             <main>
@@ -130,7 +154,11 @@ function Register() {
                         Name:
                         </label>
                         </td>
-                        <td><input type="text" value={name} required onChange={(e) => {handleChange(e)}} /></td>
+                        <td><input type="text" name="name" value={user.name} required onChange={handleSave} />
+                        {errors.name && (
+                          <div className={`alert alert-danger ${styles["error"]}`}>
+                            Invalid Name
+                          </div>)} </td>
                         </tr>
                         <tr>
                             <td>
@@ -138,35 +166,48 @@ function Register() {
                         Birthday:
                         </label>
                         </td>
-                        <td><input type="date" value={birthday} required onChange={(e) => {handleBirthdayChange(e)}} /></td>
-                        </tr>
-                        <tr>
-                            <td>
-                        <label >
-                        Weight:
-                        </label></td>
-                        <td><input type="text" value={weight} required onChange={(e) => {handleWeightChange(e)}} /></td>
+                        <td><input type="date" name="birthday" value={user.birthday} required onChange={handleSave} />
+                        {errors.birthday && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              Invalid Birthday
+                            </div>)}
+                        </td>
                         </tr>
                         <tr>
                             <td>
                         <label >
                         Address:
                         </label></td>
-                        <td><input type="text" value={address} required onChange={(e) => {handleAddressChange(e)}} /></td>
+                        <td><input type="text" name="address" value={user.address} required onChange={handleSave} />
+                        {errors.address && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              Invalid Address
+                            </div>)}
+                        </td>
                         </tr>
                         <tr>
                             <td>
                         <label >
                         Phone Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </label></td>
-                        <td><input type="text" value={phone} required onChange={(e) => {handlePhoneChange(e)}} /></td>
+                        <td><input type="text" name="phone" value={user.phone} required onChange={handleSave} />
+                        {errors.phone && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              Invalid Phone Number
+                            </div>)}
+                        </td>
                         </tr>
                         <tr>
                             <td>
                         <label>
                         Email:
                         </label></td>
-                        <td><input type="email" value={email} required onChange={(e) => {handleEmailChange(e)}} /></td>
+                        <td><input type="email"name="email" value={user.email} required onChange={handleSave} />
+                        {errors.email && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              Invalid Email
+                            </div>)}
+                        </td>
                         </tr></table>
 
                         <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
@@ -195,33 +236,48 @@ function Register() {
                         <label >
                         User Name:
                         </label></td>
-                        <td><input type="text" value={username} required onChange={(e) => {handleUsernameChange(e)}} /></td>
+                        <td><input type="text" name="username" value={user.username} required onChange={handleSave} />
+                        {errors.username && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              Username must be filled and less than 20 characters
+                            </div>)}
+                        </td>
                         </tr>
                         <tr>
                             <td>
                         <label>
                         Password:
                         </label></td>
-                        <td><input type="password" value={password} required onChange={(e) => {handlePasswordChange(e)}} /></td>
+                        <td><input type="password" name="password" value={user.password} required onChange={handleSave} />
+                        {errors.password && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              Password must be at least 8 characters long contain a number, an uppercase letter, a lowercase letter and a special character 
+                            </div>)}
+                        </td>
                         </tr>
                         <tr>
                             <td>
                         <label>
                         Confirm Password:&nbsp;
                         </label></td>
-                        <td><input type="password" value={confPassword} required onChange={(e) => {handleConfPasswordChange(e)}} /></td>
+                        <td><input type="password" name="confPassword" value={user.confPassword} required onChange={handleSave} />
+                        {errors.confPassword && (
+                            <div className={`alert alert-danger ${styles["error"]}`}>
+                              {"Passwords do not match"}
+                            </div>)}
+                        </td>
                         </tr>
                         <tr>
                             <td>
                         <label>
                         Payment Receipt:
                         </label></td>
-                        <td><input type="file" class={`form-control-file`} id="receipt"/></td>
+                        <td><input type="file" class={`form-control-file`} id="receipt" name="receipt" value={receipt} onChange={(e) => {handleReceiptChange(e)}} required/></td>
                         </tr>
                         </table>
                         <p style={{color: "#b0b3b8", fontStyle: 'bold'}}>Registration Fee - 500 LKR <br/> + Monthly Fee - 3000 LKR</p>
 
-                        <button type="submit" class="btn btn-warning btn-block btn-sm gradient-custom-4 text-body">Submit</button>
+                        <button type="submit" class="btn btn-warning btn-block btn-sm gradient-custom-4 text-body" onClick={validateForm}>Submit</button>
                         
                         
                     </form>
