@@ -2,9 +2,6 @@ import React, {useState} from "react";
 import Joi from "joi-browser";
 import PreMealPlanTable from '../../Components/PreMealPlan/PreMealPlanTable/PreMealPlanTable.jsx'
 import styled from './index.module.css';
-import {requestMealPlan} from  '../../services/userServices'
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
 import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
@@ -113,28 +110,6 @@ function RequestMealPlan() {
         setAdd_notes(e.target.value);
     };
 
-    const handleSubmit= async (e)=>{
-        e.preventDefault();
-        try {
-            
-            // console.log(slip)
-            
-            const response = await requestMealPlan(veg_prefer,add_notes,mealPlan['target_weight'],mealPlan['target_time'],mealPlan['current_weight']);
-
-            // Set to 3sec
-            toast.success('successful submited', {autoClose:3000})
-            window.location = "/";
-          } catch (ex) {
-            if (ex.response && ex.response.status === 400) {
-                 // Set to 10sec
-                 toast.error(ex.response.data, {
-                    // Set to 15sec
-                    autoClose:5000});
-                    
-            }
-          }
-   
-    }
     const validateProperty = (event) => {
     const { name, value } = event.target;
     const obj = { [name]: value };
@@ -144,7 +119,10 @@ function RequestMealPlan() {
     return error ? error.details[0].message : null;
     };
 
-  
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+   
+    };
 
    
     return (

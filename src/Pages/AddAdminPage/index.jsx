@@ -4,9 +4,7 @@ import Box from '@mui/material/Box';
 import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
 import styles from './index.module.css';
 //import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
-import {addAdmin} from '../../services/adminServices';
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 const drawerWidth = 240;
 
 function AddAdmin(){
@@ -90,29 +88,11 @@ function AddAdmin(){
       return error ? error.details[0].message : null;
     };
     
-      // function to update state of confirm password
-      // with value enter by user in form
-    // below function will be called when user
-    // click on submit button .
-    const handleSubmit= async (e)=>{
+    const handleSubmit=(e)=>{
       e.preventDefault();
-      try {  
-        
-        await addAdmin(admin['name'],admin['birthday'],admin['address'],admin['phone'],admin['email'],gender,admin['username'],admin['password'],admin['confPassword']);
-        // Set to 3sec
-        toast.success('successful', {autoClose:3000})
-        // window.location = "/admin/dashboard";
-      } catch (ex) {
-        if (ex.response && ex.response.status === 400) {
-             // Set to 10sec
-             toast.error(ex.response.data, {
-                // Set to 15sec
-                autoClose:5000});
-                
-        }
-      }
-      
-     
+ 
+    };
+
  
     
     return(
@@ -218,7 +198,6 @@ function AddAdmin(){
                                     <input type="radio" className="form-check-input" name="gender" id="other" value="other" checked={gender === 'other'} onChange={handleGenderChange} />Other
                                 </label>
                                 </div>
-                                
                             </div>
                     </div>
 
@@ -270,5 +249,5 @@ function AddAdmin(){
         
         
     );
-}}
+}
 export default AddAdmin;

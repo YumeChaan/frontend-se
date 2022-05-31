@@ -9,9 +9,6 @@ import Button from '../../Components/UI/Button/Button.js'
 import CompanyCard from "../../Components/UI/CompanyCard/CompanyCard";
 import RegFormPopup from "../../Components/RegFormPopup";
 import styles from './index.module.css';
-import {register} from '../../services/userServices';
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
 
@@ -68,14 +65,7 @@ function Register() {
         return errorData;
         }
     };
-    const validateProperty = (event) => {
-        const { name, value } = event.target;
-        const obj = { [name]: value };
-        const subSchema = { [name]: schema[name] };
-        const result = Joi.validate(obj, subSchema);
-        const { error } = result;
-        return error ? error.details[0].message : null;
-    };
+
     const handleSave = (event) => {
         const { name, value } = event.target;
         let errorData = { ...errors };
@@ -97,48 +87,21 @@ function Register() {
     const handleGenderChange = (event) => {
         setGender(event.target.value)
       }
-      // function to update state of password with
-      // value enter by user in form
-    
-    // below function will be called when user
-    // click on submit button .
-    const handleSubmit= async (e)=>{
-        try {
-            
-            // console.log(slip)
-            
-            const response = await register(user['name'],user['birthday'],user['address'],user['phone'],user['email'],gender,user['username'],user['password'],receipt,user['password']);
 
-            // Set to 3sec
-            toast.success('successful', {autoClose:3000})
-            window.location = "/";
-          } catch (ex) {
-            if (ex.response && ex.response.status === 400) {
-                 // Set to 10sec
-                 toast.error(ex.response.data, {
-                    // Set to 15sec
-                    autoClose:5000});
-                    setButtonPopup(true)
-            }
-          }
-
-
-    //   if(password!=confPassword)
-    //   {
-    //     // if 'password' and 'confirm password'
-    //     // does not match.
-    //     alert("password Not Match");
-    //   }
-    //   else{
-    //     // display alert box with user
-    //     // 'name' and 'email' details .
-    //     alert('Successfully registered!');
-    //   }
-
-
+    const validateProperty = (event) => {
+        const { name, value } = event.target;
+        const obj = { [name]: value };
+        const subSchema = { [name]: schema[name] };
+        const result = Joi.validate(obj, subSchema);
+        const { error } = result;
+        return error ? error.details[0].message : null;
+    };
 
     
-   
+    const handleSubmit=(e)=>{
+      e.preventDefault();
+ 
+    };
 
     return (
         <div className={styles['main-container']} >
@@ -229,7 +192,7 @@ function Register() {
                         <tr>
                             <td>
                         <label >
-                        Phone Number:
+                        Phone Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </label></td>
                         <td><input type="text" name="phone" value={user.phone} required onChange={handleSave} />
                         {errors.phone && (
@@ -253,7 +216,7 @@ function Register() {
 
                         <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
                         <label >
-                        Gender:
+                        Gender:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </label>
 
                         <div class="form-check form-check-inline mb-0 me-4">
@@ -328,6 +291,6 @@ function Register() {
             
         </div>
     );
-}}
+}
 
 export default Register;

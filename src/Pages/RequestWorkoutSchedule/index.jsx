@@ -2,9 +2,6 @@ import React, {useState} from "react";
 import Joi from "joi-browser";
 import PreWorkoutScheduleTable from '../../Components/PreWorkoutSchedule/PreWorkoutScheduleTable/PreWorkoutScheduleTable.jsx'
 import styled from './index.module.css';
-import {requestWorkOutScedule} from '../../services/userServices'
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
 import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
@@ -120,7 +117,6 @@ function RequestWorkoutSchedule() {
         setAdd_notes(e.target.value);
     }
 
- 
 
     const validateProperty = (event) => {
     const { name, value } = event.target;
@@ -132,28 +128,8 @@ function RequestWorkoutSchedule() {
     };
 
 
-    const handleSubmit= async(e)=>{
+    const handleSubmit=(e)=>{
         e.preventDefault();
-        try {
-            
-            // console.log(slip)
-            
-            const response = await requestWorkOutScedule(add_notes,targets,workout_frequency,workoutSchedule['target_time'],workoutSchedule['target_weight'],workoutSchedule['current_weight']);
-
-            // Set to 3sec
-            toast.success('successful submited', {autoClose:3000})
-            window.location = "/";
-          } catch (ex) {
-            if (ex.response && ex.response.status === 400) {
-                 // Set to 10sec
-                 toast.error(ex.response.data, {
-                    // Set to 15sec
-                    autoClose:5000});
-                    
-            }
-          }
-
-        
    
     };
 
