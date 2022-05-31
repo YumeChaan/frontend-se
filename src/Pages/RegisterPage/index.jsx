@@ -14,6 +14,7 @@ function Register() {
 
     const [buttonPopup, setButtonPopup] = useState(false);
     const [receipt, setReceipt] = useState('');
+    const [gender, setGender] = useState('male');
 
     const [user, setUser] = useState({
         name: "",
@@ -83,6 +84,9 @@ function Register() {
     const handleReceiptChange = (e) =>{
         setReceipt(e.target.value);
     }
+    const handleGenderChange = (event) => {
+        setGender(event.target.value)
+      }
 
     const validateProperty = (event) => {
         const { name, value } = event.target;
@@ -214,22 +218,23 @@ function Register() {
                         <label >
                         Gender:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </label>
-                        
-                        <div class="form-check form-check-inline mb-0 me-4">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender" value="option1" />
-                            <label class="form-check-label" for="femaleGender">Female</label>
-                        </div>
 
                         <div class="form-check form-check-inline mb-0 me-4">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender" value="option2" />
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender" value="male" checked={gender === 'male'} onChange={handleGenderChange} />
                             <label class="form-check-label" for="maleGender">Male</label>
                         </div>
 
+                        <div class="form-check form-check-inline mb-0 me-4">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender" value="female" checked={gender === 'female'} onChange={handleGenderChange} />
+                            <label class="form-check-label" for="femaleGender">Female</label>
+                        </div>
+
                         <div class="form-check form-check-inline mb-0">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender" value="option3" />
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender" value="other" checked={gender === 'other'} onChange={handleGenderChange} />
                             <label class="form-check-label" for="otherGender">Other</label>
                         </div>
                         </div>
+                        {console.log(gender)}
                         <table>
                         <tr>
                             <td>
