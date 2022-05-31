@@ -2,7 +2,7 @@ import React from "react";
 import MemberDetailsTable from "../../Components/MemberList/MemberDetailsTable/MemberDetailsTable.jsx";
 import Box from '@mui/material/Box';
 import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
-import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
+//import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
 import styled from './index.module.css';
 
 const drawerWidth = 240;
@@ -58,7 +58,7 @@ function MemberList() {
             
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `linear-gradient(to right, #1a1a1a, #333333, #1a1a1a);` }}
             >
                 
                 <div className={styled['main-container']}>

@@ -119,6 +119,11 @@ function RequestMealPlan() {
     return error ? error.details[0].message : null;
     };
 
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+   
+    };
+
    
     return (
         <React.Fragment>
@@ -146,7 +151,7 @@ function RequestMealPlan() {
                     <h1>Request Meal Plan</h1>
                 </header>
                 <div>
-                <form action="" method="POST">
+                <form onSubmit={(e) => {handleSubmit(e)}} action="" method="POST">
                     <div className={`row`}>
                         <div className={`form-group col-md-6 col-12`}>
                             <label  htmlFor="currentWeight">Current Weight (Kg) </label>
@@ -170,7 +175,7 @@ function RequestMealPlan() {
                         <div className={`form-group col-md-6 col-12`}>
                             <label  htmlFor="time-p">Time Period to Achieve the Target (Months) </label>
                             <input type="number" className={`form-control`} id="target_time" name="target_time" value={mealPlan.target_time} required onChange={handleSave}/>
-                            {errors.current_weight && (
+                            {errors.target_time && (
                             <div className={`alert alert-danger ${styled["error"]}`}>
                                 Invalid Number of Months 
                             </div>)}

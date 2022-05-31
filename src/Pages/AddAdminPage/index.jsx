@@ -3,7 +3,7 @@ import Joi from "joi-browser";
 import Box from '@mui/material/Box';
 import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
 import styles from './index.module.css';
-import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
+//import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
 
 const drawerWidth = 240;
 
@@ -83,10 +83,11 @@ function AddAdmin(){
       return error ? error.details[0].message : null;
     };
     
-      // function to update state of confirm password
-      // with value enter by user in form
-    // below function will be called when user
-    // click on submit button .
+    const handleSubmit=(e)=>{
+      e.preventDefault();
+ 
+    };
+
  
     
     return(
@@ -106,13 +107,15 @@ function AddAdmin(){
             
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+                // sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `linear-gradient(to right, #800000, #ff6666, #800000);` }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `linear-gradient(to right, #1a1a1a, #333333, #1a1a1a);` }}
             >
                 
-                <div className={`container ${styles["reg-container"]}`}>
+            <div className={`container ${styles["reg-container"]}`}>
             <div className={`${styles["s-container"]} `}>
-                <form action="" className={` ${styles["reg-form"]}`}>
-                <h1 className={`text-center py-3 ${styles["title"]}`}>Add Admin</h1>     
+            <h1 className={`text-center py-3 ${styles["title"]}`}>Add Admin</h1> 
+                <form onSubmit={(e) => {handleSubmit(e)}} action="" className={` ${styles["reg-form"]}`}>
+                    
                     <div className={`form-group row ${styles["group"]}`}>
                         <label htmlFor="name" className={`col-3 ${styles["ti-label"]}`}>Name</label>
                         <div className={`col-9 ${styles["wrap-input"]}`}>

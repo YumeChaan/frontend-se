@@ -14,6 +14,7 @@ function AddMonthlyPayment(){
 
     const [month, setMonth] = useState('January');
     const [notes, setNotes] = useState('');
+    const [receipt, setReceipt] = useState('');
 
     const handleMonthChange = (e) =>{
         setMonth(e.target.value);
@@ -21,6 +22,10 @@ function AddMonthlyPayment(){
 
     const handleNotesChange = (e) =>{
         setNotes(e.target.value);
+    }
+
+    const handleReceiptChange = (e) =>{
+        setReceipt(e.target.value);
     }
 
     const handleSubmit=(e)=>{
@@ -56,7 +61,7 @@ function AddMonthlyPayment(){
                         <div className={`form-group`}>
                             <label htmlFor="month">Month *</label>
 
-                            <select className={`form-control ${styles["input-f"]}`} id="month" value={month} onChange={(e) => {handleMonthChange(e)}}>
+                            <select className={`form-control ${styles["input-f"]}`} id="month" name="month" value={month} onChange={(e) => {handleMonthChange(e)}}>
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
@@ -78,7 +83,7 @@ function AddMonthlyPayment(){
 
                         <div className={`form-group`}>
                             <label for="receipt">Upload a copy(photo) of your deposit slip/transaction receipt. *</label>
-                            <input type="file" class={`form-control-file`} id="receipt" required></input>
+                            <input type="file" class={`form-control-file`} id="receipt" name="receipt" value={receipt} onChange={(e) => {handleReceiptChange(e)}} required></input>
                         </div>
                         <hr className={`mb-4`} />
 
