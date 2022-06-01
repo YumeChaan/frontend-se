@@ -16,3 +16,14 @@ export async function monthlyFeePay(month,notes,receipt) {
     'x-auth-token':getJwt()
   }});
 }
+
+export async function pendingPaymentList() {
+  
+  return await http.get(apiUrl+'/payment/paymentList',{
+    headers: {
+     
+      'content-type': 'application/json',
+      'x-auth-token':getJwt()
+    }
+  });
+}

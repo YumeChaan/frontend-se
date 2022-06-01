@@ -79,7 +79,7 @@ function FormModal(props) {
                             <span>Payment Receipt</span>
                         </div>
                         <div className={`col-9`}>
-                            <span>: {props.receipt}</span>
+                            <span>: <a href={props.receipt} target="_blank" >Receipt</a></span>
                         </div>
                     </div>
 
@@ -106,6 +106,8 @@ function FormModal(props) {
 function RegistrationDetailsForm(props) {
   return (
     <React.Fragment>
+
+        
       {ReactDOM.createPortal(
         <Overlay onClose={props.onClose} />,
         document.getElementById("modal-overlay")
