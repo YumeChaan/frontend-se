@@ -7,19 +7,8 @@ const AuthProtectedRoute = ({ path, component: Component, render, ...rest }) => 
     <Route
       {...rest}
       render={props => {
-        if (!auth.getCurrentUser()){
-          return (
-            <React.Fragment>
-            <Redirect
-           
-              to={{
-                pathname: "/login",
-                state: { from: props.location
-                 }
-              }
-            }
-            /></React.Fragment>
-          )}if (auth.getCurrentUser()['role']=='Admin') {
+        if (auth.getCurrentUser()){
+          if (auth.getCurrentUser()['role']=='Admin') {
             return (
             <React.Fragment>
 
@@ -46,6 +35,7 @@ const AuthProtectedRoute = ({ path, component: Component, render, ...rest }) => 
               }
               /></React.Fragment>)
           }
+         }
         return Component ? <Component {...props} /> : render(props);
       }}
       exact/>

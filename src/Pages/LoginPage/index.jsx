@@ -24,10 +24,7 @@ function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            //Prevent page reload
-           
-        
-    
+          
         var { uname, pass } = document.forms[0];
     
         // Find user login info
@@ -38,7 +35,7 @@ function Login() {
         // const {state} = this.props.location
         setIsSubmitted(true);
         // window.location = state ? state.from.pathname : "/";
-        // window.location="/"
+        window.location="/login"
 
         
         } catch (ex) {

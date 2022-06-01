@@ -11,7 +11,7 @@ function Overlay(props) {
 
 function FormModal(props) {
   return (
-      
+     
         <Card className={styled["modal"]}>
             <div className={styled["modal-header"]}>
                 <h2>{props.name}</h2>

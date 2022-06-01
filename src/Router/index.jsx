@@ -24,7 +24,7 @@ export default function AppRouter(){
             <React.Fragment>
                 <Switch>
                     <Route path="/" component={HomePage }  exact/>
-                    <AuthProtectedRoute path="/register" component={RegisterPage } exact  />
+                    <AuthProtectedRoute path="/register" component={RegisterPage }/>
                     <AuthProtectedRoute path="/login" component={LoginPage}  />
                    <UserProtectedRoute
                    path="/member/add-monthly-payment" 
@@ -45,7 +45,7 @@ export default function AppRouter(){
                    component={MemberList}
                     />
                    
-                    <UserProtectedRoute
+                    <AdminProtectedRoute
                    path="/admin/approve-registration" 
                    component={ApproveRegistration}
                     />

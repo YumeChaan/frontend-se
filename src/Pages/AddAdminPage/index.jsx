@@ -104,7 +104,7 @@ function AddAdmin(){
           await addAdmin(name,birthday,address,phone,email,gender,username,password,confPassword);
           // Set to 3sec
           toast.success('successful', {autoClose:3000})
-          // window.location = "/adminData/dashboard";
+          window.location = "/admin/adminslist";
         } catch (ex) {
           if (ex.response && ex.response.status === 400) {
               

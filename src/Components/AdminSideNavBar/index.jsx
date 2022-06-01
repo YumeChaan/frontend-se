@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -9,11 +9,20 @@ import Grid from '@mui/material/Grid';
 import fitnessLogo from "../../Resources/Images/company-logo.png";
 import styles from './index.module.css';
 
+import { logout } from './../../services/authServices';
 
 const drawerWidth = 240;
 
 
 export default function AdminSideNavBar() {
+   
+         function doLogout(e) {
+          const result = logout();
+          window.location='/login'
+        }
+    
+        
+
 
     const drawer = (
         <div className={styles['left-container']}>
@@ -118,7 +127,7 @@ export default function AdminSideNavBar() {
             <div className={styles['left-space-container']} />
             <div className={styles['logout-btn']}>
                 <ListItem key='Logout' disablePadding>
-                    <ListItemButton href="#">
+                    <ListItemButton onClick={(e) => {doLogout(e)}}  >
                     <ListItemText primary='Logout' />
                     </ListItemButton>
                 </ListItem>

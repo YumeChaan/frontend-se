@@ -6,7 +6,9 @@ import bank2 from './bank-2.png';
 import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
 import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
-
+import {monthlyFeePay} from '../../services/paymentServices'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const drawerWidth = 240;
 
 
@@ -25,11 +27,30 @@ function AddMonthlyPayment(){
     }
 
     const handleReceiptChange = (e) =>{
-        setReceipt(e.target.value);
+        setReceipt(e.target.files[0]);
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async (e)=>{
         e.preventDefault();
+        try {
+                
+            // console.log(slip)
+            
+    
+            const response = await monthlyFeePay(month,notes,receipt);
+
+            // Set to 3sec
+            toast.success('successful Paid wait till the admin aproved', {autoClose:3000})
+            window.location = "/member/dashboard";
+          } catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                 // Set to 10sec
+                 toast.error(ex.response.data, {
+                    // Set to 15sec
+                    autoClose:5000});
+                   
+            }
+          }
    
     }
 
@@ -83,7 +104,7 @@ function AddMonthlyPayment(){
 
                         <div className={`form-group`}>
                             <label for="receipt">Upload a copy(photo) of your deposit slip/transaction receipt. *</label>
-                            <input type="file" class={`form-control-file`} id="receipt" name="receipt" value={receipt} onChange={(e) => {handleReceiptChange(e)}} required></input>
+                            <input type="file" class={`form-control-file`} id="receipt" name="receipt"  onChange={(e) => {handleReceiptChange(e)}} required></input>
                         </div>
                         <hr className={`mb-4`} />
 

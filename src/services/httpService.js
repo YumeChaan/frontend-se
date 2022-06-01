@@ -9,6 +9,7 @@ axios.interceptors.response.use(null, error => {
   if(error.response.status==595){
     toast.error("Admin has not been aproved you yet");
     
+    
   }
 
 
