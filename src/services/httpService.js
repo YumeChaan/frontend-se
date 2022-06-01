@@ -6,10 +6,16 @@ axios.interceptors.response.use(null, error => {
    if(error.response.status==403){
     toast.error("Access denied.");
   }
+  if(error.response.status==595){
+    toast.error("Admin has not been aproved you yet");
+    
+  }
+
+
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
-    error.response.status < 500;
+    error.response.status < 600;
 
   if (!expectedError) {
     logger.log(error);
