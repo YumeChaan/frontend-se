@@ -1,52 +1,30 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import PaymentDetailsTable from "../../Components/ApproveMonthlyPayment/PaymentDetailsTable/PaymentDetailsTable.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Box from '@mui/material/Box';
 import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
 import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
 import styled from './index.module.css';
+import { pendingPaymentList } from "../../services/paymentServices";
 
 const drawerWidth = 240;
 
 export default function ApproveMonthlyPayment() {
 
-  // Database records as a object like this
-  const records = [
-    {
-      id: "ID",
-      name: "Name",
-      date: "Date",
-      month: "Month",
-      special_notes: "Special Notes",
-      receipt: "Receipt",
-    },
-    {
-      id: 111,
-      name: "Kasun",
-      date: "2012-12-12",
-      month: "January",
-      special_notes: "I want to loose weight",
-      receipt: "Receipt"
-    },
-    {
-      id: 222,
-      name: "Amal",
-      date: "2012-12-12",
-      month: "February",
-      special_notes: "I want to loose weight",
-      receipt: "Receipt"
-    },
-    {
-      id: 333,
-      name: "Amal",
-      date: "2012-12-12",
-      month: "February",
-      special_notes: "I want to loose weight",
-      receipt: "Receipt"
-    },
-  ];
+  const [records , setRecord] = useState([]);
+   
+    useEffect(() => {
+        async function getPayments() {
+          const result = await pendingPaymentList();
+          console.log(result);
+          setRecord(result.data);
+        }
+    
+        getPayments();
+      });
 
   return (
+    
     <React.Fragment>
       <Box sx={{ display: 'flex' }}>
             
@@ -75,11 +53,11 @@ export default function ApproveMonthlyPayment() {
                       return (
                         <PaymentDetailsTable
                           key={record["id"]}
-                          name={record["name"]}
-                          date={record["date"]}
+                          name={record["Name"]}
+                          email={record["email"]}
                           month={record["month"]}
-                          special_notes={record["special_notes"]}
-                          receipt={record["receipt"]}
+                          special_notes={record["description"]}
+                          receipt={record["slipPath"]}
                         />
                       );
                     })}
