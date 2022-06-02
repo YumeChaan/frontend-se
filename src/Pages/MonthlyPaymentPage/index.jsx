@@ -5,6 +5,7 @@ import bank1 from './bank-1.png';
 import bank2 from './bank-2.png';
 import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
+import PrePaymentTable from "../../Components/PrePaymentList/PrePaymentTable.jsx";
 import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
 import {monthlyFeePay} from '../../services/paymentServices'
 import {toast} from 'react-toastify';
@@ -13,6 +14,23 @@ const drawerWidth = 240;
 
 
 function AddMonthlyPayment(){
+
+    const records = [
+        {
+            id: 1,
+            paymentStatus: "pending",
+            slipPath: "/uploads/4f6a39efbb14fd4d28b03c319cfd047f.jpeg",
+            month: "May",
+            description: "Additional Notes"
+        },
+        {
+            id: 1,
+            paymentStatus: "success",
+            slipPath: "/uploads/4f6a39efbb14fd4d28b03c319cfd047f.jpeg",
+            month: "April",
+            description: "Additional Notes"
+        },
+    ];
 
     const [month, setMonth] = useState('January');
     const [notes, setNotes] = useState('');
@@ -117,12 +135,36 @@ function AddMonthlyPayment(){
                             </div>
                         </div>
 
-                        <hr className={`mb-4`} />
+                        
                         {/* <div className={`${styles["button-sub"]}`}></div> */}
                         <button className={` btn btn-primary btn-lg ${styles["btn-sub"]} `} type="submit">SUBMIT</button>
                         
                     </form>
 
+                </div>
+                <hr className={`mb-4`} />
+                <h2 className={` text-center ${styles['sub-title']}`}>Previous Payments </h2>
+                <div className={styles['table-holder']}>
+                    
+                    <div className={`${styles["table-record"]}`}>
+                    <div className={`row`}>
+                        <div className={`col-md-2 col-6 ${styles["data"]}`}>Month</div>
+                        <div className={`col-md-2 col-6 ${styles["data"]}`}>Status</div>
+                        <div className={`col-md-2  d-none d-md-block ${styles["data"]}`}>Receipt</div>
+                        <div className={`col-md-6  d-none d-md-block ${styles["data"]}`}>Description</div>
+                    </div>
+                    </div>
+                    {records.map((record) => {
+                    return (
+                        <PrePaymentTable
+                        key={record["id"]}
+                        status={record["paymentStatus"]}
+                        receipt={record["slipPath"]}
+                        description={record["description"]}
+                        month={record["month"]}
+                        />
+                    );
+                    })}
                 </div>
                 
  
