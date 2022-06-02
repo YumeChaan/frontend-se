@@ -11,23 +11,10 @@ const drawerWidth = 240;
 function RequestWorkoutSchedule() {
     const records = [
         {
-            id: "ID",
-            date: "Date",
-            status: "Status",
-            workout_schedule: "Workout Schedule",
-            current_weight: "Current Weight",
-            target_weight: "Target Weight",
-            target_time: "Target Time Period",
-            workout_frequency: "Workout Frequency",
-            targets: "Targets",
-            add_notes: "Additional Notes"
-
-        },
-        {
             id: 1,
             date: "2021-12-12",
             status: "Pending",
-            workout_schedule: "Wait",
+            workout_schedule: "",
             current_weight: 55,
             target_weight: 48,
             target_time: 2,
@@ -39,7 +26,7 @@ function RequestWorkoutSchedule() {
             id: "ID",
             date: "2022-12-12",
             status: "Success",
-            workout_schedule: "Workout Schedule.pdf",
+            workout_schedule: "/uploads/7fc88fd0a7aa2b8df555150653b69246.png",
             current_weight: 60,
             target_weight: 55,
             target_time: 1,
@@ -218,6 +205,13 @@ function RequestWorkoutSchedule() {
                 </div>
 
                 <div className={styled['table-holder']}>
+                <div className={`${styled["table-record"]}`}>
+                    <div className={`row`}>
+                        <div className={`col-md-4 col-6 ${styled["data"]}`}>Date</div>
+                        <div className={`col-md-4 d-none d-md-block ${styled["data"]}`}>Status</div>
+                        <div className={`col-md-4 col-6 ${styled["data"]}`}>Workout Shedule</div>
+                    </div>
+                    </div>
                     {records.map((record) => {
                     return (
                         <PreWorkoutScheduleTable

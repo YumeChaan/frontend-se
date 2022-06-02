@@ -28,10 +28,10 @@ function FormModal(props) {
                     </div>
                     <div className={`row form-group`}>
                         <div className={`col-3`}>
-                            <span>Date</span>
+                            <span>Email</span>
                         </div>
                         <div className={`col-9`}>
-                            <span>: {props.date}</span>
+                            <span>: {props.email}</span>
                         </div>
                     </div>
                     <div className={`row form-group`}>
@@ -55,7 +55,7 @@ function FormModal(props) {
                             <span>Payment Receipt</span>
                         </div>
                         <div className={`col-9`}>
-                            <span>: {props.receipt}</span>
+                            <span>: <a href={"http://localhost:5000/"+props.receipt} target="_blank" className={styled["receipt"]}>Download</a> </span>
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@ function PaymentDetailsForm(props) {
         <FormModal 
         key={props.key}
         name={props.name}
-        date={props.date}
+        email={props.email}
         month={props.month}
         special_notes={props.special_notes}
         receipt={props.receipt}

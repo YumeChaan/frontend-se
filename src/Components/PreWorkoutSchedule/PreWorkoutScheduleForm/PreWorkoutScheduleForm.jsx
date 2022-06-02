@@ -10,7 +10,16 @@ function Overlay(props) {
 }
 
 function FormModal(props) {
-  return (
+
+    function WorkoutSchedule(){
+        if (props.status!=="Pending"){
+          return <a href={"http://localhost:5000/"+props.workout_schedule} target="_blank" className={styled["meal-plan"]}>Download</a>
+        }else{
+          return "Wait"
+        }
+      }
+
+    return (
       
         <Card className={styled["modal"]}>
             <div className={styled["modal-header"]}>
@@ -39,7 +48,7 @@ function FormModal(props) {
                             <span>Workout Schedule</span>
                         </div>
                         <div className={`col-md-9 col-7`}>
-                            <span>: {props.workout_schedule}</span>
+                            <span>: {WorkoutSchedule()}</span>
                         </div>
                     </div>
                     <div className={`row form-group`}>

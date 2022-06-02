@@ -12,18 +12,6 @@ const drawerWidth = 240;
 function RequestMealPlan() {
     const records = [
         {
-            id: "ID",
-            date: "Date",
-            status: "Status",
-            meal_plan: "Meal Plan",
-            current_weight: "Current Weight",
-            target_weight: "Target Weight",
-            target_time: "Target Time Period",
-            veg_prefer: "Vegetarian/ Non-Vegetarian",
-            add_notes: "Additional Notes"
-
-        },
-        {
             id: 1,
             date: "2021-12-12",
             status: "Pending",
@@ -38,7 +26,7 @@ function RequestMealPlan() {
             id: 2,
             date: "2022-12-12",
             status: "Success",
-            meal_plan: "Meal Plan.pdf",
+            meal_plan: "/uploads/4f6a39efbb14fd4d28b03c319cfd047f.jpeg",
             current_weight: 78,
             target_weight: 56,
             target_time: 4,
@@ -200,6 +188,13 @@ function RequestMealPlan() {
                 </div>
 
                 <div className={styled['table-holder']}>
+                    <div className={`${styled["table-record"]}`}>
+                    <div className={`row`}>
+                        <div className={`col-md-4 col-6 ${styled["data"]}`}>Date</div>
+                        <div className={`col-md-4 d-none d-md-block ${styled["data"]}`}>Status</div>
+                        <div className={`col-md-4 col-6 ${styled["data"]}`}>Meal Plan</div>
+                    </div>
+                    </div>
                     {records.map((record) => {
                     return (
                         <PreMealPlanTable

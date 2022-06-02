@@ -79,7 +79,7 @@ function Login() {
     return (
         <div>
             <LoginNavBar/>
-            <main className={`d-flex align-items-center min-vh-100 py-3 py-md-0`}>
+            <main className={`d-flex align-items-center min-vh-100 py-3 py-md-0 ${styles["body"]}` }>
                 <div className={`container ${styles["login-container"]}`}>
                 <div className={`card ${styles["login-card"]}`}>
                     <div className={`row no-gutters`}>

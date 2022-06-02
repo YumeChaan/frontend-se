@@ -2,7 +2,7 @@
     display: block;
     width: 100%;
 
-    background-color: #4A3F35;
+    background-color: rgb(177, 36, 36);
     color: white;
 
     padding: 10px 0px;
@@ -24,7 +24,7 @@
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.288);
 
-    background-color: #2F2519 !important;
+    background-color: rgb(177, 36, 36) !important;
 
     pointer-events: none;
 }
@@ -40,7 +40,7 @@
     padding-left: 2em;
     /* left: 15px; */
 
-    border-right: 1px solid #000;
+    border-right: 1px solid rgba(53, 53, 53, 0.315);
 }
 
 .data:last-child{
@@ -53,4 +53,14 @@
 
 .big-data{
     width: 35%
+}
+
+.meal-plan{
+    text-decoration: none;
+    color: white;
+}
+
+.meal-plan:hover{
+    text-decoration: none;
+    color: black;
 }
