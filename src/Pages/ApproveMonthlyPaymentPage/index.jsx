@@ -49,6 +49,15 @@ export default function ApproveMonthlyPayment() {
                     <h1> Pending Monthly Payments </h1>
                   </header>
                   <div className={styled['table-holder']}>
+                    <div className={`${styled["table-record"]}`}>
+                        <div className={`row`}>
+                          <div className={`col-md-3 col-6 ${styled["data"]}`}>Name</div>
+                          <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}>Email</div>
+                          <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}>Month</div>
+                          <div className={`col-md-3 col-6 ${styled["data"]}`}>Receipt</div>      
+                        </div>
+                    </div>
+                
                     {records.map((record) => {
                       return (
                         <PaymentDetailsTable

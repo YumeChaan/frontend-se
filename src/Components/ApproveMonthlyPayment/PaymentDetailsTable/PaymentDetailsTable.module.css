@@ -54,3 +54,13 @@
 .big-data{
     width: 35%
 }
+
+.receipt{
+    text-decoration: none;
+    color: white;
+}
+
+.receipt:hover{
+    text-decoration: none;
+    color: black;
+}

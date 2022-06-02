@@ -28,9 +28,9 @@ function MemberDetailsTable(props) {
         className={`${styled["table-record"]} ${props.className}`}
       >
         <div className={`row`}>
-            <div className={`col-md-3 col-6 ${styled["data"]}`}>{props.name}</div>
-            <div className={`col-md-6 d-none d-md-block ${styled["data"]}`}>{props.email}</div>
-            <div className={`col-md-3 col-6 ${styled["data"]}`}>{props.contact}</div>
+            <div className={`col-md-4 col-6 ${styled["data"]}`}>{props.name}</div>
+            <div className={`col-md-4 d-none d-md-block ${styled["data"]}`}>{props.email}</div>
+            <div className={`col-md-4 col-6 ${styled["data"]}`}>{props.contact}</div>
         </div>
         
         

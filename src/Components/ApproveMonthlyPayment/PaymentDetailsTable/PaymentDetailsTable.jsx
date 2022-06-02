@@ -15,7 +15,7 @@ function PaymentDetailsTable(props) {
       {show && <PaymentDetailsForm 
       key={props.key}
       name={props.name}
-      date={props.date}
+      email={props.email}
       month={props.month}
       special_notes={props.special_notes}
       receipt={props.receipt}
@@ -27,9 +27,9 @@ function PaymentDetailsTable(props) {
       >
         <div className={`row`}>
             <div className={`col-md-3 col-6 ${styled["data"]}`}>{props.name}</div>
-            <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}>{props.date}</div>
+            <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}>{props.email}</div>
             <div className={`col-md-3 col-6 ${styled["data"]}`}>{props.month}</div>
-            <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}>{props.receipt}</div>
+            <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}><a href={"http://localhost:5000/"+props.receipt} target="_blank" className={styled["receipt"]}>Download</a></div>
         </div>
         
         

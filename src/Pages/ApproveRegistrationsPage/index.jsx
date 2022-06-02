@@ -48,13 +48,13 @@ function RegistrationList() {
                 </header>
                 
                 <div className={styled['table-holder']}>
-                <div className={`${styled["table-record"]}`}>
-                    <div className={`row`}>
-                        <div className={`col-md-3 col-6 ${styled["data"]}`}>Name</div>
-                        <div className={`col-md-6 d-none d-md-block ${styled["data"]}`}>Email</div>
-                        <div className={`col-md-3 col-6 ${styled["data"]}`}>Contact</div>       
+                    <div className={`${styled["table-record"]}`}>
+                        <div className={`row`}>
+                            <div className={`col-md-4 col-6 ${styled["data"]}`}>Name</div>
+                            <div className={`col-md-4 d-none d-md-block ${styled["data"]}`}>Email</div>
+                            <div className={`col-md-4 col-6 ${styled["data"]}`}>Contact</div>   
+                        </div>
                     </div>
-                </div>
                 
                     {records.map((record) => {
                     return (

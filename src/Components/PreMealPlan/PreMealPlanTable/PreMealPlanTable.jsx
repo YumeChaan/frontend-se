@@ -11,6 +11,14 @@ function PreMealRequestTable(props) {
   const modalCloseHandler = () => setShow(false);
   const modalShowHandler = () => setShow(true);
 
+  function MealPlan(){
+    if (props.status!=="Pending"){
+      return <a href={"http://localhost:5000/"+props.meal_plan} target="_blank" className={styled["meal-plan"]}>Download</a>
+    }else{
+      return "Wait"
+    }
+  }
+
   return (
       <>
       {show && <PreMealPlanForm 
@@ -33,7 +41,10 @@ function PreMealRequestTable(props) {
         <div className={`row`}>
             <div className={`col-md-4 col-6 ${styled["data"]}`}>{props.date}</div>
             <div className={`col-md-4 d-none d-md-block ${styled["data"]}`}>{props.status}</div>
-            <div className={`col-md-4 col-6 ${styled["data"]}`}>{props.meal_plan}</div>
+            <div className={`col-md-4 col-6 ${styled["data"]}`}> 
+              {MealPlan()}
+              
+            </div>
         </div>
             
             
