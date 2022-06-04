@@ -3,7 +3,8 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import HomePage from "../Pages/HomePage";
 import RegisterPage from "../Pages/RegisterPage";
 import LoginPage from "../Pages/LoginPage";
-import AddMealPlanPage from "../Pages/AddMealPlanPage"
+import AddMealPlanPage from "../Pages/AddMealPlanPage";
+import AddWorkoutPlanPage from "../Pages/AddWorkoutPlanPage";
 
 
 export default function AppRouter(){
@@ -15,6 +16,7 @@ export default function AppRouter(){
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/admin/addMealPlan" element={<AddMealPlanPage/>}/>
+                    <Route path="/admin/addWorkoutPlan" element={<AddWorkoutPlanPage/>}/>
                 </Routes>
             </React.Fragment>
         </Router>
