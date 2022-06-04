@@ -5,7 +5,7 @@ function Button(props){
 
     return(
         <React.Fragment>
-            <button className={`${styled['button']} ${props.className}`}>{props.value}</button>
+            <button className={`${styled['button']} ${props.className}`} disabled={props.disabled}>{props.value}</button>
         </React.Fragment>
     );
 
