@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "./InfoCard.module.css";
 
+// Used in Home page to render info cards
 function InfoCard(props) {
   // This will render a given image
   const renderImage = (source) => {

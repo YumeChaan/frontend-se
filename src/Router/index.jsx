@@ -5,6 +5,7 @@ import RegisterPage from "../Pages/RegisterPage";
 import LoginPage from "../Pages/LoginPage";
 import AddMealPlanPage from "../Pages/AddMealPlanPage";
 import AddWorkoutPlanPage from "../Pages/AddWorkoutPlanPage";
+import MemberProfilePage from "../Pages/MemberProfilePage";
 
 
 export default function AppRouter(){
@@ -17,6 +18,7 @@ export default function AppRouter(){
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/admin/addMealPlan" element={<AddMealPlanPage/>}/>
                     <Route path="/admin/addWorkoutPlan" element={<AddWorkoutPlanPage/>}/>
+                    <Route path="/member/profile" element={<MemberProfilePage/>}/>
                 </Routes>
             </React.Fragment>
         </Router>
