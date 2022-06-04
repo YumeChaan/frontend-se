@@ -10,9 +10,10 @@
 
   .modal {
     position: fixed;
-    top: 30vh;
-    left: 10%;
-    width: 80%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 40%;
     z-index: 100;
     overflow: hidden;
   }
@@ -25,11 +26,20 @@
 
   }
 
-  .sec-breakfast{
-    text-decoration: underline;
+  .meal-plan-lbl{
 
     margin-left: 10px;
     margin-top: 10px;
+  }
 
-    letter-spacing: 2px;
+  .file-input{
+    margin-left: 30px;
+    padding: 10px;
+  }
+
+  .submit-section{
+    margin: 10px;
+    text-align: center;
+
+    font-size: 17pt;
   }

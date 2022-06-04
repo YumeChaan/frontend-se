@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { Card } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 
 import TextField from "../../UI/TextField/TextField";
+import Button from "../../UI/Button/Button.js"
 
 import styled from "./MealPlanForm.module.css";
 
@@ -11,18 +12,43 @@ function Overlay(props) {
 }
 
 function FormModal(props) {
+
+  const calorieIntakeRef = useRef();
+  const [file, setFile] = useState(null);
+
+  const formSubmitHandler = (event) => {
+
+    event.preventDefault();
+ 
+    const calorie_intake = calorieIntakeRef.current.value;
+    const meal_plan = file
+
+    console.log(calorie_intake);
+    console.log(meal_plan);
+  }
+
+  const handleFile = (event) => {
+    setFile(event.target.files[0])
+  }
+
   return (
     <Card className={styled["modal"]}>
       <div className={styled["modal-header"]}>
         <h2>Meal Plan Forum</h2>
       </div>
-      <div className="modal-body">
-            <TextField fieldID={"daily-cal"} label={"Daily Calorie Intake"}/>
-
+      <Form className="modal-body" onSubmit={formSubmitHandler}>
+            <TextField fieldID={"daily-cal"} label={"Daily Calorie Intake"} refHandler={calorieIntakeRef}/>
             <section>
-                <h4 className={styled['sec-breakfast']}>Breakfast</h4>
+                <label className={styled['meal-plan-lbl']}>Meal Plan PDF</label> <br/>
+                <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload"></input>
             </section>
-      </div>
+
+            <div className={styled["submit-section"]}>
+              <Button className={"form-btn"} value={"Submit"}/>
+            </div>
+            
+          
+      </Form>
     </Card>
   );
 }
