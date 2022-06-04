@@ -1,0 +1,74 @@
+.reg-container{
+  width: 70%;
+
+
+}
+
+.title{
+  color: aliceblue;
+}
+
+.reg-form{
+  margin-bottom: 75px;
+  padding: 30px;
+  /* background-color: transparent;
+  border-radius: 25px; */
+  background: rgba(235, 203, 203, 0.3);
+  border-radius: 10px;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .reg-container{
+    width: 100%;
+  
+  
+  }
+}
+
+.group{
+  margin-bottom: 2vw;
+}
+
+.ti-label{
+  padding-top: 5px;
+}
+
+.wrap-input{
+  padding: 0;
+}
+.ti-input{
+
+  border-radius: 10px;
+}
+
+.gender-col{
+  padding-top: 5px;
+}
+
+.btn-sub{
+    
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: rgb(173, 0, 0) ;
+  border-color: rgb(66, 3, 3);
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 30px;
+  padding: 10px 30px; 
+  width: 150px;   
+  margin-right: auto ;
+  margin-left: auto ;
+  display: block;
+}
+
+.btn-sub:hover{
+  background: rgb(177, 53, 53);
+  border-color: rgb(66, 3, 3);
+}
+
+.error{
+  margin-top: 15px;
+  margin-bottom: 0;
+}

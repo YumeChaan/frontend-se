@@ -1,0 +1,25 @@
+.button-holder{
+    position: absolute;
+    right: 13%;
+
+}
+
+.navbar-item {
+    padding-left: 13%;
+}
+.compnay-name-div {
+    padding-top: 2%;
+}
+.company-name{
+    letter-spacing: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    font-weight: 800;
+    font-size: 20pt;
+    text-align: center;
+    padding: 2px;
+}
+
+.company-name-span{
+    color: red;
+}

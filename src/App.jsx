@@ -1,11 +1,13 @@
 import React from 'react';
 import AppRouter from './Router';
-
-import "./App.css"
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
-    <AppRouter/>
+    <React.Fragment>
+      <ToastContainer/> 
+    <AppRouter />
+    </React.Fragment>
   );
 }
 
