@@ -81,14 +81,25 @@ function AddAdmin(){
       setGender(event.target.value)
     }
 
-    const validateProperty = (event) => {
-      const { name, value } = event.target;
-      const obj = { [name]: value };
-      const subSchema = { [name]: schema[name] };
-      const result = Joi.validate(obj, subSchema);
-      const { error } = result;
-      return error ? error.details[0].message : null;
-    };
+  const validateProperty = (event) => {
+    const { name, value } = event.target;
+    if (name === "confPassword") {
+        const obj = { password: admin.password, [name]: value };
+        const subSchema = {
+          [name]: schema[name],
+          password: schema["password"],
+        };
+        const { error } = Joi.validate(obj, subSchema);
+        return error ? error.details[0].message : null;
+    } else {
+        const obj = { [name]: value };
+        const subSchema = { [name]: schema[name] };
+        const result = Joi.validate(obj, subSchema);
+        const { error } = result;
+        return error ? error.details[0].message : null;
+    }
+  };
+
     
     const handleSubmit= async (e)=>{
       e.preventDefault();
@@ -104,7 +115,7 @@ function AddAdmin(){
           await addAdmin(name,birthday,address,phone,email,gender,username,password,confPassword);
           // Set to 3sec
           toast.success('successful', {autoClose:3000})
-          window.location = "/admin/adminslist";
+          window.location = "/admin/admin-list";
         } catch (ex) {
           if (ex.response && ex.response.status === 400) {
               

@@ -11,6 +11,9 @@ import ApproveRegistration from "../Pages/ApproveRegistrationsPage";
 import RequestMealPlan from "../Pages/RequestMealPlanPage";
 import RequestWorkoutSchedule from "../Pages/RequestWorkoutSchedule"
 import AddAdmin from "../Pages/AddAdminPage";
+import AddMealPlan from "../Pages/AddMealPlanPage";
+import AddWorkoutSchedule from "../Pages/AddWorkoutPlanPage";
+import MemberProfile from "../Pages/MemberProfilePage";
 import AdminDashboard from "../Pages/AdminDashboard";
 import MemberDashboard from "../Pages/MemberDashboard";
 import UserProtectedRoute from "../Components/ProtectedRoute/UserProtectedRoute";
@@ -49,9 +52,24 @@ export default function AppRouter(){
                    path="/admin/approve-registration" 
                    component={ApproveRegistration}
                     />
+
+                    <AdminProtectedRoute
+                   path="/admin/add-meal-plan" 
+                   component={AddMealPlan}
+                    />
+
+                    <AdminProtectedRoute
+                   path="/admin/add-workout-schedule" 
+                   component={AddWorkoutSchedule}
+                    />
                     <UserProtectedRoute
                    path="/member/request-meal-plan" 
                    component={RequestMealPlan}
+                    />
+
+                    <UserProtectedRoute
+                   path="/member/profile" 
+                   component={MemberProfile}
                     />
                     
                     <UserProtectedRoute

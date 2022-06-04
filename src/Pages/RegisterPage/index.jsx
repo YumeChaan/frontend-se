@@ -94,11 +94,21 @@ function Register() {
 
     const validateProperty = (event) => {
         const { name, value } = event.target;
-        const obj = { [name]: value };
-        const subSchema = { [name]: schema[name] };
-        const result = Joi.validate(obj, subSchema);
-        const { error } = result;
-        return error ? error.details[0].message : null;
+        if (name === "confPassword") {
+            const obj = { password: user.password, [name]: value };
+            const subSchema = {
+              [name]: schema[name],
+              password: schema["password"],
+            };
+            const { error } = Joi.validate(obj, subSchema);
+            return error ? error.details[0].message : null;
+        } else {
+            const obj = { [name]: value };
+            const subSchema = { [name]: schema[name] };
+            const result = Joi.validate(obj, subSchema);
+            const { error } = result;
+            return error ? error.details[0].message : null;
+        }
     };
 
     
@@ -309,8 +319,9 @@ function Register() {
                         <td><input type="password" name="confPassword" value={user.confPassword} required onChange={handleSave} />
                         {errors.confPassword && (
                             <div className={`alert alert-danger ${styles["error"]}`}>
-                              {"Passwords do not match"}
-                            </div>)}
+                              Passwords do not match
+                            </div>
+                            )}
                         </td>
                         </tr>
                         <tr>
