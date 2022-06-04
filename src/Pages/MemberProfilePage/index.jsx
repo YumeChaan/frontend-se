@@ -7,9 +7,9 @@ import styled from './index.module.css';
 function MemberProfilePage(){
 
     const account_details = {
-        id: "1212",
+        id: "121212X",
         name: "Amal",
-        address: "Colombu",
+        address: "Colombo",
         contact_no: "0771212123",
         email: "amalr@gmail.com",
         dob: "2012-12-12"
