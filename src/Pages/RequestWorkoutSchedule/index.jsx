@@ -1,42 +1,20 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import Joi from "joi-browser";
 import PreWorkoutScheduleTable from '../../Components/PreWorkoutSchedule/PreWorkoutScheduleTable/PreWorkoutScheduleTable.jsx'
 import styled from './index.module.css';
 import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
 import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
-
+import {requestWorkOutPlan} from "../../services/userServices"
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {getWorkoutPlan} from "../../services/userServices"
 const drawerWidth = 240;
 
 function RequestWorkoutSchedule() {
-    const records = [
-        {
-            id: 1,
-            date: "2021-12-12",
-            status: "Pending",
-            workout_schedule: "",
-            current_weight: 55,
-            target_weight: 48,
-            target_time: 2,
-            workout_frequency: "Once a week or never",
-            targets: "Build muscle",
-            add_notes: "Build muscle, Build muscle, Build muscle"
-        },
-        {
-            id: "ID",
-            date: "2022-12-12",
-            status: "Success",
-            workout_schedule: "/uploads/7fc88fd0a7aa2b8df555150653b69246.png",
-            current_weight: 60,
-            target_weight: 55,
-            target_time: 1,
-            workout_frequency: "Twice a week",
-            targets: "Lose weight",
-            add_notes: "Additional Notes, Build muscle, Build muscle"
-        },
-    ];
+  
 
-    
+    const [records, setRecords] = useState([]);
     const [workout_frequency, setWorkout_frequency] = useState('Once a week or never');
     const [targets, setTargets] = useState('Build muscle');
     const [add_notes, setAdd_notes] = useState('');
@@ -47,7 +25,15 @@ function RequestWorkoutSchedule() {
         target_time:"",
         
     })
-
+    useEffect(() => {
+        async function getWorkoutPlans() {
+          const result = await getWorkoutPlan();
+          setRecords(result.data);
+        
+        }
+    
+        getWorkoutPlans();
+      });
     const [errors, setErrors] = useState({});
     const schema = {
         current_weight:Joi.number().required(),
@@ -115,8 +101,45 @@ function RequestWorkoutSchedule() {
     };
 
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async(e)=>{
+        console.log(targets)
         e.preventDefault();
+        const result = Joi.validate(workoutSchedule,
+          schema, { abortEarly: false });
+        console.log(result);
+        const { error } = result;
+        if (!error) {
+            try {
+                
+               
+                const { target_time,target_weight,current_weight} =workoutSchedule;
+               
+                const response = await requestWorkOutPlan(target_time,target_weight,current_weight,add_notes,workout_frequency,targets);
+    
+                // Set to 3sec
+                toast.success('successful', {autoClose:3000})
+                window.location = "/member/request-meal-plan";
+              } catch (ex) {
+                if (ex.response && ex.response.status === 400) {
+                     // Set to 10sec
+                     toast.error(ex.response.data, {
+                        // Set to 15sec
+                        autoClose:5000});
+                       
+                }
+              }
+        return null;
+        } else {
+        const errorData = {};
+        for (let item of error.details) {
+          const name = item.path[0];
+          const message = item.message;
+          errorData[name] = message;
+        }
+        console.log(errors);
+        setErrors(errorData);
+        return errorData;
+        }
    
     };
 
@@ -187,7 +210,7 @@ function RequestWorkoutSchedule() {
                     </div>
                     <div className={`form-group`}>
                         <label for="workout_frequency">How often do you exercise?</label>
-                        <select name="workout_frequency" id="workout_frequency" className={`form-control`} value={workout_frequency} onChange={(e) => {handleWorkoutFreqChange(e)}}>
+                        <select name="workout_frequency" id="workout_frequency" className={`form-control`}  onChange={(e) => {handleWorkoutFreqChange(e)}}>
                                 <option value="Once a week or never">Once a week or never</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Three times a week or more">Three times a week or more</option>
@@ -200,7 +223,7 @@ function RequestWorkoutSchedule() {
                     </div>
 
                     
-                    <button className={` btn btn-primary btn-lg  ${styled["btn-sub"]} `}  onClick={validateForm} type="submit">SUBMIT</button>
+                    <button className={` btn btn-primary btn-lg  ${styled["btn-sub"]} `}   type="submit">SUBMIT</button>
                     </form>
                 </div>
 
@@ -218,13 +241,13 @@ function RequestWorkoutSchedule() {
                         key={record["id"]}
                         date={record["date"]}
                         status={record["status"]}
-                        workout_schedule={record["workout_schedule"]}
+                        workout_schedule={record["workoutPlan"]}
                         current_weight={record["current_weight"]}
                         target_weight={record["target_weight"]}
                         target_time={record["target_time"]}
                         workout_frequency={record["workout_frequency"]}
                         targets={record["targets"]}
-                        add_notes={record["add_notes"]}
+                        add_notes={record["note"]}
                         />
                     );
                     })}

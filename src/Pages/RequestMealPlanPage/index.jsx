@@ -1,40 +1,29 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import Joi from "joi-browser";
 import PreMealPlanTable from '../../Components/PreMealPlan/PreMealPlanTable/PreMealPlanTable.jsx'
 import styled from './index.module.css';
 import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
 import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
-
+import {requestMealPlan} from "../../services/userServices"
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {getMealPlan} from "../../services/userServices"
+import Moment from 'moment';
 const drawerWidth = 240;
 
 
 function RequestMealPlan() {
-    const records = [
-        {
-            id: 1,
-            date: "2021-12-12",
-            status: "Pending",
-            meal_plan: "Wait",
-            current_weight: 50,
-            target_weight: 40,
-            target_time: 3,
-            veg_prefer: "Vegetarian",
-            add_notes: "Additional Notes"
-        },
-        {
-            id: 2,
-            date: "2022-12-12",
-            status: "Success",
-            meal_plan: "/uploads/4f6a39efbb14fd4d28b03c319cfd047f.jpeg",
-            current_weight: 78,
-            target_weight: 56,
-            target_time: 4,
-            veg_prefer: "Non-Vegetarian",
-            add_notes: "Additional Notes"
-        },
-    ];
-
+    const [records, setRecords] = useState([]);
+useEffect(() => {
+        async function getMealPlans() {
+          const result = await getMealPlan();
+          setRecords(result.data);
+        //   console.log(records)
+        }
+    
+        getMealPlans();
+      });
     const [veg_prefer, setVeg_prefer] = useState("non-veg");
     const [add_notes, setAdd_notes] = useState("");
 
@@ -47,6 +36,7 @@ function RequestMealPlan() {
     })
 
     const [errors, setErrors] = useState({});
+    
     const schema = {
         current_weight:Joi.number().required(),
         target_weight:Joi.number().required(),
@@ -57,7 +47,7 @@ function RequestMealPlan() {
         event.preventDefault();
         const result = Joi.validate(mealPlan,
           schema, { abortEarly: false });
-        console.log(result);
+        // console.log(result);
         const { error } = result;
         if (!error) {
         return null;
@@ -107,8 +97,45 @@ function RequestMealPlan() {
     return error ? error.details[0].message : null;
     };
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async(e)=>{
+       
         e.preventDefault();
+        const result = Joi.validate(mealPlan,
+          schema, { abortEarly: false });
+          
+        const { error } = result;
+        if (!error) {
+            try {
+                
+               
+                const { target_time,target_weight,current_weight} =mealPlan;
+               
+                const response = await requestMealPlan(target_time,target_weight,current_weight,add_notes,veg_prefer);
+    
+                // Set to 3sec
+                toast.success('successful', {autoClose:3000})
+                window.location = "/member/request-meal-plan";
+              } catch (ex) {
+                if (ex.response && ex.response.status === 400) {
+                     // Set to 10sec
+                     toast.error(ex.response.data, {
+                        // Set to 15sec
+                        autoClose:5000});
+                       
+                }
+              }
+        return null;
+        } else {
+        const errorData = {};
+        for (let item of error.details) {
+          const name = item.path[0];
+          const message = item.message;
+          errorData[name] = message;
+        }
+        
+        setErrors(errorData);
+        return errorData;
+        }
    
     };
 
@@ -181,9 +208,9 @@ function RequestMealPlan() {
                         <textarea className={`form-control`} name="add_notes" id="add-notes" rows="3" value={add_notes} onChange={(e) => {handleAddNotesChange(e)}}></textarea>
                     </div>
 
-                    {console.log(mealPlan.current_weight, mealPlan.target_weight, mealPlan.target_time, veg_prefer, add_notes)}
+                    {/* {console.log(mealPlan.current_weight, mealPlan.target_weight, mealPlan.target_time, veg_prefer, add_notes)} */}
                     
-                    <button className={` btn btn-primary btn-lg ${styled["btn-sub"]} `} onClick={validateForm} type="submit">SUBMIT</button>
+                    <button className={` btn btn-primary btn-lg ${styled["btn-sub"]} `}  type="submit">SUBMIT</button>
                     </form>
                 </div>
 
@@ -199,14 +226,14 @@ function RequestMealPlan() {
                     return (
                         <PreMealPlanTable
                         key={record["id"]}
-                        date={record["date"]}
+                        date={record['req_date']}
                         status={record["status"]}
-                        meal_plan={record["meal_plan"]}
+                        meal_plan={record["mealPlan"]}
                         current_weight={record["current_weight"]}
                         target_weight={record["target_weight"]}
                         target_time={record["target_time"]}
                         veg_prefer={record["veg_prefer"]}
-                        add_notes={record["add_notes"]}
+                        add_notes={record["note"]}
                         />
                     );
                     })}

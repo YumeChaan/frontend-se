@@ -12,7 +12,7 @@ function Overlay(props) {
 function FormModal(props) {
 
     function MealPlan(){
-        if (props.status!=="Pending"){
+        if (props.status!=="pending"){
           return <a href={"http://localhost:5000/"+props.meal_plan} target="_blank" className={styled["meal-plan"]}>Download</a>
         }else{
           return "Wait"
