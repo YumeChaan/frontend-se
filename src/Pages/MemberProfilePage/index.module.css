@@ -1,4 +1,9 @@
-main{
+/* main{
     width: 98%;
-    margin: 20px;
+    
+} */
+
+.main-container{
+    margin: auto;
+    margin-top: 50px;
 }

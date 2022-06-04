@@ -17,6 +17,7 @@ function MemberProfilePage(){
 
     return(
         <main>
+            <div className={`container ${styled["main-container"]}`}>
             <MemberProfile
                 id={account_details['id']}
                 name={account_details['name']}
@@ -25,6 +26,8 @@ function MemberProfilePage(){
                 email={account_details['email']}
                 dob={account_details['dob']}
             />
+            </div>
+            
         </main>
     );
 }
