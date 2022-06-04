@@ -13,7 +13,7 @@ function AdminDetailsTable(props) {
   return (
     <>
       {show && <AdminDetailsForm 
-      key={props.key}
+      id={props.id}
       name={props.name}
       
       gender={props.gender}

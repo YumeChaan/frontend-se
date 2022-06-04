@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Card } from "react-bootstrap";
-
-
+import {approveRegistration} from '../../../services/adminServices'
+import {declineRegistration} from '../../../services/adminServices'
 import styled from "./RegistrationDetailsForm.module.css";
 
 function Overlay(props) {
@@ -10,8 +10,28 @@ function Overlay(props) {
 }
 
 function FormModal(props) {
-  return (
+    const {id}=props;
+    console.log(id)
+    function handleAccept(id_){
+        async function approveRegistration_() {
+            
+            const result = await approveRegistration(id_);
+           
+          }
       
+          approveRegistration_();
+        }
+    
+    function handleDecline(id_){
+        async function declineRegistration_() {
+            const result = await declineRegistration(id_);
+           
+          }
+      
+          declineRegistration_();
+        }
+  return (
+    
         <Card className={styled["modal"]}>
             <div className={styled["modal-header"]}>
                 <h2>{props.name}</h2>
@@ -85,11 +105,11 @@ function FormModal(props) {
 
                     <div className={`row form-group`}>
                         <div className={`col-md-6`}>
-                            <button type="submit" className={` btn btn-success ${styled["app-btn"]} ${styled["s-btn"]}`} >Approve</button>
+                            <button type="submit" className={` btn btn-success ${styled["app-btn"]} ${styled["s-btn"]}`} onClick={()=>{handleAccept(id)}}  >Approve</button>
                         </div>
 
                         <div className={`col-md-6`}>
-                            <button type="submit" className={` btn btn-danger ${styled["dec-btn"]} ${styled["s-btn"]}`} >Decline</button>
+                            <button type="submit" className={` btn btn-danger ${styled["dec-btn"]} ${styled["s-btn"]}`}onClick={()=>{handleDecline(id)}}  >Decline</button>
                         </div>
                     </div>
 
@@ -115,7 +135,8 @@ function RegistrationDetailsForm(props) {
 
       {ReactDOM.createPortal(
         <FormModal 
-        key={props.key}
+        
+        id={props.id}
         name={props.name}
         age={props.age}
         gender={props.gender}

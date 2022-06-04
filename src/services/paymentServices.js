@@ -27,3 +27,23 @@ export async function pendingPaymentList() {
     }
   });
 }
+export async function aprovePayment(id) {
+  
+    return await http.get(apiUrl+`/payment/${id}`,{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function declinePayment(id) {
+  
+    return await http.get(apiUrl+`/payment/decline/${id}`,{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  } 

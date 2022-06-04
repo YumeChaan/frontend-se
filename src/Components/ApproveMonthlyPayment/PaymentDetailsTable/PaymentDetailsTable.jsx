@@ -11,15 +11,18 @@ function PaymentDetailsTable(props) {
   const modalShowHandler = () => setShow(true);
 
   return (
+    
     <>
       {show && <PaymentDetailsForm 
-      key={props.key}
+     
+      
       name={props.name}
       email={props.email}
       month={props.month}
       special_notes={props.special_notes}
       receipt={props.receipt}
-      onClose={modalCloseHandler}/>}
+      onClose={modalCloseHandler}
+      id_={props.id_}/>}
 
       <div
         onClick={modalShowHandler}

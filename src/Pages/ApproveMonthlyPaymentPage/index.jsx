@@ -16,7 +16,7 @@ export default function ApproveMonthlyPayment() {
     useEffect(() => {
         async function getPayments() {
           const result = await pendingPaymentList();
-          console.log(result);
+    
           setRecord(result.data);
         }
     
@@ -59,14 +59,18 @@ export default function ApproveMonthlyPayment() {
                     </div>
                 
                     {records.map((record) => {
+                      
                       return (
+                        
                         <PaymentDetailsTable
                           key={record["id"]}
+                          
                           name={record["Name"]}
                           email={record["email"]}
                           month={record["month"]}
                           special_notes={record["description"]}
                           receipt={record["slipPath"]}
+                          id_={record["id"]}
                         />
                       );
                     })}

@@ -13,8 +13,9 @@ function RegistrationDetailsTable(props) {
   return (
     <>
       {show && <RegistrationDetailsForm 
-      key={props.key}
+      
       name={props.name}
+      id={props.id}
       age={props.age}
       gender={props.gender}
       birthday={props.birthday}

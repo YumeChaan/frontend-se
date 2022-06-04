@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Card } from "react-bootstrap";
-
+import {declineAdmin} from '../../../services/adminServices'
 
 import styled from "./AdminDetailsForm.module.css";
 
@@ -10,6 +10,15 @@ function Overlay(props) {
 }
 
 function FormModal(props) {
+    const {id}= props;
+    function handleDecline(id_){
+        async function removeAdmin() {
+            const result = await declineAdmin(id_);
+           
+          }
+      
+          removeAdmin();
+        }
   return (
       
         <Card className={styled["modal"]}>
@@ -69,7 +78,7 @@ function FormModal(props) {
                     </div>
 
                     <div className={`text-right`}>
-                        <button type="submit" className={`btn ${styled["remove-btn"]}`} >Remove</button>
+                        <button type="submit" className={`btn ${styled["remove-btn"]}`} onClick={()=>{handleDecline(id)}} >Remove</button>
                     </div>
 
 
@@ -92,7 +101,7 @@ function AdminDetailsForm(props) {
 
       {ReactDOM.createPortal(
         <FormModal 
-        key={props.key}
+        id={props.id}
         name={props.name}
         age={props.age}
         gender={props.gender}

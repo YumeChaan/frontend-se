@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Card } from "react-bootstrap";
-
-
+import {aproveRegistration} from '../../../services/adminServices'
+import {declineRegistration} from '../../../services/adminServices'
 import styled from "./MemberDetailsForm.module.css";
 
 function Overlay(props) {
@@ -10,6 +10,19 @@ function Overlay(props) {
 }
 
 function FormModal(props) {
+
+   
+    const {id} =props;
+    console.log(id)
+    function handleRemove(id_){
+        async function declineRegistration_() {
+            const result = await declineRegistration(id_);
+           
+          }
+      
+          declineRegistration_();
+        }
+    
   return (
       
         <Card className={styled["modal"]}>
@@ -76,7 +89,7 @@ function FormModal(props) {
                     </div>
 
                     <div className={`text-right`}>
-                        <button type="submit" className={` btn ${styled["remove-btn"]}`} >Remove</button>
+                        <button type="submit" className={` btn ${styled["remove-btn"]}`} onClick={()=>{handleRemove(id)}} >Remove</button>
                     </div>
 
 
@@ -99,7 +112,7 @@ function MemberDetailsForm(props) {
 
       {ReactDOM.createPortal(
         <FormModal 
-        key={props.key}
+        id={props.id}
         name={props.name}
         age={props.age}
         gender={props.gender}

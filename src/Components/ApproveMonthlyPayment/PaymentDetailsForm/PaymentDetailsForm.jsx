@@ -1,7 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM, { flushSync } from "react-dom";
 import { Card } from "react-bootstrap";
-
+import {aprovePayment,declinePayment} from '../../../services/paymentServices'
 
 import styled from "./PaymentDetailsForm.module.css";
 
@@ -10,6 +10,26 @@ function Overlay(props) {
 }
 
 function FormModal(props) {
+    const {id_}=props;
+    
+    function handleAprove(id){
+        async function approvePayment_() {
+            const result = await aprovePayment(id);
+           
+          }
+      
+          approvePayment_();
+        }
+    
+    function handleDecline(id){
+        async function declinePayment_() {
+            const result = await declinePayment(id);
+           
+          }
+      
+          declinePayment_();
+        }
+    
   return (
      
         <Card className={styled["modal"]}>
@@ -61,11 +81,11 @@ function FormModal(props) {
 
                     <div className={`row form-group`}>
                         <div className={`col-md-6`}>
-                            <a href="" type="submit" className={` btn btn-success ${styled["app-btn"]} ${styled["s-btn"]}`} >Approve</a>
+                            <a href="" type="submit" className={` btn btn-success ${styled["app-btn"]} ${styled["s-btn"]}`} onClick={()=>{handleAprove(id_)}} >Approve</a>
                         </div>
 
                         <div className={`col-md-6`}>
-                            <a href="" className={` btn btn-danger ${styled["dec-btn"]} ${styled["s-btn"]}`} >Decline</a>
+                            <a href="" className={` btn btn-danger ${styled["dec-btn"]} ${styled["s-btn"]}`} onClick={()=>{handleDecline(id_)}} >Decline</a>
                             
                         </div>
                     </div>
@@ -90,7 +110,8 @@ function PaymentDetailsForm(props) {
 
       {ReactDOM.createPortal(
         <FormModal 
-        key={props.key}
+        key={props.id_}
+        id_={props.id_}
         name={props.name}
         email={props.email}
         month={props.month}

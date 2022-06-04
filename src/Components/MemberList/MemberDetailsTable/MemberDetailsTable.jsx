@@ -13,7 +13,7 @@ function MemberDetailsTable(props) {
   return (
     <>
       {show && <MemberDetailsForm 
-      key={props.key}
+      id={props.id}
       name={props.name}
       age={props.age}
       gender={props.gender}

@@ -57,7 +57,8 @@ function AdminList() {
                             {records.map((record) => {
                             return (
                                 <AdminDetailsTable
-                                key={record['mobileNo']}
+                                key={record['username']}
+                                id={record['username']}
                                 name={record['Name']}
                                 age={7}
                                 gender={record['gender']}

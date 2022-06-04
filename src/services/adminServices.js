@@ -55,3 +55,33 @@ export async function adminList() {
       }
     });
   }
+  export async function approveRegistration(id) {
+  
+    return await http.get(apiUrl+`/admin/accept/${id}`,{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function declineRegistration(id) {
+  
+    return await http.get(apiUrl+`/admin/decline/${id}`,{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  } 
+  export async function declineAdmin(id) {
+  
+    return await http.get(apiUrl+`/admin//remove/${id}`,{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  } 

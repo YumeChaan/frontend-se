@@ -55,7 +55,8 @@ function MemberList() {
                     {records.map((record) => {
                     return (
                         <MemberDetailsTable
-                        key={record["mobileNo"]}
+                        key={record["username"]}
+                        id={record['username']}
                         name={record["Name"]}
                         age={8}
                         gender={record["gender"]}
