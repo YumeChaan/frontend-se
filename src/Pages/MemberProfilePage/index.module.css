@@ -3,7 +3,11 @@
     
 } */
 
-.main-container{
+.sub-container{
     margin: auto;
     margin-top: 50px;
+}
+
+.main-container {
+    height: 1000px;
 }
