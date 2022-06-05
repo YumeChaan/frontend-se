@@ -239,7 +239,7 @@ function RequestWorkoutSchedule() {
                     return (
                         <PreWorkoutScheduleTable
                         key={record["id"]}
-                        date={record["date"]}
+                        date={record["date"].slice(0,10)}
                         status={record["status"]}
                         workout_schedule={record["workoutPlan"]}
                         current_weight={record["current_weight"]}

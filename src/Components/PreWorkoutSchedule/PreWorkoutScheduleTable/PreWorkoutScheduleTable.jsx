@@ -11,7 +11,7 @@ function PreWorkoutScheduleTable(props) {
   const modalShowHandler = () => setShow(true);
 
   function WorkoutSchedule(){
-    if (props.status!=="Pending"){
+    if (props.status!=="pending"){
       return <a href={"http://localhost:5000"+props.workout_schedule} target="_blank" className={styled["meal-plan"]}>Download</a>
     }else{
       return "Wait"

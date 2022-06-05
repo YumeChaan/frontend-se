@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Joi from "joi-browser";
 import PreMealPlanTable from '../../Components/PreMealPlan/PreMealPlanTable/PreMealPlanTable.jsx'
 import styled from './index.module.css';
@@ -15,7 +16,7 @@ const drawerWidth = 240;
 
 function RequestMealPlan() {
     const [records, setRecords] = useState([]);
-useEffect(() => {
+    useEffect(() => {
         async function getMealPlans() {
           const result = await getMealPlan();
           setRecords(result.data);
@@ -222,11 +223,13 @@ useEffect(() => {
                         <div className={`col-md-4 col-6 ${styled["data"]}`}>Meal Plan</div>
                     </div>
                     </div>
+
+                    
                     {records.map((record) => {
                     return (
                         <PreMealPlanTable
                         key={record["id"]}
-                        date={record['req_date']}
+                        date={record['req_date'].slice(0,10)}
                         status={record["status"]}
                         meal_plan={record["mealPlan"]}
                         current_weight={record["current_weight"]}
