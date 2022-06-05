@@ -22,13 +22,22 @@ export async function register(name,birthday,address,mobileNO,email,gender,usern
     "Content-Type": "multipart/form-data",
   }});
 }
-export async function requestWorkOutScedule(add_notes,targets,workout_frequency,target_weight,target_time) {
-  return await http.post(apiEndpoint, {
+
+export async function profileUpdate(name,address,contactNo,email,DOB) {
+ 
+  return await http.put(apiUrl+'/users/update', {
+    Name:name,
+    address:address,
+    mobileNo:contactNo,
+    email:email,
+    birthday:DOB
     
   },{headers: {
     "Content-Type": "multipart/form-data",
+    'x-auth-token':getJwt()
   }});
 }
+
 
 
 export async function requestMealPlan(target_time,target_weight,current_weight,add_notes,veg_prefer) {
@@ -54,7 +63,15 @@ export async function getMealPlan() {
     }
   });
 }
-
+export async function viewProfile() {
+  
+  return await http.get(apiUrl+'/users/me',{
+    headers: {
+      'content-type': 'application/json',
+      'x-auth-token':getJwt()
+    }
+  });
+}
 
 export async function requestWorkOutPlan(target_time,target_weight,current_weight,add_notes,workout_frequency,targets) {
   

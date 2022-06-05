@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 import { Card, Form } from "react-bootstrap";
 
@@ -7,9 +7,12 @@ import { FiEdit } from "react-icons/fi";
 import Button from "../UI/Button/Button.js";
 
 import styled from "./MemberProfile.module.css";
-
+import {profileUpdate} from '../../services/userServices';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function MemberProfile(props) {
-  const [id, setId] = useState(props.id);
+  console.log(props.name)
+  const [id, setId] = useState('');
   const [name, setName] = useState(props.name);
   const [address, setAddress] = useState(props.address);
   const [contactNo, setContactNo] = useState(props.contact_no);
@@ -17,6 +20,10 @@ function MemberProfile(props) {
   const [DOB, setDOB] = useState(props.dob);
 
   const [isEdit, setIsEdit] = useState(false);
+
+
+
+
 
   const editHandler = () => {
     setIsEdit(!isEdit);
@@ -42,8 +49,27 @@ function MemberProfile(props) {
     setDOB(event.target.value);
   };
 
-  const formUpdateHandler = (event) => {
-    // Update database
+  const formUpdateHandler = async(event) => {
+    event.preventDefault();
+    try {
+                
+      // console.log(slip)
+    
+    
+      const response = await profileUpdate(name,address,contactNo,email,DOB);
+
+      // Set to 3sec
+      toast.success('successfully updated', {autoClose:3000})
+      window.location = "";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+           // Set to 10sec
+           toast.error(ex.response.data, {
+              // Set to 15sec
+              autoClose:5000});
+             
+      }
+    }
   };
 
   return (
@@ -70,6 +96,7 @@ function MemberProfile(props) {
                 className={styled["detail-field"]}
                 value={name}
                 disabled={!isEdit}
+                required
               ></input>
             </div>
             <div className={styled["detail-container"]}>
@@ -80,6 +107,7 @@ function MemberProfile(props) {
                 className={styled["detail-field"]}
                 value={address}
                 disabled={!isEdit}
+                required
               ></input>
             </div>
             <div className={styled["detail-container"]}>
@@ -90,6 +118,7 @@ function MemberProfile(props) {
                 className={styled["detail-field"]}
                 value={contactNo}
                 disabled={!isEdit}
+                required
               ></input>
             </div>
             <div className={styled["detail-container"]}>
@@ -100,6 +129,7 @@ function MemberProfile(props) {
                 className={styled["detail-field"]}
                 value={email}
                 disabled={!isEdit}
+                required
               ></input>
             </div>
             <div className={styled["detail-container"]}>
@@ -110,6 +140,7 @@ function MemberProfile(props) {
                 className={styled["detail-field"]}
                 value={DOB}
                 disabled={!isEdit}
+                required
               ></input>
             </div>
           </div>

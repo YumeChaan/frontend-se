@@ -28,7 +28,7 @@ function FormModal(props) {
       
       // Set to 3sec
       toast.success('Workout Plan Successfully sent', {autoClose:3000})
-      window.location = "/admin/add-workout-schedule";
+      window.location = "";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
            // Set to 10sec
