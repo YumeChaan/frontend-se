@@ -48,7 +48,7 @@ export default function MemberSideNavBar() {
 
             <div>
                 <ListItem key='Profile' disablePadding>
-                    <ListItemButton href="#">
+                    <ListItemButton href="./profile">
                     <ListItemText primary='Profile' />
                     </ListItemButton>
                 </ListItem>

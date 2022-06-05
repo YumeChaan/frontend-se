@@ -6,7 +6,7 @@ import bank2 from './bank-2.png';
 import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
 import PrePaymentTable from "../../Components/PrePaymentList/PrePaymentTable.jsx";
-import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
+import MemberBackgroundImage from "../../Resources/Images/member-background.jpg";
 import {monthlyFeePay} from '../../services/paymentServices'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -88,7 +88,7 @@ function AddMonthlyPayment(){
         
         <Box
             component="main"
-            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${MemberBackgroundImage})` }}
         >
             
             <div className={styles['main-container']}>
