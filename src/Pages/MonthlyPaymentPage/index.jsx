@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./monthlyPayment.module.css";
 import bank1 from './bank-1.png';
@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
 import PrePaymentTable from "../../Components/PrePaymentList/PrePaymentTable.jsx";
 import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
-import {monthlyFeePay} from '../../services/paymentServices'
+import {monthlyFeePay,getPaymentsofSpecificuser} from '../../services/paymentServices'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const drawerWidth = 240;
@@ -15,27 +15,21 @@ const drawerWidth = 240;
 
 function AddMonthlyPayment(){
 
-    const records = [
-        {
-            id: 1,
-            paymentStatus: "pending",
-            slipPath: "/uploads/4f6a39efbb14fd4d28b03c319cfd047f.jpeg",
-            month: "May",
-            description: "Additional Notes"
-        },
-        {
-            id: 1,
-            paymentStatus: "success",
-            slipPath: "/uploads/4f6a39efbb14fd4d28b03c319cfd047f.jpeg",
-            month: "April",
-            description: "Additional Notes"
-        },
-    ];
-
+   
     const [month, setMonth] = useState('January');
     const [notes, setNotes] = useState('');
     const [receipt, setReceipt] = useState('');
+    const [records,setRecords]=useState([]);
 
+    useEffect(() => {
+        async function getPaymenList() {
+          const result = await getPaymentsofSpecificuser();
+          setRecords(result.data);
+        //   console.log(records)
+        }
+    
+        getPaymenList();
+      });
     const handleMonthChange = (e) =>{
         setMonth(e.target.value);
     }

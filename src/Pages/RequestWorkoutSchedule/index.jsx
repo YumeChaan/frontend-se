@@ -118,7 +118,7 @@ function RequestWorkoutSchedule() {
     
                 // Set to 3sec
                 toast.success('successful', {autoClose:3000})
-                window.location = "/member/request-meal-plan";
+                window.location = "/member/request-workout-schedule";
               } catch (ex) {
                 if (ex.response && ex.response.status === 400) {
                      // Set to 10sec
