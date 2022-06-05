@@ -12,7 +12,7 @@ function TableRecord(props) {
 
   return (
     <>
-      {show && <WorkoutPlanForm onClose={modalCloseHandler}/>}
+      {show && <WorkoutPlanForm id_={props.id_} onClose={modalCloseHandler}/>}
 
       <div
         onClick={modalShowHandler}

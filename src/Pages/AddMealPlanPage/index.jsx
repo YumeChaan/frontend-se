@@ -1,33 +1,20 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 
 import TableRecord from "../../Components/AddMealPlan/TableRecord/TableRecord.js";
 
 import styled from './index.module.css';
-
+import {mealRequestList} from '../../services/mealPlanService'
 export default function AddMealPlanPage() {
 
-  // Database records as a object like this
-  const records = [
-    {
-      id: 111,
-      name: "Kasun",
-      date: "2012-12-12",
-      current_weight: "80kg",
-      target_weight: "72kg",
-      other_comments: "I want to loose weight",
-      status: "plan not added",
-    },
-    {
-      id: 222,
-      name: "Amal",
-      date: "2012-12-12",
-      current_weight: "82kg",
-      target_weight: "70kg",
-      other_comments: "I want to loose weight",
-      status: "plan not added",
-    },
-  ];
+const [records,setRecords]=useState([]);
+useEffect(() => {
+  async function getMealReqest() {
+    const result = await mealRequestList();
+    setRecords(result.data);
+  }
 
+  getMealReqest();
+});
   return (
     <React.Fragment>
       <div className={`container`}>
@@ -59,11 +46,12 @@ export default function AddMealPlanPage() {
           return (
             <TableRecord
               key={record["id"]}
-              name={record["name"]}
-              date={record["date"]}
+              id_={record["id"]}
+              name={record["Name"]}
+              date={record["req_date"]}
               current_weight={record["current_weight"]}
               target_weight={record["target_weight"]}
-              other_comments={record["other_comments"]}
+              other_comments={record["note"]}
               status={record["status"]}
             />
           );

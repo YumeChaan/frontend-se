@@ -6,7 +6,9 @@ import TextField from "../../UI/TextField/TextField";
 import Button from "../../UI/Button/Button.js"
 
 import styled from "./MealPlanForm.module.css";
-
+import {uploadMealPlan} from '../../../services/mealPlanService';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Overlay(props) {
   return <div className={styled["backdrop"]} onClick={props.onClose} />;
 }
@@ -15,20 +17,30 @@ function FormModal(props) {
 
   // const calorieIntakeRef = useRef();
   const [file, setFile] = useState(null);
-
-  const formSubmitHandler = (event) => {
+  // console.log(props.id_)
+  const formSubmitHandler =async (event) => {
 
     event.preventDefault();
- 
-    // const calorie_intake = calorieIntakeRef.current.value;
-    const meal_plan = file
-
-    // console.log(calorie_intake);
-    console.log(meal_plan);
+  
+    try {
+     
+      const response = await uploadMealPlan(file,props.id_);
+      
+      // Set to 3sec
+      toast.success('Meal Plan Successfully send', {autoClose:3000})
+      window.location = "/admin/add-meal-plan";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+           // Set to 10sec
+           toast.error(ex.response.data, {
+              // Set to 15sec
+              autoClose:5000});
+            
+      }
+    }
   }
-
   const handleFile = (event) => {
-    setFile(event.target.files[0])
+    setFile(event.target.files[0]);
   }
 
   return (
@@ -40,7 +52,7 @@ function FormModal(props) {
             {/* <TextField fieldID={"daily-cal"} label={"Daily Calorie Intake"} refHandler={calorieIntakeRef}/> */}
             <section>
                 <label className={styled['meal-plan-lbl']}>Meal Plan PDF</label> <br/>
-                <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload"></input>
+                <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload" required></input>
             </section>
 
             <div className={styled["submit-section"]}>
@@ -62,7 +74,7 @@ function MealPlanForm(props) {
       )}
 
       {ReactDOM.createPortal(
-        <FormModal message={"Hello world"} />,
+        <FormModal id_={props.id_} message={"Hello world"} />,
         document.getElementById("modal-content")
       )}
     </React.Fragment>

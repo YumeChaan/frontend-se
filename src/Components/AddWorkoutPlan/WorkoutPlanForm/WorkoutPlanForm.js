@@ -6,23 +6,38 @@ import TextField from "../../UI/TextField/TextField";
 import Button from "../../UI/Button/Button.js"
 
 import styled from "./WorkoutPlanForm.module.css";
-
+import {uploadWorkOutPlan} from '../../../services/workOutPlanService';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 function Overlay(props) {
   return <div className={styled["backdrop"]} onClick={props.onClose} />;
 }
 
-function FormModal() {
+function FormModal(props) {
 
   // const calorieIntakeRef = useRef();
   const [file, setFile] = useState(null);
 
-  const formSubmitHandler = () => {
+  const formSubmitHandler = async(event) => {
  
-    // const calorie_intake = calorieIntakeRef.current.value;
-    const meal_plan = file
-
-    // console.log(calorie_intake);
-    console.log(meal_plan);
+    event.preventDefault();
+  
+    try {
+     
+      const response = await uploadWorkOutPlan(file,props.id_);
+      
+      // Set to 3sec
+      toast.success('Workout Plan Successfully sent', {autoClose:3000})
+      window.location = "/admin/add-workout-schedule";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+           // Set to 10sec
+           toast.error(ex.response.data, {
+              // Set to 15sec
+              autoClose:5000});
+            
+      }
+    }
   }
 
   const handleFile = (event) => {
@@ -37,7 +52,7 @@ function FormModal() {
       <Form className="modal-body" onSubmit={formSubmitHandler}>
             <section>
                 <label className={styled['meal-plan-lbl']}>Workout Plan PDF</label> <br/>
-                <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload"></input>
+                <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload" required></input>
             </section>
 
             <div className={styled["submit-section"]}>
@@ -59,7 +74,7 @@ function WorkoutPlanForm(props) {
       )}
 
       {ReactDOM.createPortal(
-        <FormModal message={"Hello world"} />,
+        <FormModal id_={props.id_} message={"Hello world"} />,
         document.getElementById("modal-content")
       )}
     </React.Fragment>
