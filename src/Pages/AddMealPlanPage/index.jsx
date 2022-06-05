@@ -47,18 +47,38 @@ useEffect(() => {
                     <h1> Meal Plan Requests</h1>
                   </header>
                   <div className={styled['table-holder']}>
+                  <div className={`${styled["table-record"]}`}>
+                    <div className={`row`}>
+                      <div className={`col-3 ${styled["data"]}`}>Name</div>
+                      <div className={`col-2 ${styled["data"]}`}>
+                        Date
+                      </div>
+                      <div className={`col-1 ${styled["data"]} `}>
+                        Current Weight
+                      </div>
+                      <div className={`col-1 ${styled["data"]}`}>
+                        Target Weight
+                      </div>
+                      <div className={`col-3 ${styled["data"]} `}>
+                        Comments
+                      </div>
+                      <div className={`col-2 ${styled["data"]}`}>
+                        Status
+                      </div>
+                    </div>
+                  </div>
                     {records.map((record) => {
                       return (
                         <TableRecord
-              key={record["id"]}
-              id_={record["id"]}
-              name={record["Name"]}
-              date={record["req_date"]}
-              current_weight={record["current_weight"]}
-              target_weight={record["target_weight"]}
-              other_comments={record["note"]}
-              status={record["status"]}
-            />
+                        key={record["id"]}
+                        id_={record["id"]}
+                        name={record["Name"]}
+                        date={record["req_date"].slice(0,10)}
+                        current_weight={record["current_weight"]}
+                        target_weight={record["target_weight"]}
+                        other_comments={record["note"]}
+                        status={record["status"]}
+                      />
                       );
                     })}
                   </div>

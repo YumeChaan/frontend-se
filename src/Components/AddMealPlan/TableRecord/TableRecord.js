@@ -20,7 +20,7 @@ function TableRecord(props) {
         className={`${styled["table-record"]} ${props.className}`}
       >
         <div className={`row`}>
-          <div className={`col-2 ${styled["data"]}`}>{props.name}</div>
+          <div className={`col-3 ${styled["data"]}`}>{props.name}</div>
           <div className={`col-2 ${styled["data"]}`}>
             {props.date}
           </div>
@@ -30,7 +30,7 @@ function TableRecord(props) {
           <div className={`col-1 ${styled["data"]}`}>
             {props.target_weight}
           </div>
-          <div className={`col-4 ${styled["data"]} `}>
+          <div className={`col-3 ${styled["data"]} `}>
             {props.other_comments}
           </div>
           <div className={`col-2 ${styled["data"]}`}>
