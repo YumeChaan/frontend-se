@@ -9,15 +9,6 @@ export default function AddWorkoutPlanPage() {
   // Database records as a object like this
   const records = [
     {
-      id: "ID",
-      name: "Name",
-      date: "Date",
-      current_weight: "Current Weight",
-      target_weight: "Target Weight",
-      other_comments: "Comments",
-      status: "Status",
-    },
-    {
       id: 111,
       name: "Kasun",
       date: "2012-12-12",
@@ -39,23 +30,45 @@ export default function AddWorkoutPlanPage() {
 
   return (
     <React.Fragment>
-      <header className={styled['header']}>
-        <h1> Workout Plan Requests</h1>
-      </header>
-      <div className={styled['table-holder']}>
-        {records.map((record) => {
-          return (
-            <TableRecord
-              key={record["id"]}
-              name={record["name"]}
-              date={record["date"]}
-              current_weight={record["current_weight"]}
-              target_weight={record["target_weight"]}
-              other_comments={record["other_comments"]}
-              status={record["status"]}
-            />
-          );
-        })}
+      <div className={`container`}>
+        <header className={styled['header']}>
+          <h1> Workout Plan Requests</h1>
+        </header>
+        <div className={styled['table-holder']}>
+          <div className={`${styled["table-record"]}`}>
+            <div className={`row`}>
+              <div className={`col-2 ${styled["data"]}`}>Name</div>
+              <div className={`col-2 ${styled["data"]}`}>
+                Date
+              </div>
+              <div className={`col-1 ${styled["data"]} `}>
+                Current Weight
+              </div>
+              <div className={`col-1 ${styled["data"]} `}>
+                Target Weight
+              </div>
+              <div className={`col-4 ${styled["data"]} `}>
+                Comments
+              </div>
+              <div className={`col-2 ${styled["data"]} `}>
+                Status
+              </div>
+            </div>
+          </div>
+          {records.map((record) => {
+            return (
+              <TableRecord
+                key={record["id"]}
+                name={record["name"]}
+                date={record["date"]}
+                current_weight={record["current_weight"]}
+                target_weight={record["target_weight"]}
+                other_comments={record["other_comments"]}
+                status={record["status"]}
+              />
+            );
+          })}
+        </div>
       </div>
     </React.Fragment>
   );

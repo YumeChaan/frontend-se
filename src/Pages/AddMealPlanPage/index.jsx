@@ -9,15 +9,6 @@ export default function AddMealPlanPage() {
   // Database records as a object like this
   const records = [
     {
-      id: "ID",
-      name: "Name",
-      date: "Date",
-      current_weight: "Current Weight",
-      target_weight: "Target Weight",
-      other_comments: "Comments",
-      status: "Status",
-    },
-    {
       id: 111,
       name: "Kasun",
       date: "2012-12-12",
@@ -39,10 +30,31 @@ export default function AddMealPlanPage() {
 
   return (
     <React.Fragment>
+      <div className={`container`}>
       <header className={styled['header']}>
         <h1> Meal Plan Requests</h1>
       </header>
       <div className={styled['table-holder']}>
+        <div className={`${styled["table-record"]}`}>
+          <div className={`row`}>
+            <div className={`col-2 ${styled["data"]}`}>Name</div>
+            <div className={`col-2 ${styled["data"]}`}>
+              Date
+            </div>
+            <div className={`col-1 ${styled["data"]} `}>
+              Current <br /> Weight
+            </div>
+            <div className={`col-1 ${styled["data"]}`}>
+              Target <br /> Weight
+            </div>
+            <div className={`col-4 ${styled["data"]} `}>
+              Comments
+            </div>
+            <div className={`col-2 ${styled["data"]}`}>
+              Status
+            </div>
+          </div>
+        </div>
         {records.map((record) => {
           return (
             <TableRecord
@@ -56,6 +68,7 @@ export default function AddMealPlanPage() {
             />
           );
         })}
+      </div>
       </div>
     </React.Fragment>
   );
