@@ -13,15 +13,15 @@ function Overlay(props) {
 
 function FormModal() {
 
-  const calorieIntakeRef = useRef();
+  // const calorieIntakeRef = useRef();
   const [file, setFile] = useState(null);
 
   const formSubmitHandler = () => {
  
-    const calorie_intake = calorieIntakeRef.current.value;
+    // const calorie_intake = calorieIntakeRef.current.value;
     const meal_plan = file
 
-    console.log(calorie_intake);
+    // console.log(calorie_intake);
     console.log(meal_plan);
   }
 
@@ -35,7 +35,6 @@ function FormModal() {
         <h2>Workout Plan Forum</h2>
       </div>
       <Form className="modal-body" onSubmit={formSubmitHandler}>
-            <TextField fieldID={"daily-cal"} label={"Daily Calorie Intake"} refHandler={calorieIntakeRef}/>
             <section>
                 <label className={styled['meal-plan-lbl']}>Workout Plan PDF</label> <br/>
                 <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload"></input>

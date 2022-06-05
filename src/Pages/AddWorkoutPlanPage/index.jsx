@@ -12,15 +12,6 @@ export default function AddWorkoutPlanPage() {
   // Database records as a object like this
   const records = [
     {
-      id: "ID",
-      name: "Name",
-      date: "Date",
-      current_weight: "Current Weight",
-      target_weight: "Target Weight",
-      other_comments: "Comments",
-      status: "Status",
-    },
-    {
       id: 111,
       name: "Kasun",
       date: "2012-12-12",

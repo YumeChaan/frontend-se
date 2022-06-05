@@ -18,22 +18,25 @@ function TableRecord(props) {
         onClick={modalShowHandler}
         className={`${styled["table-record"]} ${props.className}`}
       >
-        <div className={styled["data"]}>{props.name}</div>
-        <div className={`${styled["data"]} ${styled["small-data"]}`}>
-          {props.date}
+        <div className={`row`}>
+          <div className={`col-2 ${styled["data"]}`}>{props.name}</div>
+          <div className={`col-2 ${styled["data"]}`}>
+            {props.date}
+          </div>
+          <div className={`col-1 ${styled["data"]} `}>
+            {props.current_weight}
+          </div>
+          <div className={`col-1 ${styled["data"]}`}>
+            {props.target_weight}
+          </div>
+          <div className={`col-4 ${styled["data"]} `}>
+            {props.other_comments}
+          </div>
+          <div className={`col-2 ${styled["data"]}`}>
+            {props.status}
+          </div>
         </div>
-        <div className={`${styled["data"]} ${styled["small-data"]}`}>
-          {props.current_weight}
-        </div>
-        <div className={`${styled["data"]} ${styled["small-data"]}`}>
-          {props.target_weight}
-        </div>
-        <div className={`${styled["data"]} ${styled["big-data"]}`}>
-          {props.other_comments}
-        </div>
-        <div className={`${styled["data"]} ${styled["small-data"]}`}>
-          {props.status}
-        </div>
+        
       </div>
     </>
   );
