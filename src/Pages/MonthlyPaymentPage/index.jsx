@@ -7,9 +7,9 @@ import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
 import PrePaymentTable from "../../Components/PrePaymentList/PrePaymentTable.jsx";
 import MemberBackgroundImage from "../../Resources/Images/member-background.jpg";
-import {monthlyFeePay} from '../../services/paymentServices'
+// import {monthlyFeePay} from '../../services/paymentServices'
 import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
-import {monthlyFeePay,getPaymentsofSpecificuser} from '../../services/paymentServices'
+import {monthlyFeePay,getPaymentsofSpecificuser} from '../../services/paymentServices';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const drawerWidth = 240;
