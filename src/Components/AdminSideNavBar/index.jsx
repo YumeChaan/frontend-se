@@ -89,7 +89,7 @@ export default function AdminSideNavBar() {
             </div>
             <div>
                 <ListItem key='Meal Plan Requests' disablePadding>
-                    <ListItemButton href="#mealPlanRequests">
+                    <ListItemButton href="./add-meal-plan">
                     <ListItemText primary='Meal Plan Requests' />
                     </ListItemButton>
                 </ListItem>
@@ -97,7 +97,7 @@ export default function AdminSideNavBar() {
             </div>
             <div>
                 <ListItem key='Workout Schedule Requests' disablePadding>
-                    <ListItemButton href="#workoutScheduleRequests">
+                    <ListItemButton href="./add-workout-schedule">
                     <ListItemText primary='Workout Schedule Requests' />
                     </ListItemButton>
                 </ListItem>

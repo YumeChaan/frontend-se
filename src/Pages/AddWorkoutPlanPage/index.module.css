@@ -4,11 +4,12 @@
 
 .header{
     padding: 10px;
-    color: rgb(3, 17, 28);
+    color: #fff;
     text-align: center;
 }
 .main-container {
     height: 1000px;
+    color: #fff;
 }
 .table-record{
     display: block;

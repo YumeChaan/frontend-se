@@ -2,9 +2,10 @@ import React, {useState,useEffect} from "react";
 import AdminDetailsTable from "../../Components/AdminList/AdminDetailsTable/AdminDetailsTable.jsx";
 import Box from '@mui/material/Box';
 import AdminSideNavBar from "../../Components/AdminSideNavBar/index.jsx";
+import AdminBackgroundImage from "../../Resources/Images/admin-background.jpg";
 import styled from './index.module.css';
 import {adminList} from '../../services/adminServices';
-import adminBackgroundImage from "../../Resources/Images/admin-background.jpg";
+
 
 const drawerWidth = 240;
 
@@ -34,11 +35,11 @@ function AdminList() {
                 
                 <AdminSideNavBar/>
                 
-            </Box>
+            </Box> 
             
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `linear-gradient(to right, #1a1a1a, #333333, #1a1a1a);` }}
             >
                 
                 <div className={styled['main-container']}>

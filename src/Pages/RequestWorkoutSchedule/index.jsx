@@ -4,11 +4,13 @@ import PreWorkoutScheduleTable from '../../Components/PreWorkoutSchedule/PreWork
 import styled from './index.module.css';
 import Box from '@mui/material/Box';
 import MemberSideNavBar from "../../Components/MemberSideNavBar";
-import adminBackgroundImage from "../../Resources/Images/member-background.jpg";
+import MemberBackgroundImage from "../../Resources/Images/member-background.jpg";
 import {requestWorkOutPlan} from "../../services/userServices"
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {getWorkoutPlan} from "../../services/userServices"
+import {getWorkoutPlan} from "../../services/userServices";
+
+
 const drawerWidth = 240;
 
 function RequestWorkoutSchedule() {
@@ -160,7 +162,7 @@ function RequestWorkoutSchedule() {
             
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${adminBackgroundImage})` }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundImage: `url(${MemberBackgroundImage})` }}
             >
                 
                 <div className={styled['main-container']}>
