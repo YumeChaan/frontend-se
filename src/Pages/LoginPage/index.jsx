@@ -66,7 +66,7 @@ function Login() {
 
                 <div class="form-group mb-4">
                     <label for="password" className={`sr-only`}>Password</label>
-                    <input type="password" name="pass" id="password" className={`form-control text-center ${styles["f-cont"]}`} placeholder="***********" required/>
+                    <input type="password" name="pass" id="password" className={`form-control text-center ${styles["f-cont"]}`} placeholder="Password" required/>
                     {renderErrorMessage("pass")}
                 </div>
 
