@@ -1,0 +1,14 @@
+.button-holder{
+    position: absolute;
+    padding-top: 0.60%;
+    right: 0;
+
+    width: 40%;
+
+    text-align: center;
+
+}
+
+.navbar-item {
+    padding-left: 13%;
+}

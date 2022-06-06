@@ -13,8 +13,8 @@ function IndexNavBar(props){
             <CompanyCard/>
 
             <div className={styles['button-holder']}>
-                <Button value="SIGN UP"/>
-                <Button value="LOGIN"/>        
+                <a href='./register' alt='LoginLink'><Button value="SIGN UP"/></a>  
+                <a href='./login' alt='LoginLink'><Button value="LOGIN"/>  </a>      
             </div>
             
         </div>

@@ -1,0 +1,109 @@
+.profile{
+    background-color: rgba(168, 166, 166, 0.486);
+    backdrop-filter: blur(10, 10, 10);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    width: 100%;
+
+    position: relative;
+
+}
+
+.header{
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.header-name{
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.detail-title-container{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.details-title{
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.edit-btn{
+    background-color: transparent;
+    
+    border-radius: 5px;
+    border: none;
+
+    font-size: 17pt;
+
+    margin-left: 15px;
+
+    height: fit-content;
+    width: fit-content;
+
+    color: rgb(59, 59, 59);
+
+
+}
+
+.edit-btn:hover{
+    color: rgb(0, 0, 0);
+}
+
+.detail-label{
+    padding: 10px;
+    width: 200px;
+
+    color: rgb(37, 37, 37);
+}
+
+.detail-field{
+    padding: 6px;
+    outline: none;
+
+    border: 1px rgb(116, 114, 114) solid;
+    background-color: rgba(255, 255, 255, 0.548);
+    border-radius: 5px;
+}
+
+.detail-field:disabled{
+    background-color: transparent;
+    border: none;
+    color: rgb(37, 37, 37);
+}
+
+
+.detail-container{
+    width: 30%;
+
+    display: flex;
+    flex-direction: row;
+
+    margin: 5px;
+    margin-left: 20px;
+}
+
+.btn-update{
+    width: 250px;
+    padding: 10px;
+
+    font-size: 14pt;
+
+    letter-spacing: 8px;
+
+    position:absolute;
+    right: 50pt;
+    bottom: 20pt;
+}
+
+.btn-update:disabled, .btn-update:disabled:hover{
+    background-color: rgba(160, 159, 159, 0.63);
+    color: rgb(116, 115, 115);
+
+    border: 1px rgb(109, 108, 108) solid;
+}

@@ -1,0 +1,45 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  .modal {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 57%;
+    width: 40%;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .modal-header{
+    text-align: center;
+    margin-top: 20px;
+
+    letter-spacing: 3px;
+
+  }
+
+  .meal-plan-lbl{
+
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .file-input{
+    margin-left: 30px;
+    padding: 10px;
+  }
+
+  .submit-section{
+    margin: 10px;
+    text-align: center;
+
+    font-size: 17pt;
+  }
