@@ -21,7 +21,7 @@ function RegistrationList() {
         }
     
         getRegistrations();
-      });
+      },[]);
     return (
         <React.Fragment>
             <Box sx={{ display: 'flex' }}>

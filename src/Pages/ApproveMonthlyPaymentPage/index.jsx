@@ -21,7 +21,7 @@ export default function ApproveMonthlyPayment() {
         }
     
         getPayments();
-      });
+      },[]);
 
   return (
     

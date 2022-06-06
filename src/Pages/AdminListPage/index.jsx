@@ -19,7 +19,7 @@ function AdminList() {
         }
     
         getAdmin();
-      });
+      },[]);
      
     return (
        

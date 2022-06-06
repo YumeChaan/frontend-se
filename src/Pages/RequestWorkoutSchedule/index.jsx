@@ -35,7 +35,7 @@ function RequestWorkoutSchedule() {
         }
     
         getWorkoutPlans();
-      });
+      },[]);
     const [errors, setErrors] = useState({});
     const schema = {
         current_weight:Joi.number().required(),

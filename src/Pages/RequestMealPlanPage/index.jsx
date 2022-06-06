@@ -24,7 +24,7 @@ function RequestMealPlan() {
         }
     
         getMealPlans();
-      });
+      },[]);
     const [veg_prefer, setVeg_prefer] = useState("non-veg");
     const [add_notes, setAdd_notes] = useState("");
 
