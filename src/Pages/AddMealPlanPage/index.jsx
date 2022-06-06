@@ -19,7 +19,7 @@ useEffect(() => {
   }
 
   getMealReqest();
-});
+},[]);
   return (
     <React.Fragment>
 

@@ -21,7 +21,7 @@ useEffect(() => {
   }
 
   getworkoutlist();
-});
+},[]);
 
   return (
     <React.Fragment>

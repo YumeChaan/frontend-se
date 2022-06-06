@@ -17,17 +17,7 @@ function AdminHomePage(){
     const [uploadedWorkOutPlan,setUploadedworkoutPlanCount] = useState([]);
     const [uploadedMealPlan,setuploadedMealPlanCount] = useState([]);
     const [acceptedPayments,setAcceptedPaymentsCount] = useState([]);
-//     setName(await adminProfile().data['Name']);
-//     setEmail(await adminProfile().data['email'])
-//     setPendingMealPlanCount(await pendingMealPlanCount().data['noOfMealPlanPending'])
-//     setPendingWorkOutPlanCount(await pendingWorkOutPlanCount().data['noOfWorkOutPlanPending'])
-//     setPendingMembersCount(await pendingMembersCount().data['noOfPendingRegistrations'])
-//     setPendingPaymentsCount(await pendingPaymentsCount().data['noOfpaymentCount'])
-//     setAcceptedMembersCount(await acceptedMembersCount().data['noOfRegistrations'])
-//     setAdminCount(await adminCount().data['noOfAdminCount'])
-//    setUploadedworkoutPlanCount(await uploadedWorkOutPlanCount().data['noOfWorkOutPlanUploaded'])
-//    setuploadedMealPlanCount(await uploadedWorkOutPlanCount().data['noOfmealPlanUploaded'])
-//    setAcceptedPaymentsCount(await acceptedPaymentsCount().data['noOfpaymentCount'])
+
 
     useEffect(() => {
         async function setStats() {

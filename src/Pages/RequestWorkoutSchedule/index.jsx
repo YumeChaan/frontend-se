@@ -82,6 +82,7 @@ function RequestWorkoutSchedule() {
 
     const handleWorkoutFreqChange =(e)=>{
         setWorkout_frequency(e.target.value);
+        console.log(workout_frequency)
     }
 
     const handleTargetsChange =(e)=>{
