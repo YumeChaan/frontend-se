@@ -54,16 +54,16 @@ useEffect(() => {
                         Date
                       </div>
                       <div className={`col-1 ${styled["data"]} `}>
-                        Current Weight
-                      </div>
-                      <div className={`col-1 ${styled["data"]}`}>
-                        Target Weight
-                      </div>
-                      <div className={`col-3 ${styled["data"]} `}>
-                        Comments
+                        Gender
                       </div>
                       <div className={`col-2 ${styled["data"]}`}>
+                        Veg / Non-Veg
+                      </div>
+                      <div className={`col-2 ${styled["data"]} `}>
                         Status
+                      </div>
+                      <div className={`col-2 ${styled["data"]}`}>
+                        Meal Plan 
                       </div>
                     </div>
                   </div>
@@ -78,6 +78,10 @@ useEffect(() => {
                         target_weight={record["target_weight"]}
                         other_comments={record["note"]}
                         status={record["status"]}
+                        veg_prefer={record["veg_prefer"]}
+                        gender={record["gender"]}
+                        target_time={record["target_time"]}
+                        meal_plan={record["mealPlan"]}
                       />
                       );
                     })}
