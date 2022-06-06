@@ -54,3 +54,14 @@
 .big-data{
     width: 35%
 }
+
+.meal-plan{
+    text-decoration: none;
+    color: black;
+   
+}
+
+.meal-plan:hover{
+    text-decoration: none;
+    color: rgb(162, 176, 244);
+}

@@ -6,7 +6,7 @@ import styled from "./AdminHome.module.css";
 
 function AdminHome(props) {
   return (
-    <main>
+    <div className={styled["main"]}>
       <header>
         <h1>{props.admin_name}</h1>
        
@@ -22,7 +22,7 @@ function AdminHome(props) {
           <StatCard title="Pending Registrations" data={props.pendingMembers} />
           <StatCard title="Pending Payments" data={props.pendingPayment} />
       </section>
-    </main>
+    </div>
   );
 }
 

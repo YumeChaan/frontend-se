@@ -43,6 +43,32 @@ function FormModal(props) {
     setFile(event.target.files[0]);
   }
 
+  const MealPlan=()=>{
+    if (props.status!=="pending"){
+      return <a href={"http://localhost:5000/"+props.meal_plan} target="_blank" className={styled["meal-plan"]}>Download</a>
+    }else{
+      return "Wait"
+    }
+  };
+
+  const addMealPlan=()=>{
+    if (props.status == "pending") {
+      return(
+        <>
+      <section>
+          <label className={styled['meal-plan-lbl']}>Meal Plan PDF</label> <br/>
+          <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload" required></input>
+      </section>
+
+      <div className={styled["submit-section"]}>
+        <Button className={"form-btn"} value={"Submit"}/>
+      </div>
+      </>)
+    }else{
+      return(null);
+    }
+  };
+
   return (
     <Card className={styled["modal"]}>
       <div className={styled["modal-header"]}>
@@ -50,14 +76,87 @@ function FormModal(props) {
       </div>
       <Form className="modal-body" onSubmit={formSubmitHandler}>
             {/* <TextField fieldID={"daily-cal"} label={"Daily Calorie Intake"} refHandler={calorieIntakeRef}/> */}
-            <section>
-                <label className={styled['meal-plan-lbl']}>Meal Plan PDF</label> <br/>
-                <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload" required></input>
-            </section>
-
-            <div className={styled["submit-section"]}>
-              <Button className={"form-btn"} value={"Submit"}/>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Name</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.name}</span>
+                </div>
             </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Date</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.date}</span>
+                </div>
+            </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Status</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.status}</span>
+                </div>
+            </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Meal Plan</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {MealPlan()}</span>
+                </div>
+            </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Gender</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.gender}</span>
+                </div>
+            </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Current Weight</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.current_weight} kg</span>
+                </div>
+            </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Target Weight</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.target_weight} kg</span>
+                </div>
+            </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Target Time Period</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.target_time} months</span>
+                </div>
+            </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Vegetarian / Non-Vegetarian?</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.veg_prefer}</span>
+                </div>
+            </div>
+            <div className={`row form-group`}>
+                <div className={`col-md-5 col-5`}>
+                    <span>Comments</span>
+                </div>
+                <div className={`col-md-7 col-7`}>
+                    <span>: {props.other_comments}</span>
+                </div>
+            </div>
+            {addMealPlan()}
             
           
       </Form>
@@ -74,7 +173,19 @@ function MealPlanForm(props) {
       )}
 
       {ReactDOM.createPortal(
-        <FormModal id_={props.id_} message={"Hello world"} />,
+        <FormModal 
+        id_={props.id_}
+        name={props.name}
+        date={props.date}
+        current_weight={props.current_weight}
+        target_weight={props.target_weight}
+        other_comments={props.other_comments}
+        status={props.status}
+        veg_prefer={props.veg_prefer}
+        gender={props.gender}
+        target_time={props.target_time}
+        meal_plan={props.meal_plan} 
+        message={"Hello world"} />,
         document.getElementById("modal-content")
       )}
     </React.Fragment>

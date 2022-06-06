@@ -43,27 +43,25 @@ useEffect(() => {
             >
                 
                 <div className={styled['main-container']}>
+                  <div className={`container`}>
                   <header className={styled['header']}>
                     <h1> Meal Plan Requests</h1>
                   </header>
                   <div className={styled['table-holder']}>
                   <div className={`${styled["table-record"]}`}>
                     <div className={`row`}>
-                      <div className={`col-3 ${styled["data"]}`}>Name</div>
-                      <div className={`col-2 ${styled["data"]}`}>
+                      <div className={`col-md-4 col-4 ${styled["data"]}`}>Name</div>
+                      <div className={`col-md-2 col-4 ${styled["data"]}`}>
                         Date
                       </div>
-                      <div className={`col-1 ${styled["data"]} `}>
-                        Current Weight
+                      <div className={`col-md-2 d-none d-md-block  ${styled["data"]}`}>
+                        Veg / Non-Veg
                       </div>
-                      <div className={`col-1 ${styled["data"]}`}>
-                        Target Weight
-                      </div>
-                      <div className={`col-3 ${styled["data"]} `}>
-                        Comments
-                      </div>
-                      <div className={`col-2 ${styled["data"]}`}>
+                      <div className={`col-md-2 col-4 ${styled["data"]} `}>
                         Status
+                      </div>
+                      <div className={`col-md-2 d-none d-md-block ${styled["data"]}`}>
+                        Meal Plan 
                       </div>
                     </div>
                   </div>
@@ -78,9 +76,14 @@ useEffect(() => {
                         target_weight={record["target_weight"]}
                         other_comments={record["note"]}
                         status={record["status"]}
+                        veg_prefer={record["veg_prefer"]}
+                        gender={record["gender"]}
+                        target_time={record["target_time"]}
+                        meal_plan={record["mealPlan"]}
                       />
                       );
                     })}
+                    </div>
                   </div>
                 </div>
                 
