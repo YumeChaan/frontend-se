@@ -1,5 +1,5 @@
 .card-container{
-    display: flex;
+    display: block;
     flex-direction: row;
 
     margin-top: 40px;
@@ -29,4 +29,8 @@ header h1{
 
 header h4{
     letter-spacing: 2px;
+}
+
+.card-style{
+    /* padding: 10px; */
 }
