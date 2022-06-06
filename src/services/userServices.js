@@ -25,6 +25,7 @@ export async function register(name,birthday,address,mobileNO,email,gender,usern
 
 export async function profileUpdate(name,address,contactNo,email,DOB) {
  
+  console.log(name,address,contactNo,email,DOB);
   return await http.put(apiUrl+'/users/update', {
     Name:name,
     address:address,

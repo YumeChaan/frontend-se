@@ -56,7 +56,7 @@ function FormModal(props) {
                             <span>Current Weight</span>
                         </div>
                         <div className={`col-md-9 col-7`}>
-                            <span>: {props.current_weight}</span>
+                            <span>: {props.current_weight} kg</span>
                         </div>
                     </div>
                     <div className={`row form-group`}>
@@ -64,7 +64,7 @@ function FormModal(props) {
                             <span>Target Weight</span>
                         </div>
                         <div className={`col-md-9 col-7`}>
-                            <span>: {props.target_weight}</span>
+                            <span>: {props.target_weight} kg</span>
                         </div>
                     </div>
                     <div className={`row form-group`}>
@@ -72,7 +72,7 @@ function FormModal(props) {
                             <span>Target Time Period</span>
                         </div>
                         <div className={`col-md-9 col-7`}>
-                            <span>: {props.target_time}</span>
+                            <span>: {props.target_time} Months</span>
                         </div>
                     </div>
                     <div className={`row form-group`}>
