@@ -44,30 +44,26 @@ useEffect(() => {
             >
                 
                 <div className={styled['main-container']}>
+                  <div className={`container`}>
                   <header className={styled['header']}>
                     <h1> Workout Plan Requests</h1>
                   </header>
                   <div className={styled['table-holder']}>
                   <div className={`${styled["table-record"]}`}>
                     <div className={`row`}>
-                      <div className={`col-3 ${styled["data"]}`}>Name</div>
-                      <div className={`col-2 ${styled["data"]}`}>
+                      <div className={`col-md-3 col-4 ${styled["data"]}`}>Name</div>
+                      <div className={`col-md-3 col-4 ${styled["data"]}`}>
                         Date
                       </div>
-                      <div className={`col-1 ${styled["data"]} `}>
-                        Current Weight
-                      </div>
-                      <div className={`col-1 ${styled["data"]} `}>
-                        Target Weight
-                      </div>
-                      <div className={`col-3 ${styled["data"]} `}>
-                        Comments
-                      </div>
-                      <div className={`col-2 ${styled["data"]} `}>
+                      <div className={`col-md-3 col-4 ${styled["data"]} `}>
                         Status
+                      </div>
+                      <div className={`col-md-3 d-none d-md-block ${styled["data"]} `}>
+                        Workout Schedule
                       </div>
                     </div>
                   </div>
+                  
                     {records.map((record) => {
                       return (
                         <TableRecord
@@ -79,10 +75,16 @@ useEffect(() => {
                         target_weight={record["target_weight"]}
                         other_comments={record["note"]}
                         status={record["status"]}
+                        target_time={record["target_time"]}
+                        targets={record["targets"]}
+                        workout_frequency={record["workout_frequency"]}
+                        gender={record["gender"]}
+                        workout_schedule={record["workoutPlan"]}
                       />
                       );
                     })}
                   </div>
+                </div>
                 </div>
                 
                 

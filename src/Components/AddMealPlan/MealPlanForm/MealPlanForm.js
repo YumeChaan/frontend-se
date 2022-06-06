@@ -49,7 +49,25 @@ function FormModal(props) {
     }else{
       return "Wait"
     }
-  }
+  };
+
+  const addMealPlan=()=>{
+    if (props.status == "pending") {
+      return(
+        <>
+      <section>
+          <label className={styled['meal-plan-lbl']}>Meal Plan PDF</label> <br/>
+          <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload" required></input>
+      </section>
+
+      <div className={styled["submit-section"]}>
+        <Button className={"form-btn"} value={"Submit"}/>
+      </div>
+      </>)
+    }else{
+      return(null);
+    }
+  };
 
   return (
     <Card className={styled["modal"]}>
@@ -103,7 +121,7 @@ function FormModal(props) {
                     <span>Current Weight</span>
                 </div>
                 <div className={`col-md-7 col-7`}>
-                    <span>: {props.current_weight}</span>
+                    <span>: {props.current_weight} kg</span>
                 </div>
             </div>
             <div className={`row form-group`}>
@@ -111,7 +129,7 @@ function FormModal(props) {
                     <span>Target Weight</span>
                 </div>
                 <div className={`col-md-7 col-7`}>
-                    <span>: {props.target_weight}</span>
+                    <span>: {props.target_weight} kg</span>
                 </div>
             </div>
             <div className={`row form-group`}>
@@ -119,7 +137,7 @@ function FormModal(props) {
                     <span>Target Time Period</span>
                 </div>
                 <div className={`col-md-7 col-7`}>
-                    <span>: {props.target_time}</span>
+                    <span>: {props.target_time} months</span>
                 </div>
             </div>
             <div className={`row form-group`}>
@@ -138,14 +156,7 @@ function FormModal(props) {
                     <span>: {props.other_comments}</span>
                 </div>
             </div>
-            <section>
-                <label className={styled['meal-plan-lbl']}>Meal Plan PDF</label> <br/>
-                <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload" required></input>
-            </section>
-
-            <div className={styled["submit-section"]}>
-              <Button className={"form-btn"} value={"Submit"}/>
-            </div>
+            {addMealPlan()}
             
           
       </Form>

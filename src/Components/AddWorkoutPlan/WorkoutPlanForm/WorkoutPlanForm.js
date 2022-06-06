@@ -44,20 +44,129 @@ function FormModal(props) {
     setFile(event.target.files[0])
   }
 
+  const WorkoutSchedule=()=>{
+    if (props.status!=="pending"){
+      return <a href={"http://localhost:5000"+props.workout_schedule} target="_blank" className={styled["meal-plan"]}> Download</a>
+    }else{
+      return " Wait"
+    }
+  }
+
+  const addWorkoutSchedule=()=>{
+    if (props.status == "pending") {
+      return(
+        <>
+      <section>
+          <label className={styled['meal-plan-lbl']}>Workout Schedule PDF</label> <br/>
+          <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload" required></input>
+      </section>
+
+      <div className={styled["submit-section"]}>
+        <Button className={"form-btn"} value={"Submit"}/>
+      </div>
+      </>)
+    }else{
+      return(null);
+    }
+  };
+
+
   return (
     <Card className={styled["modal"]}>
       <div className={styled["modal-header"]}>
-        <h2>Workout Plan Forum</h2>
+        <h2>Workout Schedule Forum</h2>
       </div>
       <Form className="modal-body" onSubmit={formSubmitHandler}>
-            <section>
-                <label className={styled['meal-plan-lbl']}>Workout Plan PDF</label> <br/>
-                <input type="file" onChange={handleFile} className={styled['file-input']} id="meal-plan-upload" required></input>
-            </section>
-
-            <div className={styled["submit-section"]}>
-              <Button className={"form-btn"} value={"Submit"}/>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Name</span>
             </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.name}</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Date</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.date}</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Status</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.status}</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Workout Schedule</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>:{WorkoutSchedule()}</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Gender</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.gender}</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Current Weight</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.current_weight} kg</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Target Weight</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.target_weight} kg</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Target Time Period</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.target_time} months</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Targets</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.targets}</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Workout Frequency</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.workout_frequency}</span>
+            </div>
+        </div>
+        <div className={`row form-group`}>
+            <div className={`col-md-5 col-5`}>
+                <span>Comments</span>
+            </div>
+            <div className={`col-md-7 col-7`}>
+                <span>: {props.other_comments}</span>
+            </div>
+        </div>
+        {addWorkoutSchedule()}
+            
             
           
       </Form>
@@ -74,7 +183,20 @@ function WorkoutPlanForm(props) {
       )}
 
       {ReactDOM.createPortal(
-        <FormModal id_={props.id_} message={"Hello world"} />,
+        <FormModal 
+        id_={props.id_}
+        name={props.name}
+        date={props.date}
+        current_weight={props.current_weight}
+        target_weight={props.target_weight}
+        other_comments={props.other_comments}
+        status={props.status}
+        target_time={props.target_time}
+        targets={props.targets}
+        workout_frequency={props.workout_frequency}
+        gender={props.gender}
+        workout_schedule={props.workout_schedule} 
+        message={"Hello world"} />,
         document.getElementById("modal-content")
       )}
     </React.Fragment>

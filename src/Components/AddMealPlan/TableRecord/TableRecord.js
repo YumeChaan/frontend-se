@@ -14,7 +14,7 @@ function TableRecord(props) {
     if (props.status!=="pending"){
       return <a href={"http://localhost:5000/"+props.meal_plan} target="_blank" className={styled["meal-plan"]}>Download</a>
     }else{
-      return "Wait"
+      return "Not added"
     }
   }
 
@@ -22,7 +22,7 @@ function TableRecord(props) {
     <>
     
       {show && <MealPlanForm 
-        id_={props.id}
+        id_={props.id_}
         name={props.name}
         date={props.date}
         current_weight={props.current_weight}
@@ -40,20 +40,17 @@ function TableRecord(props) {
         className={`${styled["table-record"]} ${props.className}`}
       >
         <div className={`row`}>
-          <div className={`col-3 ${styled["data"]}`}>{props.name}</div>
-          <div className={`col-2 ${styled["data"]}`}>
+          <div className={`col-md-4 col-4 ${styled["data"]}`}>{props.name}</div>
+          <div className={`col-md-2 col-4 ${styled["data"]}`}>
             {props.date}
           </div>
-          <div className={`col-1 ${styled["data"]} `}>
-            {props.gender}
-          </div>
-          <div className={`col-2 ${styled["data"]}`}>
+          <div className={`col-md-2 d-none d-md-block ${styled["data"]}`}>
             {props.veg_prefer}
           </div>
-          <div className={`col-2 ${styled["data"]}`}>
+          <div className={`col-md-2 col-4 ${styled["data"]}`}>
             {props.status}
           </div>
-          <div className={`col-2 ${styled["data"]}`}>
+          <div className={`col-md-2 d-none d-md-block ${styled["data"]}`}>
             {MealPlan()}
           </div>
         </div>

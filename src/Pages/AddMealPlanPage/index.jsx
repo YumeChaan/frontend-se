@@ -43,26 +43,24 @@ useEffect(() => {
             >
                 
                 <div className={styled['main-container']}>
+                  <div className={`container`}>
                   <header className={styled['header']}>
                     <h1> Meal Plan Requests</h1>
                   </header>
                   <div className={styled['table-holder']}>
                   <div className={`${styled["table-record"]}`}>
                     <div className={`row`}>
-                      <div className={`col-3 ${styled["data"]}`}>Name</div>
-                      <div className={`col-2 ${styled["data"]}`}>
+                      <div className={`col-md-4 col-4 ${styled["data"]}`}>Name</div>
+                      <div className={`col-md-2 col-4 ${styled["data"]}`}>
                         Date
                       </div>
-                      <div className={`col-1 ${styled["data"]} `}>
-                        Gender
-                      </div>
-                      <div className={`col-2 ${styled["data"]}`}>
+                      <div className={`col-md-2 d-none d-md-block  ${styled["data"]}`}>
                         Veg / Non-Veg
                       </div>
-                      <div className={`col-2 ${styled["data"]} `}>
+                      <div className={`col-md-2 col-4 ${styled["data"]} `}>
                         Status
                       </div>
-                      <div className={`col-2 ${styled["data"]}`}>
+                      <div className={`col-md-2 d-none d-md-block ${styled["data"]}`}>
                         Meal Plan 
                       </div>
                     </div>
@@ -85,6 +83,7 @@ useEffect(() => {
                       />
                       );
                     })}
+                    </div>
                   </div>
                 </div>
                 
