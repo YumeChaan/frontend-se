@@ -15,7 +15,9 @@
   padding: 30px;
   /* background-color: transparent;
   border-radius: 25px; */
-  /* background: rgba(235, 203, 203, 0.3); */
+  background: #5d5e60;
+  opacity: 80%;
+  /* opacity: 0.5; */
   border-radius: 10px;
   color: #fff;
 }

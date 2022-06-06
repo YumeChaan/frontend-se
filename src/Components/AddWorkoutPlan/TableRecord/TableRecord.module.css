@@ -57,11 +57,11 @@
 
 .meal-plan{
     text-decoration: none;
-    color: black;
+    color: white;
    
 }
 
 .meal-plan:hover{
     text-decoration: none;
-    color: rgb(162, 176, 244);
+    color: black;
 }

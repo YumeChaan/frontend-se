@@ -13,15 +13,21 @@ import 'react-toastify/dist/ReactToastify.css';
 function MemberProfile(props) {
   console.log(props.name);
   const [id, setId] = useState('');
-  const [name, setName] = useState(props.name);
-  const [address, setAddress] = useState(props.address);
-  const [contactNo, setContactNo] = useState(props.contact_no);
-  const [email, setEmail] = useState(props.email);
-  const [DOB, setDOB] = useState(props.dob);
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [contactNo, setContactNo] = useState('');
+  const [email, setEmail] = useState('');
+  const [DOB, setDOB] = useState('');
 
   const [isEdit, setIsEdit] = useState(false);
 
-
+  useEffect(() => {
+    setName(props.name);
+    setAddress(props.address);
+    setContactNo(props.contact_no);
+    setEmail(props.email);
+    setDOB(props.dob);
+  }, [props.name, props.address, props.contact_no, props.email, props.dob]);
 
 
 
@@ -55,7 +61,7 @@ function MemberProfile(props) {
                 
       // console.log(slip)
     
-    
+      console.log(name,address,contactNo,email,DOB);
       const response = await profileUpdate(name,address,contactNo,email,DOB);
 
       // Set to 3sec

@@ -20,7 +20,7 @@ function MemberProfilePage(){
         }
     
         getProfile();
-      });
+      },[]);
     //   console.log(account_details['username'])
     return(
         <Box sx={{ display: 'flex' }}>
