@@ -286,6 +286,7 @@ function Register() {
                         </div>
                         </div>
                         {console.log(gender)}
+                        <div className={styles["bottom-table"]}>
                         <table>
                         <tr>
                             <td>
@@ -332,6 +333,7 @@ function Register() {
                         <td><input type="file" class={`form-control-file`} id="receipt" name="receipt"  onChange={(e) => {handleReceiptChange(e)}} required/></td>
                         </tr>
                         </table>
+                        </div>
                         <p style={{color: "#b0b3b8", fontStyle: 'bold'}}>Registration Fee - 500 LKR <br/> + Monthly Fee - 3000 LKR</p>
 
                         <button type="submit" class="btn btn-warning btn-block btn-sm gradient-custom-4 text-body" >Submit</button>
