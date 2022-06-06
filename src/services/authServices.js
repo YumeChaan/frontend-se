@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import http  from './httpService';
-const apiUrl= "http://localhost:5000";
+const apiUrl= "https://fitness24x7.herokuapp.com";
 const apiEndnPoint = apiUrl+"/auth/signin";
 const tokenKey = "token";
 
