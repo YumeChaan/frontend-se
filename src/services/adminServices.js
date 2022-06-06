@@ -85,3 +85,104 @@ export async function adminList() {
       }
     });
   } 
+  export async function pendingRegistrtionsCount() {
+  
+    return await http.get(apiUrl+'/admin/pendingRegistrationsCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function acceptedUserCount() {
+  
+    return await http.get(apiUrl+'/admin/acceptedRegistrationsCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function adminCount() {
+  
+    return await http.get(apiUrl+'/admin/acceptedAdminsCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function pendingPaymentsCount() {
+  
+    return await http.get(apiUrl+'/admin/pendingPaymentsCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function acceptedPaymentsCount() {
+  
+    return await http.get(apiUrl+'/admin/acceptedgPaymentsCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+
+  export async function pendingMelaPlanRequest() {
+  
+    return await http.get(apiUrl+'/admin/pendingMealPlanRequestCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function adminProfile() {
+  
+    return await http.get(apiUrl+'/admin/me',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function pendingWorkOutPlanCount() {
+  
+    return await http.get(apiUrl+'/admin/pendingWorkOutPlanRequestCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  }
+  export async function uploadedMealPlanCount() {
+  
+    return await http.get(apiUrl+'/admin/uploadedMealPlanCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  };
+  export async function uploadedWorkOutPlanCount() {
+  
+    return await http.get(apiUrl+'/admin/uploadedWorkOutPlanCount',{
+      headers: {
+       
+        'content-type': 'application/json',
+        'x-auth-token':getJwt()
+      }
+    });
+  };

@@ -18,7 +18,7 @@ function MemberList() {
         }
     
         getMembers();
-      });
+      },[]);
     return (
         <React.Fragment>
             <Box sx={{ display: 'flex' }}>
