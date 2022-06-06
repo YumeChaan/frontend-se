@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter as Router, Redirect } from "react-router-d
 import HomePage from "../Pages/HomePage";
 import RegisterPage from "../Pages/RegisterPage";
 import LoginPage from "../Pages/LoginPage";
+import AdminHomePage from "../Pages/AdminHomePage";
 import MonthlyPaymentPage from "../Pages/MonthlyPaymentPage";
 import ApproveMonthlyPayment from "../Pages/ApproveMonthlyPaymentPage";
 import AdminList from "../Pages/AdminListPage";
@@ -25,6 +26,7 @@ export default function AppRouter(){
     return (
         <Router>
             <React.Fragment>
+      
                 <Switch>
                     <Route path="/" component={HomePage }  exact/>
                     <AuthProtectedRoute path="/register" component={RegisterPage }/>
@@ -38,6 +40,12 @@ export default function AppRouter(){
                    path="/admin/approve-monthly-payment" 
                    component={ApproveMonthlyPayment}
                     />
+                     
+                     <AdminProtectedRoute
+                   path="/admin/admin-home" 
+                   component={AdminHomePage}
+                    />
+                     
                     <AdminProtectedRoute
                    path="/admin/admin-list" 
                    component={AdminList}
@@ -91,6 +99,7 @@ export default function AppRouter(){
                     />
                     
                 </Switch>
+
             </React.Fragment>
         </Router>
     );
