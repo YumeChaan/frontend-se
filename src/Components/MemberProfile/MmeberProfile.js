@@ -11,7 +11,7 @@ import {profileUpdate} from '../../services/userServices';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function MemberProfile(props) {
-  console.log(props.name)
+  console.log(props.name);
   const [id, setId] = useState('');
   const [name, setName] = useState(props.name);
   const [address, setAddress] = useState(props.address);

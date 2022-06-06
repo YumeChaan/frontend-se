@@ -29,13 +29,14 @@ export default function AdminSideNavBar() {
             <Grid container spacing={2} className={styles['menu-header']}>
             <Grid item xs={5} >
             <div className={styles['img-div']}>
-                <img src={fitnessLogo} alt="fitness image" className={styles['fitness-img']} />   
+                <a href="/admin/dashboard"> <img src={fitnessLogo} alt="fitness image" className={styles['fitness-img']} /> </a>
+                   
             </div>
             </Grid>
             <Grid item xs={7} className={styles['menu-div']}>
                 <br/><br/><br/>
-                <label className={styles['company-name']}><span className={styles["company-name-span"]}>24/7</span></label>
-                <label className={styles['company-name']}><span>FITNESS</span></label>
+                <a href="/admin/dashboard"><label className={styles['company-name']}><span className={styles["company-name-span"]}>24/7</span></label>
+                <label className={styles['company-name']}><span>FITNESS</span></label></a>
                 
             </Grid>
        

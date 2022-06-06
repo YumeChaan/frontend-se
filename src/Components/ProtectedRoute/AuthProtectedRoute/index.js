@@ -28,7 +28,7 @@ const AuthProtectedRoute = ({ path, component: Component, render, ...rest }) => 
               <Redirect
              
                 to={{
-                  pathname: "/member/dashboard",
+                  pathname: "/member/profile",
                   state: { from: props.location
                    }
                 }
