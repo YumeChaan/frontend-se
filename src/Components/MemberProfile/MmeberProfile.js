@@ -128,7 +128,7 @@ function MemberProfile(props) {
               ></input>
             </div>
             <div className={styled["detail-container"]}>
-              <label className={styled["detail-label"]}>email</label>{" "}
+              <label className={styled["detail-label"]}>Email</label>{" "}
               <input
                 type="text"
                 onChange={emailHandler}
@@ -150,6 +150,7 @@ function MemberProfile(props) {
               ></input>
             </div>
           </div>
+          <div className={`py-5`}></div>
 
           <Button
             className={styled["btn-update"]}

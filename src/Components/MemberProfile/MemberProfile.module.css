@@ -57,7 +57,7 @@
 
 .detail-label{
     padding: 10px;
-    width: 200px;
+    width: 20%;
 
     color: rgb(37, 37, 37);
 }
@@ -69,6 +69,7 @@
     border: 1px rgb(116, 114, 114) solid;
     background-color: rgba(255, 255, 255, 0.548);
     border-radius: 5px;
+    width: 70%;
 }
 
 .detail-field:disabled{
@@ -79,7 +80,7 @@
 
 
 .detail-container{
-    width: 30%;
+    width: 100%;
 
     display: flex;
     flex-direction: row;
@@ -89,13 +90,14 @@
 }
 
 .btn-update{
+    
     width: 250px;
     padding: 10px;
 
     font-size: 14pt;
 
     letter-spacing: 8px;
-
+    
     position:absolute;
     right: 50pt;
     bottom: 20pt;
