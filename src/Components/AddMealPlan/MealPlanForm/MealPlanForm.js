@@ -23,7 +23,7 @@ function FormModal(props) {
     event.preventDefault();
   
     try {
-     
+
       const response = await uploadMealPlan(file,props.id_);
       
       // Set to 3sec
