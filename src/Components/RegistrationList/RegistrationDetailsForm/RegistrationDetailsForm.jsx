@@ -11,7 +11,7 @@ function Overlay(props) {
 
 function FormModal(props) {
     const {id}=props;
-    console.log(id)
+   
     function handleAccept(id_){
         async function approveRegistration_() {
             
@@ -37,7 +37,7 @@ function FormModal(props) {
                 <h2>{props.name}</h2>
             </div>
             <div className="modal-body">
-                <form action="">
+                <form action="" onSubmit={(e)=>{e.preventDefault()}}>
                     <div className={`row form-group`}>
                         <div className={`col-3`}>
                             <span>Name</span>
