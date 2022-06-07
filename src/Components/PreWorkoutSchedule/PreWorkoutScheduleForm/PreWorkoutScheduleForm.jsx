@@ -13,7 +13,7 @@ function FormModal(props) {
 
     function WorkoutSchedule(){
         if (props.status!=="pending"){
-          return <a href={"http://localhost:5000/"+props.workout_schedule} target="_blank" className={styled["meal-plan"]}>Download</a>
+          return <a href={"https://fitness24x7.herokuapp.com"+props.workout_schedule} target="_blank" className={styled["meal-plan"]}>Download</a>
         }else{
           return "Wait"
         }

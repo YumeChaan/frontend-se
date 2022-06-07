@@ -75,7 +75,7 @@ function FormModal(props) {
                             <span>Payment Receipt</span>
                         </div>
                         <div className={`col-9`}>
-                            <span>: <a href={"http://localhost:5000/"+props.receipt} target="_blank" className={styled["receipt"]}>Download</a> </span>
+                            <span>: <a href={"https://fitness24x7.herokuapp.com"+props.receipt} target="_blank" className={styled["receipt"]}>Download</a> </span>
                         </div>
                     </div>
 

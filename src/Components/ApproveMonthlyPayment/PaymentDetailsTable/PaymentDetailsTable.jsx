@@ -32,7 +32,7 @@ function PaymentDetailsTable(props) {
             <div className={`col-md-3 col-6 ${styled["data"]}`}>{props.name}</div>
             <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}>{props.email}</div>
             <div className={`col-md-3 col-6 ${styled["data"]}`}>{props.month}</div>
-            <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}><a href={"http://localhost:5000/"+props.receipt} target="_blank" className={styled["receipt"]}>Download</a></div>
+            <div className={`col-md-3 d-none d-md-block ${styled["data"]}`}><a href={"https://fitness24x7.herokuapp.com"+props.receipt} target="_blank" className={styled["receipt"]}>Download</a></div>
         </div>
         
         

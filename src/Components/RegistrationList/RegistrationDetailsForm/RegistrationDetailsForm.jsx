@@ -48,14 +48,6 @@ function FormModal(props) {
                     </div>
                     <div className={`row form-group`}>
                         <div className={`col-3`}>
-                            <span>Age</span>
-                        </div>
-                        <div className={`col-9`}>
-                            <span>: {props.age}</span>
-                        </div>
-                    </div>
-                    <div className={`row form-group`}>
-                        <div className={`col-3`}>
                             <span>Gender</span>
                         </div>
                         <div className={`col-9`}>
@@ -99,7 +91,7 @@ function FormModal(props) {
                             <span>Payment Receipt</span>
                         </div>
                         <div className={`col-9`}>
-                            <span>: <a href={"http://localhost:5000/"+props.receipt} target="_blank" className={styled["receipt"]}>Download</a> </span>
+                            <span>: <a href={"https://fitness24x7.herokuapp.com"+props.receipt} target="_blank" className={styled["receipt"]}>Download</a> </span>
                         </div>
                     </div>
 
@@ -138,7 +130,6 @@ function RegistrationDetailsForm(props) {
         
         id={props.id}
         name={props.name}
-        age={props.age}
         gender={props.gender}
         birthday={props.birthday}
         address={props.address}

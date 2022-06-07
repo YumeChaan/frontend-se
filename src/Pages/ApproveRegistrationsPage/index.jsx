@@ -62,9 +62,8 @@ function RegistrationList() {
                         key={record["username"]}
                         id ={record['username']}
                         name={record["Name"]}
-                        age={8}
                         gender={record["gender"]}
-                        birthday={record["birthday"]}
+                        birthday={record["birthday"].slice(0,10)}
                         address={record["address"]}
                         contact={record["mobileNo"]}
                         email={record["email"]}

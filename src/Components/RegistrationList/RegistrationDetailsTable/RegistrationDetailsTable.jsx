@@ -16,7 +16,6 @@ function RegistrationDetailsTable(props) {
       
       name={props.name}
       id={props.id}
-      age={props.age}
       gender={props.gender}
       birthday={props.birthday}
       address={props.address}

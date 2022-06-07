@@ -15,7 +15,6 @@ function MemberDetailsTable(props) {
       {show && <MemberDetailsForm 
       id={props.id}
       name={props.name}
-      age={props.age}
       gender={props.gender}
       birthday={props.birthday}
       address={props.address}

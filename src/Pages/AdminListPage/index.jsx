@@ -63,7 +63,7 @@ function AdminList() {
                                 name={record['Name']}
                                 age={7}
                                 gender={record['gender']}
-                                birthday={record['birthday']}
+                                birthday={record['birthday'].slice(0,10)}
                                 address={record['address']}
                                 contact={record['mobileNo']}
                                 email={record['email']}
