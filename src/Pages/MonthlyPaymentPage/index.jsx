@@ -55,7 +55,7 @@ function AddMonthlyPayment(){
 
             // Set to 3sec
             toast.success('successful Paid wait till the admin aproved', {autoClose:3000})
-            window.location = "/member/dashboard";
+            window.location = "/member/add-monthly-payment";
           } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                  // Set to 10sec

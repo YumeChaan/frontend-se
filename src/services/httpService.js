@@ -3,16 +3,18 @@ import logger from "./logServices";
 import { toast } from "react-toastify";
 
 axios.interceptors.response.use(null, error => {
-   if(error.response.status==403){
+  if(error.response.status==601){
+  toast.warning("Sorry, This service is unavailble, You have not payed monthly Fee yet.");
+  
+  }
+   else if(error.response.status==403){
     toast.error("Access denied.");
   }
-  if(error.response.status==595){
+  else if(error.response.status==595){
     toast.error("Admin has not been aproved you yet");
-    
-    
   }
 
-
+else{
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
@@ -23,6 +25,8 @@ axios.interceptors.response.use(null, error => {
     toast.error("An unexpected error occurrred.");
   }
  
+}
+  
 
   return Promise.reject(error);
 });

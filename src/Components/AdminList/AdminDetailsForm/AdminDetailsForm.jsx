@@ -4,7 +4,8 @@ import { Card } from "react-bootstrap";
 import {declineAdmin} from '../../../services/adminServices'
 
 import styled from "./AdminDetailsForm.module.css";
-
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Overlay(props) {
   return <div className={styled["backdrop"]} onClick={props.onClose} />;
 }
@@ -14,6 +15,8 @@ function FormModal(props) {
     function handleDecline(id_){
         async function removeAdmin() {
             const result = await declineAdmin(id_);
+            toast.success('Removed successfully', {autoClose:3000})
+            window.location = "/admin/admin-list";
            
           }
       
