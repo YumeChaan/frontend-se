@@ -1,9 +1,9 @@
 import http from "./httpService";
 import {getJwt} from './authServices'
-const apiUrl= "https://fitness24x7.herokuapp.com";
 
 
-const apiEndpoint = apiUrl + "/payment/";
+
+const apiEndpoint =  "/payment/";
 
 export async function monthlyFeePay(month,notes,receipt) {
   return await http.post(apiEndpoint, {
@@ -19,7 +19,7 @@ export async function monthlyFeePay(month,notes,receipt) {
 
 export async function pendingPaymentList() {
   
-  return await http.get(apiUrl+'/payment/paymentList',{
+  return await http.get('/payment/paymentList',{
     headers: {
      
       'content-type': 'application/json',
@@ -29,7 +29,7 @@ export async function pendingPaymentList() {
 }
 export async function getPaymentsofSpecificuser() {
   
-  return await http.get(apiUrl+'/payment/paymentOfSpecificUser',{
+  return await http.get('/payment/paymentOfSpecificUser',{
     headers: {
      
       'content-type': 'application/json',
@@ -39,7 +39,7 @@ export async function getPaymentsofSpecificuser() {
 }
 export async function aprovePayment(id) {
   
-    return await http.get(apiUrl+`/payment/${id}`,{
+    return await http.get(`/payment/${id}`,{
       headers: {
        
         'content-type': 'application/json',
@@ -49,7 +49,7 @@ export async function aprovePayment(id) {
   }
   export async function declinePayment(id) {
   
-    return await http.get(apiUrl+`/payment/decline/${id}`,{
+    return await http.get(`/payment/decline/${id}`,{
       headers: {
        
         'content-type': 'application/json',

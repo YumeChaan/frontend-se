@@ -1,13 +1,11 @@
 import http from "./httpService";
 import {getJwt} from './authServices'
-const apiUrl= "https://fitness24x7.herokuapp.com";
-
 
 
 
 export async function uploadWorkOutPlan(file,id) {
   console.log(id)
-  return await http.post(apiUrl+`/a_uploadWorkplan/addWoP`, {
+  return await http.post(`/a_uploadWorkplan/addWoP`, {
     file_:file,
     id_:id
   },{headers: {
@@ -17,7 +15,7 @@ export async function uploadWorkOutPlan(file,id) {
 }
 
 export async function workOutRequestList() {
-  return await http.get(apiUrl+'/admin/workoutList',{
+  return await http.get('/admin/workoutList',{
     headers: {
      
       'content-type': 'application/json',

@@ -1,10 +1,10 @@
 import http from "./httpService";
 import {getJwt} from './authServices'
 import RequestMealPlan from './../Pages/RequestMealPlanPage/index';
-const apiUrl= "https://fitness24x7.herokuapp.com";
 
 
-const apiEndpoint = apiUrl + "/users/register";
+
+const apiEndpoint =  "/users/register";
 
 export async function register(name,birthday,address,mobileNO,email,gender,username,password,slip,confirmPassword) {
   return await http.post(apiEndpoint, {
@@ -26,7 +26,7 @@ export async function register(name,birthday,address,mobileNO,email,gender,usern
 export async function profileUpdate(name,address,contactNo,email,DOB) {
  
   console.log(name,address,contactNo,email,DOB);
-  return await http.put(apiUrl+'/users/update', {
+  return await http.put('/users/update', {
     Name:name,
     address:address,
     mobileNo:contactNo,
@@ -43,7 +43,7 @@ export async function profileUpdate(name,address,contactNo,email,DOB) {
 
 export async function requestMealPlan(target_time,target_weight,current_weight,add_notes,veg_prefer) {
  
-  return await http.post(apiUrl+'/mealplan/plan', {
+  return await http.post('/mealplan/plan', {
   target_time:target_time,
   target_weight:target_weight,
   current_weight:current_weight,
@@ -56,7 +56,7 @@ export async function requestMealPlan(target_time,target_weight,current_weight,a
 }
 export async function getMealPlan() {
   
-  return await http.get(apiUrl+'/users/mealPlan',{
+  return await http.get('/users/mealPlan',{
     headers: {
      
       'content-type': 'application/json',
@@ -66,7 +66,7 @@ export async function getMealPlan() {
 }
 export async function viewProfile() {
   
-  return await http.get(apiUrl+'/users/me',{
+  return await http.get('/users/me',{
     headers: {
       'content-type': 'application/json',
       'x-auth-token':getJwt()
@@ -76,7 +76,7 @@ export async function viewProfile() {
 
 export async function requestWorkOutPlan(target_time,target_weight,current_weight,add_notes,workout_frequency,targets) {
   
-  return await http.post(apiUrl+'/workoutplan/plan', {
+  return await http.post('/workoutplan/plan', {
   target_time:target_time,
   target_weight:target_weight,
   current_weight:current_weight,
@@ -90,7 +90,7 @@ export async function requestWorkOutPlan(target_time,target_weight,current_weigh
 }
 export async function getWorkoutPlan() {
   
-  return await http.get(apiUrl+'/users/workPlan',{
+  return await http.get('/users/workPlan',{
     headers: {
      
       'content-type': 'application/json',

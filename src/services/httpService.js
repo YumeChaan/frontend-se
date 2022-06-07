@@ -1,7 +1,7 @@
 import axios from "axios";
 import logger from "./logServices";
 import { toast } from "react-toastify";
-
+axios.defaults.baseURL=process.env.REACT_APP_API_URL;
 axios.interceptors.response.use(null, error => {
   if(error.response.status==601){
   toast.warning("Sorry, This service is unavailble, You have not payed monthly Fee yet.");

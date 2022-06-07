@@ -1,9 +1,9 @@
 import http from "./httpService";
 import {getJwt} from './authServices';
-const apiUrl= "https://fitness24x7.herokuapp.com";
 
 
-const apiEndpoint = apiUrl + "/admin/addAdmin";
+
+const apiEndpoint = "/admin/addAdmin";
  
 export async function addAdmin(name,birthday,address,phone,email,gender,username,password,confPassword) {
   
@@ -28,7 +28,7 @@ export async function addAdmin(name,birthday,address,phone,email,gender,username
  
 export async function adminList() {
   
-    return await http.get(apiUrl+'/admin/adminslist',{
+    return await http.get('/admin/adminslist',{
       headers: {
        
         'content-type': 'application/json',
@@ -38,7 +38,7 @@ export async function adminList() {
   }
   export async function pendingMemberList() {
   
-    return await http.get(apiUrl+'/admin/pendingUserList',{
+    return await http.get('/admin/pendingUserList',{
       headers: {
        
         'content-type': 'application/json',
@@ -47,7 +47,7 @@ export async function adminList() {
     });
   }  export async function memberList() {
   
-    return await http.get(apiUrl+'/admin/userslist',{
+    return await http.get('/admin/userslist',{
       headers: {
        
         'content-type': 'application/json',
@@ -57,7 +57,7 @@ export async function adminList() {
   }
   export async function approveRegistration(id) {
   
-    return await http.get(apiUrl+`/admin/accept/${id}`,{
+    return await http.get(`/admin/accept/${id}`,{
       headers: {
        
         'content-type': 'application/json',
@@ -67,7 +67,7 @@ export async function adminList() {
   }
   export async function declineRegistration(id) {
   
-    return await http.get(apiUrl+`/admin/decline/${id}`,{
+    return await http.get(`/admin/decline/${id}`,{
       headers: {
        
         'content-type': 'application/json',
@@ -77,7 +77,7 @@ export async function adminList() {
   } 
   export async function declineAdmin(id) {
   
-    return await http.get(apiUrl+`/admin//remove/${id}`,{
+    return await http.get(`/admin//remove/${id}`,{
       headers: {
        
         'content-type': 'application/json',
@@ -87,7 +87,7 @@ export async function adminList() {
   } 
   export async function pendingRegistrtionsCount() {
   
-    return await http.get(apiUrl+'/admin/pendingRegistrationsCount',{
+    return await http.get('/admin/pendingRegistrationsCount',{
       headers: {
        
         'content-type': 'application/json',
@@ -97,7 +97,7 @@ export async function adminList() {
   }
   export async function acceptedUserCount() {
   
-    return await http.get(apiUrl+'/admin/acceptedRegistrationsCount',{
+    return await http.get('/admin/acceptedRegistrationsCount',{
       headers: {
        
         'content-type': 'application/json',
@@ -107,7 +107,7 @@ export async function adminList() {
   }
   export async function adminCount() {
   
-    return await http.get(apiUrl+'/admin/acceptedAdminsCount',{
+    return await http.get('/admin/acceptedAdminsCount',{
       headers: {
        
         'content-type': 'application/json',
@@ -117,7 +117,7 @@ export async function adminList() {
   }
   export async function pendingPaymentsCount() {
   
-    return await http.get(apiUrl+'/admin/pendingPaymentsCount',{
+    return await http.get('/admin/pendingPaymentsCount',{
       headers: {
        
         'content-type': 'application/json',
@@ -127,7 +127,7 @@ export async function adminList() {
   }
   export async function acceptedPaymentsCount() {
   
-    return await http.get(apiUrl+'/admin/acceptedgPaymentsCount',{
+    return await http.get('/admin/acceptedgPaymentsCount',{
       headers: {
        
         'content-type': 'application/json',
@@ -138,7 +138,7 @@ export async function adminList() {
 
   export async function pendingMelaPlanRequest() {
   
-    return await http.get(apiUrl+'/admin/pendingMealPlanRequestCount',{
+    return await http.get('/admin/pendingMealPlanRequestCount',{
       headers: {
        
         'content-type': 'application/json',
@@ -148,7 +148,7 @@ export async function adminList() {
   }
   export async function adminProfile() {
   
-    return await http.get(apiUrl+'/admin/me',{
+    return await http.get('/admin/me',{
       headers: {
        
         'content-type': 'application/json',
@@ -158,7 +158,7 @@ export async function adminList() {
   }
   export async function pendingWorkOutPlanCount() {
   
-    return await http.get(apiUrl+'/admin/pendingWorkOutPlanRequestCount',{
+    return await http.get('/admin/pendingWorkOutPlanRequestCount',{
       headers: {
        
         'content-type': 'application/json',
@@ -168,7 +168,7 @@ export async function adminList() {
   }
   export async function uploadedMealPlanCount() {
   
-    return await http.get(apiUrl+'/admin/uploadedMealPlanCount',{
+    return await http.get('/admin/uploadedMealPlanCount',{
       headers: {
        
         'content-type': 'application/json',
@@ -178,7 +178,7 @@ export async function adminList() {
   };
   export async function uploadedWorkOutPlanCount() {
   
-    return await http.get(apiUrl+'/admin/uploadedWorkOutPlanCount',{
+    return await http.get('/admin/uploadedWorkOutPlanCount',{
       headers: {
        
         'content-type': 'application/json',
