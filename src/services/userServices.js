@@ -1,7 +1,7 @@
 import http from "./httpService";
 import {getJwt} from './authServices'
 import RequestMealPlan from './../Pages/RequestMealPlanPage/index';
-const apiUrl= "http://localhost:5000";
+const apiUrl= "https://fitness24x7.herokuapp.com";
 
 
 const apiEndpoint = apiUrl + "/users/register";
