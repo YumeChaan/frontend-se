@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import http  from './httpService';
-
-const apiEndnPoint = "/auth/signin";
+const apiUrl ="http://localhost:5000";
+const apiEndnPoint =apiUrl+ "/auth/signin";
 const tokenKey = "token";
 
 

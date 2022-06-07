@@ -26,7 +26,7 @@ function FormModal(props) {
                 {/* <h2>{props.name}</h2> */}
             </div>
             <div className="modal-body">
-                <form action="">
+                <form action="" >
                     <div className={`row form-group`}>
                         <div className={`col-md-3 col-5`}>
                             <span>Date</span>

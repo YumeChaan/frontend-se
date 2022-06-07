@@ -19,10 +19,15 @@ function FormModal(props) {
             const result = await declineRegistration(id_);
            
           }
-      
           declineRegistration_();
+          window.location="/admin/member-list";
         }
-    
+
+        
+        function handleSubmit(e){
+            e.preventDefault();
+            
+        }
   return (
       
         <Card className={styled["modal"]}>
@@ -30,7 +35,7 @@ function FormModal(props) {
                 <h2>{props.name}</h2>
             </div>
             <div className="modal-body">
-                <form action="">
+                <form action="" onSubmit={handleSubmit}>
                     <div className={`row form-group`}>
                         <div className={`col-3`}>
                             <span>Name</span>

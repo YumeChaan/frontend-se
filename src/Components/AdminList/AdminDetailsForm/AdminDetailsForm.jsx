@@ -15,12 +15,17 @@ function FormModal(props) {
     function handleDecline(id_){
         async function removeAdmin() {
             const result = await declineAdmin(id_);
-            toast.success('Removed successfully', {autoClose:3000})
+            
             window.location = "/admin/admin-list";
            
           }
       
           removeAdmin();
+        }
+
+        function handleSubmit(e){
+            e.preventDefault();
+            
         }
   return (
       
@@ -29,7 +34,7 @@ function FormModal(props) {
                 <h2>{props.name}</h2>
             </div>
             <div className="modal-body">
-                <form action="">
+                <form action="" onSubmit={handleSubmit}>
                     <div className={`row form-group`}>
                         <div className={`col-3`}>
                             <span>Name</span>

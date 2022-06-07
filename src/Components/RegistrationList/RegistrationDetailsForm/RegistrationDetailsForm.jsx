@@ -11,12 +11,12 @@ function Overlay(props) {
 
 function FormModal(props) {
     const {id}=props;
-   
+    console.log(id)
     function handleAccept(id_){
         async function approveRegistration_() {
             
             const result = await approveRegistration(id_);
-           
+            window.location='/admin/approve-registration';
           }
       
           approveRegistration_();
@@ -30,6 +30,11 @@ function FormModal(props) {
       
           declineRegistration_();
         }
+
+        function handleSubmit(e){
+            e.preventDefault();
+            
+        }
   return (
     
         <Card className={styled["modal"]}>
@@ -37,7 +42,7 @@ function FormModal(props) {
                 <h2>{props.name}</h2>
             </div>
             <div className="modal-body">
-                <form action="" onSubmit={(e)=>{e.preventDefault()}}>
+                <form action="" onSubmit={handleSubmit}>
                     <div className={`row form-group`}>
                         <div className={`col-3`}>
                             <span>Name</span>
