@@ -51,7 +51,7 @@ function MemberProfilePage(){
                             address={account_details['address']}
                             contact_no={account_details['mobileNo']}
                             email={account_details['email']}
-                            dob={account_details['birthday'].slice(0,10)}
+                            dob={account_details['birthday']}
                         />
                         </div>
                         
